@@ -357,9 +357,6 @@ a:hover {
 header {
   padding: 15px 0;
 }
-header h1 {
-  font-size: 10000px;
-}
 header .container {
   display: grid;
   align-items: center;
@@ -367,9 +364,20 @@ header .container {
   grid-template-areas: "logo mobile";
   gap: 40px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   header .container {
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo menu mobile";
+  }
+}
+@media (min-width: 1200px) {
+  header .container {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo menu  buttons";
+  }
+}
+@media (min-width: 1200px) {
+  header .container {
     grid-template-areas: "logo menu switch buttons";
   }
 }
@@ -380,7 +388,7 @@ header .container #menu {
   grid-area: menu;
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   header .container #menu {
     display: block;
   }
@@ -393,9 +401,10 @@ header .container .btn-switch {
   grid-area: switch;
   display: none;
 }
-@media (min-width: 992px) {
+@media (min-width: 1400px) {
   header .container .btn-switch {
     display: block;
+    margin-right: 40px;
   }
 }
 header .container .account-buttons {
@@ -403,7 +412,7 @@ header .container .account-buttons {
   display: none;
   gap: 15px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   header .container .account-buttons {
     display: flex;
   }
@@ -411,8 +420,9 @@ header .container .account-buttons {
 header .container .btn-mobile {
   grid-area: mobile;
   display: block;
+  font-size: 30px;
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   header .container .btn-mobile {
     display: none;
   }
