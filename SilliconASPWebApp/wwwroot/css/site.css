@@ -447,6 +447,9 @@ footer .container .social-media {
   gap: 20px;
   margin-bottom: 30px;
 }
+footer .container .display-none .social-media {
+  display: none;
+}
 
 .showcase {
   margin-bottom: 70px;
