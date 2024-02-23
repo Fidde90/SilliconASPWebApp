@@ -448,11 +448,11 @@ footer .container .social-media {
   margin-bottom: 30px;
 }
 
-#showcase {
+.showcase {
   margin-bottom: 70px;
   overflow: hidden;
 }
-#showcase .container {
+.showcase .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -460,11 +460,11 @@ footer .container .social-media {
   margin-top: 50px;
 }
 @media (min-width: 1200px) {
-  #showcase .container {
+  .showcase .container {
     margin-top: 0;
   }
 }
-#showcase .container .content .showcase-title h1 {
+.showcase .container .content .showcase-title h1 {
   line-height: 160%;
   font-weight: 400;
   color: #565973;
@@ -474,18 +474,18 @@ footer .container .social-media {
   font-size: 42px !important;
   line-height: normal;
 }
-#showcase .container .content .showcase-title p {
+.showcase .container .content .showcase-title p {
   width: 95%;
   margin-bottom: 30px;
 }
-#showcase .container .content .showcase-title a {
+.showcase .container .content .showcase-title a {
   display: inline;
 }
 @media (min-width: 992px) {
-  #showcase .container .content .showcase-title {
+  .showcase .container .content .showcase-title {
     width: 90%;
   }
-  #showcase .container .content .showcase-title h1 {
+  .showcase .container .content .showcase-title h1 {
     line-height: 160%;
     font-weight: 400;
     color: #565973;
@@ -495,7 +495,7 @@ footer .container .social-media {
     font-size: 56px !important;
     line-height: normal;
   }
-  #showcase .container .content .showcase-title p {
+  .showcase .container .content .showcase-title p {
     line-height: 160%;
     font-weight: 400;
     color: #565973;
@@ -505,34 +505,34 @@ footer .container .social-media {
     margin-top: 30px;
   }
 }
-#showcase .container .content .logos {
+.showcase .container .content .logos {
   margin-top: 30px;
 }
-#showcase .container .content .logos img {
+.showcase .container .content .logos img {
   margin-right: 40px;
 }
 @media (min-width: 992px) {
-  #showcase .container .content .logos {
+  .showcase .container .content .logos {
     margin-top: 90px;
   }
-  #showcase .container .content .logos img {
+  .showcase .container .content .logos img {
     margin-right: 20px;
   }
-  #showcase .container .content .logos p {
+  .showcase .container .content .logos p {
     margin-bottom: 30px;
   }
 }
 @media (min-width: 992px) {
-  #showcase .container .content {
+  .showcase .container .content {
     margin-top: -150px;
   }
 }
-#showcase .showcase-image {
+.showcase .showcase-image {
   display: none;
   width: 100%;
 }
 @media (min-width: 992px) {
-  #showcase .showcase-image {
+  .showcase .showcase-image {
     margin-right: -300px;
     display: inline;
     width: 100%;

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
 {
@@ -6,9 +7,12 @@ namespace SilliconASPWebApp.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Title"] = "Home";
+          
+            HomeIndexViewModel viewModel = new HomeIndexViewModel();
+           
 
-            return View();
+            ViewData["Title"] = viewModel.Title = "Home";
+            return View(viewModel);
         }
     }
 }
