@@ -1,0 +1,61 @@
+﻿.features {
+    background-color: $gray-100;
+    padding-top: 100px;
+    padding-bottom: 180px;
+
+    .section-title {
+        text-align: center;
+    }
+
+    .boxes {
+        align-items: center;
+
+        .box-content {
+            padding: 40px 0px;
+            text-align: center;
+            border: 1px $gray-300 solid;
+            margin-bottom: 5px;
+        }
+
+        :hover {
+            background-color: white;
+            border-radius: 0.3rem;
+        }
+
+        @include md {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            .box-content {
+                border: 1px $gray-300 solid;
+                margin-bottom: 0;
+            }
+        }
+
+        @include lg {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            .box-content {
+                padding: 50px 30px;
+                text-align: center;
+                border: none;
+            }
+
+            .middlebox {
+                border: none;
+                border-left: 1px $gray-300 solid;
+                border-right: 1px $gray-300 solid;
+            }
+
+            .bottom {
+                border-top: 1px $gray-300 solid;
+            }
+
+            .bottom-middlebox {
+                border: 1px $gray-300 solid;
+                border-bottom: none;
+            }
+        }
+    }
+}

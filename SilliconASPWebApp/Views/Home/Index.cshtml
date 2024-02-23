@@ -1,1 +1,10 @@
-﻿
+﻿@model HomeIndexViewModel
+
+<section id="showcase" >
+    @await Html.PartialAsync("~/Views/Shared/Partials/_ShowcasePartial.cshtml", Model.Showcase)
+</section>
+
+<section id="features">
+    @await Html.PartialAsync("~/Views/Shared/Partials/_FeaturesPartial.cshtml", Model.Features)
+</section>
+
