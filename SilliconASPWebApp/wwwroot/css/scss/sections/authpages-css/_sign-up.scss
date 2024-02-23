@@ -1,0 +1,134 @@
+﻿.create-account {
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 70px;
+
+        .content {
+            max-width: 540px;
+            max-height: 730px;
+            height: 100%;
+            width: 100%;
+
+            p {
+                margin-bottom: 25px;
+            }
+
+            form {
+
+                .name {
+                    max-width: 540px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 20px;
+
+                    .nameContainer {
+                        width: 50%;
+
+                        .firstName-input {
+                            border: 1px solid $gray-400;
+                            border-radius: 7px;
+                            margin-bottom: 30px;
+                            overflow: hidden;
+
+                            #firstName {
+                                width: 100%;
+                            }
+                        }
+
+                        .lastName-input {
+                            border: 1px solid $gray-400;
+                            border-radius: 7px;
+                            margin-bottom: 30px;
+                            overflow: hidden;
+
+                            #lastName {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                .email {
+                    width: 100%;
+                    margin-bottom: 30px;
+
+                    .email-input {
+                        border: 1px solid $gray-400;
+                        border-radius: 7px;
+                        overflow: hidden;
+
+                        #email {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .password {
+                    width: 100%;
+                    margin-bottom: 20px;
+
+                    .password-input {
+                        border: 1px solid $gray-400;
+                        border-radius: 7px;
+                        overflow: hidden;
+
+                        #password {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .confirmPassword {
+                    width: 100%;
+                    margin-bottom: 20px;
+
+                    .confirmPassword-input {
+                        border: 1px solid $gray-400;
+                        border-radius: 7px;
+                        overflow: hidden;
+
+                        #confirmPassword {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .label {
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: $gray-900;
+                    margin-bottom: 5px;
+                }
+
+                input {
+                    border: none;
+                    padding: 10px 15px;
+                }
+
+                button {
+                    width: 100%;
+                    @include theme-shadow;
+                    margin-top: 20px;
+                }
+
+                a {
+                    display: block;
+                    color: blue;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+                .checkbox {
+                    input {
+                        margin-right: 7px;
+                    }
+                }
+            }
+        }
+    }
+}
