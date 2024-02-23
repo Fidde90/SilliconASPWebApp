@@ -1,10 +1,12 @@
 ﻿.create-account {
+    height:100%;
 
     .container {
+        height:100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 70px;
+     
 
         .content {
             max-width: 540px;
@@ -37,6 +39,7 @@
 
                             #firstName {
                                 width: 100%;
+                                outline: none;
                             }
                         }
 
@@ -48,6 +51,7 @@
 
                             #lastName {
                                 width: 100%;
+                                outline: none;
                             }
                         }
                     }
@@ -64,6 +68,7 @@
 
                         #email {
                             width: 100%;
+                            outline: none;
                         }
                     }
                 }
@@ -79,6 +84,7 @@
 
                         #password {
                             width: 100%;
+                            outline: none;
                         }
                     }
                 }
@@ -94,6 +100,7 @@
 
                         #confirmPassword {
                             width: 100%;
+                            outline: none;
                         }
                     }
                 }

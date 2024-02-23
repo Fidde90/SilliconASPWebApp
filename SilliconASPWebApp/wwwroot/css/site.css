@@ -597,11 +597,14 @@ footer .container .display-none {
   }
 }
 
+.create-account {
+  height: 100%;
+}
 .create-account .container {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 70px;
 }
 .create-account .container .content {
   max-width: 540px;
@@ -631,6 +634,7 @@ footer .container .display-none {
 }
 .create-account .container .content form .name .nameContainer .firstName-input #firstName {
   width: 100%;
+  outline: none;
 }
 .create-account .container .content form .name .nameContainer .lastName-input {
   border: 1px solid #D4D7E5;
@@ -640,6 +644,7 @@ footer .container .display-none {
 }
 .create-account .container .content form .name .nameContainer .lastName-input #lastName {
   width: 100%;
+  outline: none;
 }
 .create-account .container .content form .email {
   width: 100%;
@@ -652,6 +657,7 @@ footer .container .display-none {
 }
 .create-account .container .content form .email .email-input #email {
   width: 100%;
+  outline: none;
 }
 .create-account .container .content form .password {
   width: 100%;
@@ -664,6 +670,7 @@ footer .container .display-none {
 }
 .create-account .container .content form .password .password-input #password {
   width: 100%;
+  outline: none;
 }
 .create-account .container .content form .confirmPassword {
   width: 100%;
@@ -676,6 +683,7 @@ footer .container .display-none {
 }
 .create-account .container .content form .confirmPassword .confirmPassword-input #confirmPassword {
   width: 100%;
+  outline: none;
 }
 .create-account .container .content form .label {
   font-weight: 600;
