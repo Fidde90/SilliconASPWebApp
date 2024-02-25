@@ -27,8 +27,8 @@ namespace SilliconASPWebApp.Models.Sections
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password", Prompt = "Confirm password", Order = 4)]
-        [Required(ErrorMessage = "Password must be confirmed")]
-        [Compare(nameof(Password), ErrorMessage = "Password did not match!")]
+        [Required(ErrorMessage = "Passwords must match")]
+        [Compare(nameof(Password), ErrorMessage = "Passwords did not match!")]
         public string ConfirmPassword { get; set; } = null!;
 
         [Display(Name = "I agree to the Terms & Conditions", Order = 5)]

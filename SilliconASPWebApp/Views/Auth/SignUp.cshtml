@@ -13,39 +13,39 @@
                 <div class="name">
                     <div id="form-firstName" class="input-group">
                         <label asp-for="Form.FirstName"></label>
-                        <span class="error" asp-validation-for="Form.FirstName"></span>
+                        <span asp-validation-for="Form.FirstName"></span>
                         <input asp-for="Form.FirstName" />
                     </div>
 
                     <div id="form-lastName" class="input-group">
                         <label asp-for="Form.LastName"></label>
-                        <span class="error" asp-validation-for="Form.LastName"></span>
+                        <span asp-validation-for="Form.LastName"></span>
                         <input asp-for="Form.LastName" />
                     </div>
                 </div>
 
                 <div id="form-email" class="input-group">
                     <label asp-for="Form.Email"></label>
-                    <span class="error" asp-validation-for="Form.Email"></span>
+                    <span  asp-validation-for="Form.Email"></span>
                     <input asp-for="Form.Email" />
                 </div>
 
                 <div id="form-password" class="input-group">
                     <label asp-for="Form.Password"></label>
-                    <span class="error" asp-validation-for="Form.Password"></span>
+                    <span asp-validation-for="Form.Password"></span>
                     <input asp-for="Form.Password" />
                 </div>
 
                 <div id="form-confirm" class="input-group">
                     <label asp-for="Form.ConfirmPassword"></label>
-                    <span class="error" asp-validation-for="Form.ConfirmPassword"></span>
+                    <span asp-validation-for="Form.ConfirmPassword"></span>
                     <input asp-for="Form.ConfirmPassword" />
                 </div>
 
                 <div id="form-terms" class="checkbox-group">
                     <input asp-for="Form.Terms" />
                     <label asp-for="Form.Terms">I agree to the <a asp-controller="About" asp-action="Terms"> Terms</a> & <a asp-controller="About" asp-action="Conditions"> Conditions</a></label>
-                    <span class="error" asp-validation-for="Form.Terms"></span>
+                    <span  asp-validation-for="Form.Terms"></span>
                 </div>
 
                 <button type="submit" class="btn-theme">@Model.Title</button>

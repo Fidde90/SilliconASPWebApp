@@ -8,9 +8,7 @@
         justify-content: center;
 
         .content {
-            max-width: 540px;
-            max-height: 730px;
-            height: 100%;
+            max-width: 700px;
             width: 100%;
 
             p {
@@ -20,16 +18,16 @@
             form {
 
                 .name {
-                    max-width: 540px;
                     width: 100%;
                     display: flex;
+                    flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
-                    gap: 20px;
-                }
 
-                .error {
-                    color: $danger;
+                    @include md {
+                        flex-direction: row;
+                        gap: 20px;
+                    }
                 }
 
                 .input-group {
@@ -42,6 +40,16 @@
                         outline: none;
                         width: 100%;
                         margin-bottom: 20px;
+
+                        &.input-validation-error {
+                            color: $danger;
+                            border: 0.5px solid $danger !important;
+
+                            &::placeholder {
+                                color: $danger;
+                                opacity: 0.4;
+                            }
+                        }
                     }
 
                     label {
@@ -49,21 +57,49 @@
                         font-size: 16px;
                         color: $gray-900;
                         margin-bottom: 5px;
+                        margin-right: 20px;
+                    }
+
+                    span {
+
+                        &.field-validation-error {
+                            color: $danger;
+                            opacity: 0.6;
+                            position: absolute;
+                            right: 0;
+                        }
+                    }
+                }
+
+                .checkbox-group {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+
+                    @include md {
+                        flex-direction: row;
+                    }
+
+                    input {
+                        height: 1.2rem;
+                        width: 1.2rem;
+                    }
+
+                    span {
+
+                        &.field-validation-error {
+                            color: $danger;
+                            opacity: 0.6;
+                            position: static;
+                        }
                     }
                 }
 
                 button {
                     width: 100%;
                     @include theme-shadow;
-                    margin: 20px 0;
-                }
-
-
-                .checkbox-group {
-
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
+                    margin-top: 20px;
                 }
             }
         }
