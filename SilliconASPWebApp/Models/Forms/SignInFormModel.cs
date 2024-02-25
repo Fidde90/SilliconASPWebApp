@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SilliconASPWebApp.Models.Sections
+namespace SilliconASPWebApp.Models.Forms
 {
     public class SignInFormModel
     {
         [Display(Name = "Email address", Prompt = "Enter your email address", Order = 0)]
-        [DataType(DataType.EmailAddress)]      
+        [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; } = null!;
 
