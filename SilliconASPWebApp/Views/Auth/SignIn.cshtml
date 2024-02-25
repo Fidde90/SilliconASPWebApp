@@ -1,0 +1,53 @@
+﻿@model SignInViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section class="create-account">
+    <div class="container">
+        <div class="content">
+            <h1>Welcome back</h1>
+            <p>Don't have an account yet? <a asp- asp-controller="Auth" asp-action="SignUp">Sign up here.</a></p>
+
+            <div class="error-msg">@Model.ErrorMessage</div>
+
+            <form method="post" novalidate asp-controller="Auth" asp-action="SignIn">
+
+                <div id="form-email" class="input-group">
+                    <label asp-for="Form.Email"></label>
+                    <span asp-validation-for="Form.Email"></span>
+                    <input asp-for="Form.Email" />
+                </div>
+
+                <div id="form-password" class="input-group">
+                    <label asp-for="Form.Password"></label>
+                    <span asp-validation-for="Form.Password"></span>
+                    <input asp-for="Form.Password" />
+                </div>
+
+                <div id="form-remeber" class="checkbox-group">
+                    <input asp-for="Form.Remeber" />
+                    <label asp-for="Form.Remeber"></label>
+                </div>
+
+                <button type="submit" class="btn-theme">@Model.Title</button>
+
+            </form>
+
+            <div id="forgot"><a asp-controller="Account" asp-action="Forgot">Forgot your password?</a></div>
+
+            <hr />
+
+            <div class="networks">
+                <label>Or sign in with your social network</label>
+                <div class="buttons">
+                    <a href="https://google.com" target="_blank"><button type="submit" class="btn-gray"><i class="fa-brands fa-google"></i>Google</button></a>
+                    <a href="https://facebook.com" target="_blank"><button type="submit" class="btn-gray"><i class="fa-brands fa-facebook-f"></i>Facebook</button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
