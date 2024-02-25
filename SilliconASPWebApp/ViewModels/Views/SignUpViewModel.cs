@@ -6,8 +6,6 @@ namespace SilliconASPWebApp.ViewModels.Views
     {
         public string Title { get; set; } = "Sign up";
 
-        public SignUpFormModel From { get; set; } = new SignUpFormModel();
-
-
+        public SignUpFormModel Form { get; set; } = new SignUpFormModel();
     }
 }

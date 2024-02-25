@@ -15,10 +15,10 @@ namespace SilliconASPWebApp.Controllers
 
         [Route("/signup")]
         [HttpPost]
-        public IActionResult SignUp(SignUpViewModel viewModel)
+        public IActionResult SignUp(SignUpViewModel Model)
         {
-            if(!ModelState.IsValid)
-                return View(viewModel);
+            if (!ModelState.IsValid)
+                return View(Model);
 
             return RedirectToAction("SignIn", "Auth");
         }
