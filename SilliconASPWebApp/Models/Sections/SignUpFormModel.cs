@@ -14,7 +14,7 @@ namespace SilliconASPWebApp.Models.Sections
         public string LastName { get; set; } = null!;
 
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email address", Prompt = "Enter your Email address", Order = 2)]
+        [Display(Name = "Email address", Prompt = "Enter your email address", Order = 2)]
         [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid email")]
         [Required(ErrorMessage = "Invalid email")]
         public string Email { get; set; } = null!;

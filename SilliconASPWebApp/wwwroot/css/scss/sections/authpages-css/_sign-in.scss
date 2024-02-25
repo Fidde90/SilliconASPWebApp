@@ -1,0 +1,110 @@
+﻿.create-account {
+    height: 100%;
+
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .content {
+            max-width: 600px;
+            width: 100%;
+
+            p {
+                margin-bottom: 25px;
+            }
+
+            .error-msg {
+                color: $danger;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+            form {
+
+                .input-group {
+
+                    input {
+                        padding: 10px 15px;
+                        border: 1px solid $gray-400;
+                        border-radius: 7px !important;
+                        overflow: hidden;
+                        outline: none;
+                        width: 100%;
+                        margin-bottom: 20px;
+
+                        &.input-validation-error {
+                            color: $danger;
+                            border: 0.5px solid $danger !important;
+
+                            &::placeholder {
+                                color: $danger;
+                                opacity: 0.4;
+                            }
+                        }
+                    }
+
+                    span {
+
+                        &.field-validation-error {
+                            color: $danger;
+                            opacity: 0.6;
+                            position: absolute;
+                            right: 0;
+                        }
+                    }
+                }
+
+                .checkbox-group {
+
+                    input {
+                        height: 1.2rem;
+                        width: 1.2rem;
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    @include theme-shadow;
+                    margin-top: 20px;
+                }
+            }
+
+            #forgot {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+                margin-bottom: 40px;
+            }
+
+            .networks {
+                text-align: center;
+                margin-top: 30px;
+
+                label {
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: $gray-900;
+                    margin-bottom: 5px;
+                    margin-right: 20px;
+                }
+
+                a {
+                    text-decoration: none;
+                    width: 100%;
+                }
+
+                .buttons {
+                    display: flex;
+                    gap: 20px;
+
+                    button {
+                        box-shadow: none;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
