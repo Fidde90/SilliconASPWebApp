@@ -26,7 +26,7 @@
 
                 <div id="form-email" class="input-group">
                     <label asp-for="Form.Email"></label>
-                    <span  asp-validation-for="Form.Email"></span>
+                    <span asp-validation-for="Form.Email"></span>
                     <input asp-for="Form.Email" />
                 </div>
 
@@ -43,9 +43,12 @@
                 </div>
 
                 <div id="form-terms" class="checkbox-group">
-                    <input asp-for="Form.Terms" />
-                    <label asp-for="Form.Terms">I agree to the <a asp-controller="About" asp-action="Terms"> Terms</a> & <a asp-controller="About" asp-action="Conditions"> Conditions</a></label>
-                    <span  asp-validation-for="Form.Terms"></span>
+                    <div class="checkbox">
+                        <input asp-for="Form.Terms" />
+                        <label asp-for="Form.Terms">I agree to the <a asp-controller="About" asp-action="Terms"> Terms</a> & <a asp-controller="About" asp-action="Conditions"> Conditions</a></label>
+                    </div>
+                    <span asp-validation-for="Form.Terms"></span>
+
                 </div>
 
                 <button type="submit" class="btn-theme">@Model.Title</button>

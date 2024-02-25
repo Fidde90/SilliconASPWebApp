@@ -656,14 +656,13 @@ footer .container .display-none {
   position: absolute;
   right: 0;
 }
-.create-account .container .content form .checkbox-group {
+.create-account .container .content form .checkbox-group .checkbox {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 @media (min-width: 768px) {
-  .create-account .container .content form .checkbox-group {
+  .create-account .container .content form .checkbox-group .checkbox {
     flex-direction: row;
   }
 }

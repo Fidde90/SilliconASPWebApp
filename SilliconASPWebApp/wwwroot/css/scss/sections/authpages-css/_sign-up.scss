@@ -72,13 +72,15 @@
                 }
 
                 .checkbox-group {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 10px;
 
-                    @include md {
-                        flex-direction: row;
+                    .checkbox {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        @include md {
+                            flex-direction: row;
+                        }
                     }
 
                     input {
