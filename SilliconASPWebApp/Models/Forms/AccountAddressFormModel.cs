@@ -11,10 +11,9 @@ namespace SilliconASPWebApp.Models.Forms
         [Display(Name = "Address line 2", Prompt = "Enter your second address line", Order = 1)]
         public string? Addressline_2 { get; set; }
 
-        [DataType(DataType.PostalCode)]
         [Display(Name = "Postal code", Prompt = "Enter your postal code", Order = 2)]
         [Required(ErrorMessage = "Postal code is required")]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; } = null!;
 
         [Display(Name = "City", Prompt = "Enter your city", Order = 3)]
         [Required(ErrorMessage = "City is required")]

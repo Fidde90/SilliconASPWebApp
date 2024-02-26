@@ -5,7 +5,7 @@ namespace SilliconASPWebApp.Models.Forms
     public class AccountBasicInfoFormModel
     {
         [DataType(DataType.ImageUrl)]
-        public string? ProfileÍmg { get; set; }
+        public string? ProfileImg { get; set; }
 
         [Display(Name = "First name", Prompt = "Enter your first name", Order = 0)]
         [Required(ErrorMessage = "Invalid first name")]
@@ -22,7 +22,7 @@ namespace SilliconASPWebApp.Models.Forms
         public string Email { get; set; } = null!;
 
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Last name", Prompt = "Enter your phone", Order = 3)]
+        [Display(Name = "Phone", Prompt = "Enter your phone", Order = 3)]
         [Required(ErrorMessage = "phone is required")]
         public string Phone { get; set; } = null!;
 
