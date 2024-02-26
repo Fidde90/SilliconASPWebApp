@@ -1,0 +1,213 @@
+﻿.account-details {
+
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "menu" "basic" "address";
+
+        @include lg {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas: "menu basic basic" "menu address address";
+        }
+
+        .profile-menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            grid-area: menu;
+            width: 100%;
+            padding: 40px 15px;
+            border-bottom: 1px solid $gray-400;
+
+            .name-email-img {
+                text-align: center;
+            }
+
+            nav {
+                width: 100%;
+
+                a {
+                    display: block;
+                    width: 100%;
+
+                    .button {
+                        margin-bottom: 10px;
+                        padding: 14px 28px;
+                        border-radius: 6px;
+                        font-weight: 700;
+                        color: black;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: none;
+                            background-color: $theme;
+                            color: white;
+                            @include theme-shadow;
+                        }
+
+                        i {
+                            margin-right: 7px;
+                        }
+                    }
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+
+                    .active {
+                        text-decoration: none;
+                        background-color: $theme;
+                        color: white;
+                        @include theme-shadow;
+                    }
+                }
+            }
+
+            @include lg {
+                border-right: 1px solid $gray-400;
+                border-bottom: none;
+                max-width: 320px;
+            }
+        }
+
+        h5 {
+            color: $theme;
+        }
+
+        .basic-details {
+            grid-area: basic;
+
+            @include lg {
+                margin-left: 20px;
+            }
+
+            .details-form-group {
+
+                .names {
+                    display: flex;
+                    flex-direction: column;
+
+                    @include lg {
+                        flex-direction: row;
+                        gap: 20px;
+                    }
+                }
+
+                .email-phone {
+                    display: flex;
+                    flex-direction: column;
+
+                    @include lg {
+                        flex-direction: row;
+                        gap: 20px;
+                    }
+                }
+
+                textarea {
+                    padding: 1rem;
+                    border-radius: 7px !important;
+                    border: 1px solid $gray-400;
+                    resize: none;
+                    width: 100%;
+                    outline: none;
+
+                    &::placeholder {
+                        opacity: 0.4;
+                    }
+
+                    &.input-validation-error {
+                        color: $danger;
+                        border: 0.5px solid $danger !important;
+
+                        &::placeholder {
+                            color: $danger;
+                            opacity: 0.4;
+                        }
+                    }
+                }
+            }
+        }
+
+        .address {
+            grid-area: address;
+
+            @include lg {
+                margin-left: 20px;
+            }
+
+            .address-form-group {
+
+                .postal-city {
+                    display: flex;
+                    flex-direction:column;
+
+                    @include lg {
+                        flex-direction: row;
+                        gap: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .input-group {
+
+        input {
+            padding: 10px 15px;
+            border: 1px solid $gray-400;
+            border-radius: 7px !important;
+            overflow: hidden;
+            outline: none;
+            width: 100%;
+            margin-bottom: 20px;
+
+            &.input-validation-error {
+                color: $danger;
+                border: 0.5px solid $danger !important;
+
+                &::placeholder {
+                    color: $danger;
+                    opacity: 0.4;
+                }
+            }
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 16px;
+            color: $gray-900;
+            margin-bottom: 5px;
+            margin-right: 20px;
+        }
+
+        span {
+
+            &.field-validation-error {
+                color: $danger;
+                opacity: 0.6;
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-top: 2rem;
+
+        button {
+            @include theme-shadow;
+            margin-bottom: 2rem;
+        }
+    }
+
+    span {
+        color: $gray-500;
+        font-weight: 400;
+    }
+
+    margin-bottom: 4rem;
+}

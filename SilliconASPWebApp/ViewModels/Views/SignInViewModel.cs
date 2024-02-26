@@ -1,4 +1,4 @@
-﻿using SilliconASPWebApp.Models.Sections;
+﻿using SilliconASPWebApp.Models.Forms;
 
 namespace SilliconASPWebApp.ViewModels.Views
 {
