@@ -4,7 +4,7 @@
 
 <div class="container">
     <a id="logo" asp-action="Index" asp-controller="Home"><img src="\images\IconLight.svg" alt="Icon"></a>
-    <div class="btn-mobile"><i class="fa-solid fa-bars-staggered"></i></div>
+    <button class="btn-mobile"><i class="fa-solid fa-bars-staggered"></i></button>
     <div id="menu">
         <nav>
             <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")" >Overview</a>
@@ -27,4 +27,16 @@
         <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
         <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
     </div>
-</div> 
+
+
+</div>
+<div id="mobile-menu">
+    <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")">Overview</a>
+    <a class="menu-link" href="#features">Features</a>
+    <a class="menu-link" href="#contact.html">Contact</a>
+    <a class="menu-link" href="#courses.html">Courses</a>
+    <a class="btn-theme" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
+    <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
+</div>
+
+@await Html.PartialAsync("_mobilePartial")

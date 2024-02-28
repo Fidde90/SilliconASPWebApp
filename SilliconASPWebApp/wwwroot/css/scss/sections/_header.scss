@@ -9,16 +9,12 @@ header {
         gap: 40px;
 
         @include md {
-            grid-template-columns: auto 1fr auto;
-            grid-template-areas: "logo menu mobile";
+            grid-template-columns: 1fr auto auto;
+            grid-template-areas: "logo switch mobile";
         }
 
         @include xl {
             grid-template-columns: auto 1fr auto;
-            grid-template-areas: "logo menu  buttons";
-        }
-
-        @include xl {
             grid-template-areas: "logo menu switch buttons";
         }
 
@@ -30,7 +26,7 @@ header {
             grid-area: menu;
             display: none;
 
-            @include md {
+            @include xl {
                 display: block;
             }
 
@@ -44,7 +40,7 @@ header {
             grid-area: switch;
             display: none;
 
-            @include xxl {
+            @include md {
                 display: block;
                 margin-right: 40px;
             }
@@ -52,8 +48,8 @@ header {
 
         .account-buttons {
             grid-area: buttons;
-            display: none;
             gap: 15px;
+            display: none;
 
             @include xl {
                 display: flex;
@@ -64,10 +60,27 @@ header {
             grid-area: mobile;
             display: block;
             font-size: 30px;
+            border: none;
+            background-color: transparent;
 
             @include xl {
                 display: none;
             }
         }
+    }
+
+    .invisible {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background-color: $gray-200;
+        padding: 40px;
+        margin-top: 20px;
     }
 }

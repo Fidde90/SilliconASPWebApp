@@ -1,4 +1,34 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const btnClicked = document.querySelector('.btn-mobile')
+let m_menu = document.querySelector('#mobile-menu')
+m_menu.classList.add('invisible')
+let active = false; 
 
-// Write your JavaScript code.
+btnClicked.addEventListener('click', () => {
+    m_menu.classList.remove('mobile-menu')
+    m_menu.classList.add('invisible')
+    active = !active
+
+    if (active) {
+        m_menu.classList.remove('invisible')
+        m_menu.classList.add('mobile-menu')
+    } else {
+        m_menu.classList.add('invisible')
+        m_menu.classList.remove('mobile-menu')
+    }
+})
+
+const checkScreenSize = () => {
+    if (window.innerWidth >= 1200) {
+        m_menu.classList.add('invisible')
+        m_menu.classList.remove('mobile-menu')
+    } else {
+        if (!document.getElementById('mobile-menu').classList.contains('invisible')) {
+            document.getElementById('mobile-menu').classList.add('invisible');
+            m_menu.classList.remove('mobile-menu')
+            active = !active
+        }
+    }
+}
+
+window.addEventListener('resize', checkScreenSize);
+checkScreenSize();
