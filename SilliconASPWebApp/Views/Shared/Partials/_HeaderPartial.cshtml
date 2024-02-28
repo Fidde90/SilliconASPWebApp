@@ -1,10 +1,11 @@
 ﻿@{
     bool isRoot = Context.Request.Path.Value!.Equals("/");
+    bool hej = Model.ChangeSymbol;
 }
 
 <div class="container">
     <a id="logo" asp-action="Index" asp-controller="Home"><img src="\images\IconLight.svg" alt="Icon"></a>
-    <button class="btn-mobile"><i class="fa-solid fa-bars-staggered"></i></button>
+    <button type="button" class="btn-mobile" onclick="@(Model.ChangeSymbol = true)"><i class=" @(hej ? "fa-solid fa-bars-staggered" : "fa-solid fa-xmark")"></i></button>
     <div id="menu">
         <nav>
             <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")" >Overview</a>
@@ -31,7 +32,7 @@
 
 </div>
 <div id="mobile-menu">
-    <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")">Overview</a>
+    <a class="menu-link" asp-page="@(isRoot ? "/#Features" : "/index")">Overview</a>
     <a class="menu-link" href="#features">Features</a>
     <a class="menu-link" href="#contact.html">Contact</a>
     <a class="menu-link" href="#courses.html">Courses</a>
