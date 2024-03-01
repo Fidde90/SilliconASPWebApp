@@ -139,7 +139,7 @@
 
                 .postal-city {
                     display: flex;
-                    flex-direction:column;
+                    flex-direction: column;
 
                     @include lg {
                         flex-direction: row;
@@ -202,6 +202,12 @@
             @include theme-shadow;
             margin-bottom: 2rem;
         }
+    }
+
+    .error-msg {
+        color: $danger;
+        margin-bottom: 30px;
+        text-align: center;
     }
 
     span {

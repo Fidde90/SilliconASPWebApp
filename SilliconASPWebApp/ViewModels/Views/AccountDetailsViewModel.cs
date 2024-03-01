@@ -16,5 +16,7 @@ namespace SilliconASPWebApp.ViewModels.Views
         };
 
         public AccountAddressFormModel AddressInfo { get; set; } = new AccountAddressFormModel();
+
+        public string ErrorMessage { get; set; } = string.Empty;
     }
 }

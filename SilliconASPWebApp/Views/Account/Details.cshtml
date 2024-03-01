@@ -30,6 +30,8 @@
 
                 <form method="post" novalidate asp-controller="Account" asp-action="BasicInfo">
 
+                    <div class="error-msg">@Model.ErrorMessage</div>
+
                     <div class="names">
                         <div id="form-firstName" class="input-group">
                             <label asp-for="BasicInfo.FirstName"></label>
@@ -79,6 +81,8 @@
                 <div class="address-form-group">
 
                     <form method="post" novalidate asp-controller="Account" asp-action="AddressInfo">
+
+                        <div class="error-msg">@Model.ErrorMessage</div>
 
                         <div id="form-addressline_1" class="input-group">
                             <label asp-for="AddressInfo.Addressline_1"></label>

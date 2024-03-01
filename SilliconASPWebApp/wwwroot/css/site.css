@@ -949,6 +949,11 @@ footer .container .display-none {
   box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
   margin-bottom: 2rem;
 }
+.account-details .error-msg {
+  color: #EF4444;
+  margin-bottom: 30px;
+  text-align: center;
+}
 .account-details span {
   color: #B4B7C9;
   font-weight: 400;
