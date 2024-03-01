@@ -63,6 +63,12 @@
 
             form {
 
+                .error-msg {
+                    color: $danger;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+
                 h5 {
                     color: $theme;
                     margin-bottom: 20px;
@@ -126,12 +132,31 @@
                 margin-bottom: 20px;
             }
 
-            .checkbox {
-                margin-top: 30px;
-                margin-bottom: 30px;
+            .checkbox-group {
+                margin-bottom: 20px;
+
+                .checkbox {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    @include md {
+                        flex-direction: row;
+                    }
+                }
 
                 input {
-                    margin-right: 5px;
+                    height: 1.2rem;
+                    width: 1.2rem;
+                }
+
+                span {
+
+                    &.field-validation-error {
+                        color: $danger;
+                        opacity: 0.6;
+                        position: static;
+                    }
                 }
             }
 

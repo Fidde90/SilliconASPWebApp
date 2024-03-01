@@ -27,8 +27,10 @@
         <div>
             <div class="security-form">
                 <h2>Security</h2>
-                <form>
+                <form method="post" novalidate asp-controller="Account" asp-action="ChangePassword">
                     <h5>Password</h5>
+
+                    <div class="error-msg">@Model.ChangePasswordErrorMessage</div>
 
                     <div id="form-password" class="input-group">
                         <label asp-for="Form.Password"></label>
@@ -64,14 +66,24 @@
                     you a
                     link to reactivate your account.
                 </p>
-                <div class="checkbox">
-                    <input id="checkbox" type="checkbox" />
-                    <label for="checkbox">Yes, I want to delete my account.</label>
-                </div>
-                <button class="btn-theme">Delete</button>
+
+                <form novalidate asp-controller="Account" asp-action="DeleteAccount">
+
+                    <div class="error-msg">@Model.DeleteAccountErrorMessage</div>
+
+                    <div id="form-delete" class="checkbox-group">
+                        <div class="checkbox">
+                            <input asp-for="DeleteForm.Delete" />
+                            <label asp-for="DeleteForm.Delete"></label>
+                        </div>
+                        <span asp-validation-for="DeleteForm.Delete"></span>
+                    </div>
+                    <button class="btn-theme">Delete</button>
+                </form>
+              
             </div>
         </div>
     </div>
 </div>
 
-                   
+@await Html.PartialAsync("_ValidationScriptPartial")

@@ -19,7 +19,7 @@ namespace SilliconASPWebApp.Models.Forms
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password", Prompt = "Confirm password", Order = 2)]
         [Required(ErrorMessage = "Passwords must match")]
-        [Compare(nameof(Password), ErrorMessage = "Passwords did not match!")]
+        [Compare(nameof(NewPassword), ErrorMessage = "Passwords did not match!")]
         public string ConfirmPassword { get; set; } = null!;
     }
 }

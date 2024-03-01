@@ -998,6 +998,11 @@ footer .container .display-none {
 .security .container .security-form {
   margin-top: 30px;
 }
+.security .container .security-form form .error-msg {
+  color: #EF4444;
+  margin-bottom: 30px;
+  text-align: center;
+}
 .security .container .security-form form h5 {
   color: #6366F1;
   margin-bottom: 20px;
@@ -1042,12 +1047,27 @@ footer .container .display-none {
   color: #6366F1;
   margin-bottom: 20px;
 }
-.security .container .delete-account .checkbox {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.security .container .delete-account .checkbox-group {
+  margin-bottom: 20px;
 }
-.security .container .delete-account .checkbox input {
-  margin-right: 5px;
+.security .container .delete-account .checkbox-group .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (min-width: 768px) {
+  .security .container .delete-account .checkbox-group .checkbox {
+    flex-direction: row;
+  }
+}
+.security .container .delete-account .checkbox-group input {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+.security .container .delete-account .checkbox-group span.field-validation-error {
+  color: #EF4444;
+  opacity: 0.6;
+  position: static;
 }
 .security .container .delete-account button {
   background-color: #EF4444;
