@@ -5,25 +5,9 @@
 
 <div class="security">
     <div class="container">
-        <div class="profile-menu">
-            <div class="name-email-img">
-                <img src="images\Jhon-doe.svg" />
-                <h5>John Doe</h5>
-                <p>john.doe@domain.com</p>
-            </div>
-            <a href="account_details.html">
-                <div class="button"><i class="fa-regular fa-gear"></i> Account details</div>
-            </a>
-            <a href="#">
-                <div class="button active"><i class="fa-regular fa-lock"></i> Security</div>
-            </a>
-            <a href="saved_courses.html">
-                <div class="button"><i class="fa-regular fa-bookmark"></i> Saved courses</div>
-            </a>
-            <a href="index.html">
-                <div class="button"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Sign out</div>
-            </a>
-        </div>
+
+            @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ProfileMenuPartial.cshtml", Model.ProfileMenuModel)
+    
         <div>
             <div class="security-form">
                 <h2>Security</h2>

@@ -1,10 +1,18 @@
 ﻿using SilliconASPWebApp.Models.Forms;
+using SilliconASPWebApp.Models.Sections;
 
 namespace SilliconASPWebApp.ViewModels.Views
 {
     public class AccountDetailsViewModel
     {
         public string Title { get; set; } = "Account details";
+
+        public ProfileMenuModel ProfileMenuModel { get; set; } = new()
+        {
+            Image = new() { Src = "images/John-doe.svg", AltText = "Profile picture" },
+            Name = "John Doe",
+            Email = "john.doe@hotmail.com"
+        };
 
         public AccountBasicInfoFormModel BasicInfo { get; set; } = new AccountBasicInfoFormModel()
         {

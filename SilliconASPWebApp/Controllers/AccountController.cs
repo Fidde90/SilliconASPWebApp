@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
+using SilliconASPWebApp.Models.Sections;
 using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
@@ -18,18 +19,18 @@ namespace SilliconASPWebApp.Controllers
         public IActionResult BasicInfo(AccountDetailsViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(nameof(Details), viewModel);
+                return RedirectToAction("Details");
 
-            return View(nameof(Details), viewModel);
+            return RedirectToAction("Details");
         }
 
         [HttpPost]
         public IActionResult AddressInfo(AccountDetailsViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(nameof(Details), viewModel);
+                return RedirectToAction("Details");
 
-            return View(nameof(Details), viewModel);
+            return RedirectToAction("Details");
         }
 
         [HttpGet]
@@ -59,6 +60,14 @@ namespace SilliconASPWebApp.Controllers
 
             viewModel.DeleteAccountErrorMessage = "Confirm the checkbox.";
             return RedirectToAction("Account", "Details");
+        }
+
+        [Route("/courses")]
+        [HttpGet]
+        public IActionResult Courses()
+        {
+            SavedCoursesViewModel viewModel = new SavedCoursesViewModel();
+            return View(viewModel);
         }
     }
 }

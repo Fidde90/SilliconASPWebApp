@@ -7,57 +7,6 @@
             gap: 150px;
         }
 
-        .profile-menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            grid-area: menu;
-            width: 100%;
-            padding: 40px 15px;
-            border-bottom: 1px solid $gray-400;
-
-            .name-email-img {
-                text-align: center;
-            }
-
-            a {
-                display: block;
-                width: 100%;
-
-                .button {
-                    margin-bottom: 10px;
-                    padding: 14px 28px;
-                    border-radius: 6px;
-                    font-weight: 700;
-                    color: black;
-
-                    &:hover {
-                        text-decoration: none;
-                        background-color: $theme;
-                        color: white;
-                        @include theme-shadow;
-                    }
-
-                    i {
-                        margin-right: 7px;
-                    }
-                }
-
-                .active {
-                    text-decoration: none;
-                    background-color: $theme;
-                    color: white;
-                    @include theme-shadow;
-                }
-            }
-
-            @include lg {
-                border-right: 1px solid $gray-400;
-                border-bottom: none;
-                max-width: 320px;
-            }
-        }
-
         .security-form {
             margin-top: 30px;
 

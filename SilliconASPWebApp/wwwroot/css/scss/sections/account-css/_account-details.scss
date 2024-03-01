@@ -10,70 +10,6 @@
             grid-template-areas: "menu basic basic" "menu address address";
         }
 
-        .profile-menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            grid-area: menu;
-            width: 100%;
-            padding: 40px 15px;
-            border-bottom: 1px solid $gray-400;
-
-            .name-email-img {
-                text-align: center;
-            }
-
-            nav {
-                width: 100%;
-
-                a {
-                    display: block;
-                    width: 100%;
-
-                    .button {
-                        margin-bottom: 10px;
-                        padding: 14px 28px;
-                        border-radius: 6px;
-                        font-weight: 700;
-                        color: black;
-                        text-decoration: none;
-
-                        &:hover {
-                            text-decoration: none;
-                            background-color: $theme;
-                            color: white;
-                            @include theme-shadow;
-                        }
-
-                        i {
-                            margin-right: 7px;
-                        }
-                    }
-
-                    &:hover {
-                        text-decoration: none;
-                    }
-
-                    .active {
-                        text-decoration: none;
-                        background-color: $theme;
-                        color: white;
-                        @include theme-shadow;
-                    }
-                }
-            }
-
-            @include lg {
-                border-right: 1px solid $gray-400;
-                border-bottom: none;
-                max-width: 320px;
-            }
-        }
-
-        h5 {
-            color: $theme;
-        }
-
         .basic-details {
             grid-area: basic;
 
@@ -139,7 +75,7 @@
 
                 .postal-city {
                     display: flex;
-                    flex-direction:column;
+                    flex-direction: column;
 
                     @include lg {
                         flex-direction: row;

@@ -1,0 +1,29 @@
+﻿@model ProfileMenuModel
+@{
+    List<string> actions = new() { "Details", "Security", "Courses", "SignOut" };
+
+    string CheckURL(int index)
+    {
+        if (ViewContext.RouteData.Values["action"]!.ToString()! == actions[index])
+            return "button active";
+
+        return "button";
+    }
+}
+<aside class="profile-menu">
+    <div class="name-email-img">
+        <img src="@Model.Image!.Src" alt="@Model.Image.AltText" />
+        <h5>@Model.Name</h5>
+        <p>@Model.Email</p>
+    </div>
+
+    <nav>
+        @for(int i = 0; i < Model.Links.Count; i++)
+        {
+            <a asp-controller="@Model.Links[i].Link.Controller" asp-action="@Model.Links[i].Link.Action">
+                <div class="@CheckURL(i)"><i class="@Model.Links[i].Symbol"></i>@Model.Links[i].Link.Text</div>
+            </a>
+        }
+    </nav>
+
+</aside>

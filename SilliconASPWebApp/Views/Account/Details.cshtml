@@ -6,22 +6,7 @@
 <div class="account-details">
     <div class="container">
 
-        <aside class="profile-menu">
-
-            <div class="name-email-img">
-                <img src="@Model.BasicInfo.ProfileImg" />
-                <h5>@Model.BasicInfo.FirstName @Model.BasicInfo.LastName</h5>
-                <p>@Model.BasicInfo.Email</p>
-            </div>
-
-            <nav>
-                <a href="#"><div class="button active"><i class="fa-regular fa-gear"></i> Account details</div></a>
-                <a href="security.html"><div class="button"><i class="fa-regular fa-lock"></i> Security</div></a>
-                <a href="saved_courses.html"><div class="button"><i class="fa-regular fa-bookmark"></i> Saved courses</div></a>
-                <a href="index.html"><div class="button"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Sign out</div></a>
-            </nav>
-
-        </aside>
+        @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ProfileMenuPartial.cshtml", Model.ProfileMenuModel)
 
         @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_BasicInfoFormPartial.cshtml")
 
