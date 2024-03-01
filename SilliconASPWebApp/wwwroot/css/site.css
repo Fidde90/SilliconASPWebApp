@@ -366,18 +366,13 @@ header .container {
 }
 @media (min-width: 768px) {
   header .container {
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: "logo menu mobile";
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: "logo switch mobile";
   }
 }
 @media (min-width: 1200px) {
   header .container {
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: "logo menu  buttons";
-  }
-}
-@media (min-width: 1200px) {
-  header .container {
     grid-template-areas: "logo menu switch buttons";
   }
 }
@@ -388,7 +383,7 @@ header .container #menu {
   grid-area: menu;
   display: none;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   header .container #menu {
     display: block;
   }
@@ -401,7 +396,7 @@ header .container .btn-switch {
   grid-area: switch;
   display: none;
 }
-@media (min-width: 1400px) {
+@media (min-width: 768px) {
   header .container .btn-switch {
     display: block;
     margin-right: 40px;
@@ -409,8 +404,8 @@ header .container .btn-switch {
 }
 header .container .account-buttons {
   grid-area: buttons;
-  display: none;
   gap: 15px;
+  display: none;
 }
 @media (min-width: 1200px) {
   header .container .account-buttons {
@@ -421,11 +416,26 @@ header .container .btn-mobile {
   grid-area: mobile;
   display: block;
   font-size: 30px;
+  border: none;
+  background-color: transparent;
 }
 @media (min-width: 1200px) {
   header .container .btn-mobile {
     display: none;
   }
+}
+header .invisible {
+  display: none;
+}
+header .mobile-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #EFF2FC;
+  padding: 40px;
+  margin-top: 20px;
 }
 
 footer {
