@@ -1,0 +1,77 @@
+﻿@model SecurityViewModel
+@{
+    ViewData["Title"] = "Security";
+}
+
+<div class="security">
+    <div class="container">
+        <div class="profile-menu">
+            <div class="name-email-img">
+                <img src="images\Jhon-doe.svg" />
+                <h5>John Doe</h5>
+                <p>john.doe@domain.com</p>
+            </div>
+            <a href="account_details.html">
+                <div class="button"><i class="fa-regular fa-gear"></i> Account details</div>
+            </a>
+            <a href="#">
+                <div class="button active"><i class="fa-regular fa-lock"></i> Security</div>
+            </a>
+            <a href="saved_courses.html">
+                <div class="button"><i class="fa-regular fa-bookmark"></i> Saved courses</div>
+            </a>
+            <a href="index.html">
+                <div class="button"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Sign out</div>
+            </a>
+        </div>
+        <div>
+            <div class="security-form">
+                <h2>Security</h2>
+                <form>
+                    <h5>Password</h5>
+
+                    <div id="form-password" class="input-group">
+                        <label asp-for="Form.Password"></label>
+                        <span asp-validation-for="Form.Password"></span>
+                        <input asp-for="Form.Password" />
+                    </div>
+
+                    <div id="form-newPassword" class="input-group">
+                        <label asp-for="Form.NewPassword"></label>
+                        <span asp-validation-for="Form.NewPassword"></span>
+                        <input asp-for="Form.NewPassword" />
+                    </div>
+
+                    <div id="form-confirmPassword" class="input-group">
+                        <label asp-for="Form.ConfirmPassword"></label>
+                        <span asp-validation-for="Form.ConfirmPassword"></span>
+                        <input asp-for="Form.ConfirmPassword" />
+                    </div>
+
+                    <div class="buttons">
+                        <button class="btn-gray">Cancel</button>
+                        <button class="btn-theme">Change password</button>
+                    </div>
+                    <hr />
+                </form>
+            </div>
+            <div class="delete-account">
+                <h5>Delete account</h5>
+                <p>
+                    When you delete your account, your public profile will be deactivated immediately. If you
+                    change
+                    your mind before the 14 days are up, sign in with your email and password, and we’ll send
+                    you a
+                    link to reactivate your account.
+                </p>
+                <div class="checkbox">
+                    <input id="checkbox" type="checkbox" />
+                    <label for="checkbox">Yes, I want to delete my account.</label>
+                </div>
+                <button class="btn-theme">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+                   

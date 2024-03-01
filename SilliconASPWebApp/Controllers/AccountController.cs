@@ -12,7 +12,7 @@ namespace SilliconASPWebApp.Controllers
             AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
             return View(viewModel);
         }
-      
+
         [HttpPost]
         public IActionResult BasicInfo(AccountDetailsViewModel viewModel)
         {
@@ -23,6 +23,21 @@ namespace SilliconASPWebApp.Controllers
         public IActionResult AddressInfo(AccountDetailsViewModel viewModel)
         {
             return View(nameof(Details), viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Security()
+        { 
+            SecurityViewModel viewModel = new SecurityViewModel();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddressInfo(SecurityViewModel viewModel)
+        {
+            viewModel.ErrorMessage = "Passwords did not match.";
+            return View(viewModel);
         }
     }
 }

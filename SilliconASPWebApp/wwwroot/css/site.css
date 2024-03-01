@@ -943,3 +943,112 @@ footer .container .display-none {
   color: #B4B7C9;
   font-weight: 400;
 }
+
+@media (min-width: 992px) {
+  .security .container {
+    display: flex;
+    gap: 150px;
+  }
+}
+.security .container .profile-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: menu;
+  width: 100%;
+  padding: 40px 15px;
+  border-bottom: 1px solid #D4D7E5;
+}
+.security .container .profile-menu .name-email-img {
+  text-align: center;
+}
+.security .container .profile-menu a {
+  display: block;
+  width: 100%;
+}
+.security .container .profile-menu a .button {
+  margin-bottom: 10px;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: black;
+}
+.security .container .profile-menu a .button:hover {
+  text-decoration: none;
+  background-color: #6366F1;
+  color: white;
+  box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
+}
+.security .container .profile-menu a .button i {
+  margin-right: 7px;
+}
+.security .container .profile-menu a .active {
+  text-decoration: none;
+  background-color: #6366F1;
+  color: white;
+  box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
+}
+@media (min-width: 992px) {
+  .security .container .profile-menu {
+    border-right: 1px solid #D4D7E5;
+    border-bottom: none;
+    max-width: 320px;
+  }
+}
+.security .container .security-form {
+  margin-top: 30px;
+}
+.security .container .security-form form h5 {
+  color: #6366F1;
+  margin-bottom: 20px;
+}
+.security .container .security-form form .input-group input {
+  padding: 10px 15px;
+  border: 1px solid #D4D7E5;
+  border-radius: 7px !important;
+  overflow: hidden;
+  outline: none;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.security .container .security-form form .input-group input.input-validation-error {
+  color: #EF4444;
+  border: 0.5px solid #EF4444 !important;
+}
+.security .container .security-form form .input-group input.input-validation-error::placeholder {
+  color: #EF4444;
+  opacity: 0.4;
+}
+.security .container .security-form form .input-group label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #0B0F19;
+  margin-bottom: 5px;
+  margin-right: 20px;
+}
+.security .container .security-form form .input-group span.field-validation-error {
+  color: #EF4444;
+  opacity: 0.6;
+  position: absolute;
+  right: 0;
+}
+.security .container .security-form form .buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.security .container .delete-account h5 {
+  color: #6366F1;
+  margin-bottom: 20px;
+}
+.security .container .delete-account .checkbox {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.security .container .delete-account .checkbox input {
+  margin-right: 5px;
+}
+.security .container .delete-account button {
+  background-color: #EF4444;
+}
