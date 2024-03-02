@@ -4,8 +4,8 @@ namespace SilliconASPWebApp.Models.Forms
 {
     public class AccountBasicInfoFormModel
     {
-        [DataType(DataType.ImageUrl)]
-        public string? ProfileImg { get; set; }
+        //[DataType(DataType.ImageUrl)]
+        //public string? ProfileImg { get; set; }
 
         [Display(Name = "First name", Prompt = "Enter your first name", Order = 0)]
         [Required(ErrorMessage = "Invalid first name")]

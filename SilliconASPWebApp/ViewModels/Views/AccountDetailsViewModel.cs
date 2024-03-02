@@ -1,4 +1,5 @@
 ﻿using SilliconASPWebApp.Models.Forms;
+using SilliconASPWebApp.Models.Sections;
 
 namespace SilliconASPWebApp.ViewModels.Views
 {
@@ -6,9 +7,16 @@ namespace SilliconASPWebApp.ViewModels.Views
     {
         public string Title { get; set; } = "Account details";
 
+        public ProfileMenuModel ProfileMenuModel { get; set; } = new()
+        {
+            Image = new() { Src = "images/John-doe.svg", AltText = "Profile picture" },
+            Name = "John Doe",
+            Email = "john.doe@hotmail.com"
+        };
+
         public AccountBasicInfoFormModel BasicInfo { get; set; } = new AccountBasicInfoFormModel()
         {
-            ProfileImg = "/images/John-doe.svg",
+            //ProfileImg = "/images/John-doe.svg",
             FirstName = "Fidde",
             LastName="Bengtsson",
             Email="hejsan@hotmail.com",
