@@ -33,7 +33,8 @@ namespace SilliconASPWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
-      
+
+            return View(nameof(Details), viewModel);
         }
 
         [HttpGet]
@@ -66,14 +67,9 @@ namespace SilliconASPWebApp.Controllers
 
         [Route("/courses")]
         [HttpGet]
-        public IActionResult Courses()
+        public IActionResult Courses(SavedCoursesViewModel viewModel)
         {
-            SavedCoursesViewModel viewModel = new SavedCoursesViewModel();
             return View(viewModel);
-
-            viewModel.ErrorMessage = "Incorrect email or password ";
-            return View(nameof(Details), viewModel);
-
         }
     }
 }

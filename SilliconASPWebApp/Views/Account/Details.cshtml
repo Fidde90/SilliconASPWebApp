@@ -8,122 +8,16 @@
 
         @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ProfileMenuPartial.cshtml", Model.ProfileMenuModel)
 
-
         @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_BasicInfoFormPartial.cshtml")
 
         <div class="address">
             <h5>Address</h5>
-
-            <div class="name-email-img">
-                <img src="@Model.BasicInfo.ProfileImg" />
-                <h5>@Model.BasicInfo.FirstName @Model.BasicInfo.LastName</h5>
-                <p>@Model.BasicInfo.Email</p>
-            </div>
-
-            <nav>
-                <a href="#"><div class="button active"><i class="fa-regular fa-gear"></i> Account details</div></a>
-                <a href="security.html"><div class="button"><i class="fa-regular fa-lock"></i> Security</div></a>
-                <a href="saved_courses.html"><div class="button"><i class="fa-regular fa-bookmark"></i> Saved courses</div></a>
-                <a href="index.html"><div class="button"><i class="fa-solid fa-right-from-bracket fa-flip-horizontal"></i> Sign out</div></a>
-            </nav>
-
-        </aside>
-
-        <div class="basic-details">
-            <h2>Account details</h2>
-            <h5>Basic info</h5>
-            <div class="details-form-group">
-
-                <form method="post" novalidate asp-controller="Account" asp-action="BasicInfo">
-
-                    <div class="error-msg">@Model.ErrorMessage</div>
-
-                    <div class="names">
-                        <div id="form-firstName" class="input-group">
-                            <label asp-for="BasicInfo.FirstName"></label>
-                            <span asp-validation-for="BasicInfo.FirstName"></span>
-                            <input asp-for="BasicInfo.FirstName">
-                        </div>
-
-                        <div id="form-lastName" class="input-group">
-                            <label asp-for="BasicInfo.LastName"></label>
-                            <span asp-validation-for="BasicInfo.LastName"></span>
-                            <input asp-for="BasicInfo.LastName" />
-                        </div>
-                    </div>
-
-                    <div class="email-phone">
-                        <div id="form-email" class="input-group">
-                            <label asp-for="BasicInfo.Email"></label>
-                            <span asp-validation-for="BasicInfo.Email"></span>
-                            <input asp-for="BasicInfo.Email" />
-                        </div>
-
-                        <div id="form-phone" class="input-group">
-                            <label asp-for="BasicInfo.Phone"></label>
-                            <span asp-validation-for="BasicInfo.Phone"></span>
-                            <input asp-for="BasicInfo.Phone">
-                        </div>
-                    </div>
-
-                    <div id="form-bio" class="input-group">
-                        <label asp-for="BasicInfo.Bio">Bio <span>(optional)</span></label>
-                        <textarea asp-for="BasicInfo.Bio"></textarea>
-                    </div>
-
-                    <div class="buttons">
-                        <button type="button" class="btn-gray">Cancel</button>
-                        <button type="submit" class="btn-theme">Save changes</button>
-                    </div>
-
-                </form>
-            </div>
-            <hr />
-        </div>
-
-        <div class="address">
-            <h5>Address</h5>
             <div class="adress">
-                <div class="address-form-group">
 
-                    <form method="post" novalidate asp-controller="Account" asp-action="AddressInfo">
+                @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_AddressInfoFormPartial.cshtml")
 
-                        <div class="error-msg">@Model.ErrorMessage</div>
-
-                        <div id="form-addressline_1" class="input-group">
-                            <label asp-for="AddressInfo.Addressline_1"></label>
-                            <span asp-validation-for="AddressInfo.Addressline_1"></span>
-                            <input asp-for="AddressInfo.Addressline_1" />
-                        </div>
-
-                        <div id="form-addressline_2" class="input-group">
-                            <label asp-for="AddressInfo.Addressline_2">Address line 2 <span>(optional)</span></label>
-                            <span asp-validation-for="AddressInfo.Addressline_2"></span>
-                            <input asp-for="AddressInfo.Addressline_2" />
-                        </div>
-
-                        <div class="postal-city">
-
-                            <div id="form-postalcode" class="input-group">
-                                <label asp-for="AddressInfo.PostalCode"></label>
-                                <span asp-validation-for="AddressInfo.PostalCode"></span>
-                                <input asp-for="AddressInfo.PostalCode" />
-                            </div>
-
-                            <div id="form-city" class="input-group">
-                                <label asp-for="AddressInfo.City"></label>
-                                <span asp-validation-for="AddressInfo.City"></span>
-                                <input asp-for="AddressInfo.City" />
-                            </div>
-
-                        </div>
-
-            @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_AddressInfoFormPartial.cshtml")
-
+            </div>
         </div>
     </div>
 </div>
-
-
-
 @await Html.PartialAsync("_ValidationScriptPartial")
