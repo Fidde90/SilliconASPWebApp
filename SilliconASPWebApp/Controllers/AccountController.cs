@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SilliconASPWebApp.Models.Forms;
-using SilliconASPWebApp.Models.Sections;
 using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
@@ -19,18 +17,18 @@ namespace SilliconASPWebApp.Controllers
         public IActionResult BasicInfo(AccountDetailsViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return RedirectToAction("Details");
+                return View(nameof(Details), viewModel);
 
-            return RedirectToAction("Details");
+            return RedirectToAction("Index", "HomeController");
         }
 
         [HttpPost]
         public IActionResult AddressInfo(AccountDetailsViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return RedirectToAction("Details");
+                return View(nameof(Details), viewModel);
 
-            return RedirectToAction("Details");
+            return RedirectToAction("Index", "HomeController");
         }
 
         [HttpGet]
@@ -49,7 +47,6 @@ namespace SilliconASPWebApp.Controllers
 
             viewModel.ChangePasswordErrorMessage = "Passwords did not match.";
             return RedirectToAction("Account", "Details");
-
         }
 
         [HttpPost]

@@ -16,7 +16,7 @@ namespace SilliconASPWebApp.ViewModels.Views
 
         public AccountBasicInfoFormModel BasicInfo { get; set; } = new AccountBasicInfoFormModel()
         {
-            ProfileImg = "/images/John-doe.svg",
+            //ProfileImg = "/images/John-doe.svg",
             FirstName = "Fidde",
             LastName="Bengtsson",
             Email="hejsan@hotmail.com",
