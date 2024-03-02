@@ -1,0 +1,52 @@
+﻿@model AccountDetailsViewModel
+
+<div class="basic-details">
+    <h2>Account details</h2>
+    <h5>Basic info</h5>
+    <div class="details-form-group">
+
+        <form method="post" novalidate asp-controller="Account" asp-action="BasicInfo">
+
+            <div class="names">
+                <div id="form-firstName" class="input-group">
+                    <label asp-for="BasicInfo.FirstName"></label>
+                    <span asp-validation-for="BasicInfo.FirstName"></span>
+                    <input asp-for="BasicInfo.FirstName">
+                </div>
+
+                <div id="form-lastName" class="input-group">
+                    <label asp-for="BasicInfo.LastName"></label>
+                    <span asp-validation-for="BasicInfo.LastName"></span>
+                    <input asp-for="BasicInfo.LastName" />
+                </div>
+            </div>
+
+            <div class="email-phone">
+                <div id="form-email" class="input-group">
+                    <label asp-for="BasicInfo.Email"></label>
+                    <span asp-validation-for="BasicInfo.Email"></span>
+                    <input asp-for="BasicInfo.Email" />
+                </div>
+
+                <div id="form-phone" class="input-group">
+                    <label asp-for="BasicInfo.Phone"></label>
+                    <span asp-validation-for="BasicInfo.Phone"></span>
+                    <input asp-for="BasicInfo.Phone">
+                </div>
+            </div>
+
+            <div id="form-bio" class="input-group">
+                <label asp-for="BasicInfo.Bio">Bio <span>(optional)</span></label>
+                <textarea asp-for="BasicInfo.Bio"></textarea>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="btn-gray">Cancel</button>
+                <button type="submit" class="btn-theme">Save changes</button>
+            </div>
+
+        </form>
+    </div>
+    <hr />
+</div>
+@await Html.PartialAsync("_ValidationScriptPartial")
