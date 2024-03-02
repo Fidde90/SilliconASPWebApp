@@ -75,9 +75,6 @@ inputs.forEach(input => {
         }
         else {
 
-       
-            input.addEventListener('keyup', (event) => {
-
             input.addEventListener('keyup', (event) => {
 
                 switch (event.target.type) {

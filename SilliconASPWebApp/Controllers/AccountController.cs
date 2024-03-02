@@ -16,23 +16,17 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public IActionResult BasicInfo(AccountDetailsViewModel viewModel)
         {
-
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
-
-            viewModel.ErrorMessage = "Incorrect email or password ";
             return View(nameof(Details), viewModel);
-
         }
 
         [HttpPost]
         public IActionResult AddressInfo(AccountDetailsViewModel viewModel)
         {
-
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
-
 
             return View(nameof(Details), viewModel);
         }
