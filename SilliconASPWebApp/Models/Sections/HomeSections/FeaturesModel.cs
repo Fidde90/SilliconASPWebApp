@@ -1,6 +1,6 @@
 ﻿using SilliconASPWebApp.Models.Components;
 
-namespace SilliconASPWebApp.Models.Sections
+namespace SilliconASPWebApp.Models.Sections.HomeSections
 {
     public class FeaturesModel
     {
