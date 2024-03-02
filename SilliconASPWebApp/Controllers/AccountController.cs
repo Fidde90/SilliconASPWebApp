@@ -16,19 +16,24 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public IActionResult BasicInfo(AccountDetailsViewModel viewModel)
         {
+
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
-            return RedirectToAction("Index", "HomeController");
+
+            viewModel.ErrorMessage = "Incorrect email or password ";
+            return View(nameof(Details), viewModel);
+
         }
 
         [HttpPost]
         public IActionResult AddressInfo(AccountDetailsViewModel viewModel)
         {
+
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
-            return RedirectToAction("Index", "HomeController");
+      
         }
 
         [HttpGet]
@@ -65,6 +70,10 @@ namespace SilliconASPWebApp.Controllers
         {
             SavedCoursesViewModel viewModel = new SavedCoursesViewModel();
             return View(viewModel);
+
+            viewModel.ErrorMessage = "Incorrect email or password ";
+            return View(nameof(Details), viewModel);
+
         }
     }
 }

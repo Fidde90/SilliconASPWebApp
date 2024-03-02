@@ -140,6 +140,12 @@
         }
     }
 
+    .error-msg {
+        color: $danger;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
     span {
         color: $gray-500;
         font-weight: 400;
