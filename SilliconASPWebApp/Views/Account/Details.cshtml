@@ -6,7 +6,13 @@
 <div class="account-details">
     <div class="container">
 
-        <aside class="profile-menu">
+        @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ProfileMenuPartial.cshtml", Model.ProfileMenuModel)
+
+
+        @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_BasicInfoFormPartial.cshtml")
+
+        <div class="address">
+            <h5>Address</h5>
 
             <div class="name-email-img">
                 <img src="@Model.BasicInfo.ProfileImg" />
@@ -112,16 +118,12 @@
 
                         </div>
 
-                        <div class="buttons">
-                            <button type="button" class="btn-gray">Cancel</button>
-                            <button type="submit" class="btn-theme">Save changes</button>
-                        </div>
+            @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_AddressInfoFormPartial.cshtml")
 
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>
+
+
 
 @await Html.PartialAsync("_ValidationScriptPartial")
