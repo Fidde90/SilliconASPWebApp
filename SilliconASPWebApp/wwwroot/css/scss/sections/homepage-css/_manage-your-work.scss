@@ -1,0 +1,35 @@
+﻿.manage-your-work {
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+
+        img {
+            width: 100%;
+        }
+
+        .manageBox {
+            align-self: center;
+
+            .fa-circle-check {
+                color: $theme;
+                margin-right: 0.5rem;
+            }
+
+            a {
+                display: block;
+            }
+        }
+
+        @include lg {
+            flex-direction: row;
+
+            .managePic {
+                img {
+                    display: block;
+                }
+            }
+        }
+    }
+}

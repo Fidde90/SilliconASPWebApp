@@ -1,0 +1,82 @@
+﻿.download-our-app {
+    margin-top: 40px;
+    background-color: $gray-100;
+    padding: 5rem 0rem;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include lg {
+            gap: 1rem;
+        }
+
+        @include xl {
+            gap: 5rem;
+        }
+    }
+
+    .mobile-pic {
+        display: none;
+
+        @include lg {
+            display: block;
+        }
+    }
+
+    .download {
+        max-width: 400px;
+
+        @include md {
+            margin-top: 3rem;
+        }
+
+        .appstore {
+            margin-bottom: 50px;
+
+            #app {
+                color: $gray-600;
+            }
+
+            @media(min-width:500px) {
+                display: flex;
+                gap: 2.8rem;
+            }
+
+            @include md {
+                display: flex;
+                gap: 2.8rem;
+                margin-bottom: 2rem;
+
+                .logo {
+                    margin-top: 50px;
+                }
+            }
+        }
+
+        .googleplay {
+            margin: bottom 5px;
+
+            #google {
+                color: $gray-600;
+            }
+
+            @media(min-width:500px) {
+                display: flex;
+                gap: 2.8rem;
+            }
+
+            @include md {
+                display: flex;
+                gap: 2.8rem;
+
+                .logo {
+                    margin-top: 50px;
+                }
+            }
+        }
+    }
+
+    margin-bottom: 2rem;
+}
