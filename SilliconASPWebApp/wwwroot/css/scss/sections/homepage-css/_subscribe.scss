@@ -1,0 +1,81 @@
+﻿.subscribe {
+    background-color: $gray-100;
+    padding: 50px 0px;
+
+    .container {
+        @include xl {
+            padding-left: 180px;
+            padding-right: 180px;
+        }
+
+        .head-arrow {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .mail-window {
+
+            .checkboxes {
+                display: grid;
+                grid-template-columns: 1fr;
+
+                @media(min-width:400px) {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                @include md {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                @include md {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+
+                h5 {
+                    margin-bottom: 25px;
+                    width: 120px;
+                }
+
+                div {
+                    margin-bottom: 15px;
+                }
+            }
+
+            .input-button {
+                #text-box {
+                    margin-bottom: 5px;
+                    width: 100%;
+                    padding: 10px 0px 10px 20px;
+                    border: 1px solid $gray-500;
+                    border-radius: 5px;
+                }
+
+                #button {
+                    width: 100%;
+                }
+
+                @include lg {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+
+                    #button {
+                        width: 20%;
+                        height: 48px;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+
+            .terms {
+                margin-bottom: 40px;
+
+                a {
+                    text-decoration: underline;
+                    color: blue;
+                }
+            }
+        }
+    }
+}

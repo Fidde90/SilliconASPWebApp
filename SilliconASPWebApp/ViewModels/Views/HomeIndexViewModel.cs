@@ -1,5 +1,6 @@
 ﻿using SilliconASPWebApp.Models.Components;
 using SilliconASPWebApp.Models.Sections;
+using SilliconASPWebApp.Models.Sections.HomeSections;
 
 
 namespace SilliconASPWebApp.ViewModels.Views

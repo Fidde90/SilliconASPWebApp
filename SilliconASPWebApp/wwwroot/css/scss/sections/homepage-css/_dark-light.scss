@@ -1,0 +1,97 @@
+﻿.dark-light {
+    height: 500px;
+    position: relative;
+    display: flex;
+
+    @media(min-width:630px) {
+        height: 600px;
+    }
+
+    @media(min-width:850px) {
+        height: 800px;
+    }
+
+    @include lg {
+        height: 950px;
+    }
+
+    .light,
+    .dark {
+        height: 100%;
+        width: 100%;
+    }
+
+    .dark {
+        background-color: $gray-900;
+
+        h1 {
+            padding-top: 50px;
+            text-align: end;
+            color: white;
+            margin-right: 0.5rem;
+            @include h3;
+            color: white;
+
+            @media(min-width:850px) {
+                padding-top: 110px;
+            }
+        }
+    }
+
+    .light {
+        h1 {
+            padding-top: 50px;
+            color: $gray-900;
+            margin-left: 0.5rem;
+            @include h3;
+
+            @media(min-width:850px) {
+                padding-top: 110px;
+            }
+        }
+    }
+
+    .computer {
+        position: absolute;
+        left: 50%;
+        top: 53%;
+        transform: translate(-50%, -50%);
+
+        #laptop {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .slider {
+        position: absolute;
+        width: 4px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: $theme;
+
+        &::before {
+            content: '';
+            width: 30px;
+            aspect-ratio: 1;
+            background-color: inherit;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .fa-left-right {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+        }
+    }
+
+    margin-bottom: 100px;
+}
