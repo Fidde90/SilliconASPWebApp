@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Infrastructure.Models
+namespace Infrastructure.Entities
 {
-    public class AppUser : IdentityUser
+    public class AppUserEntity : IdentityUser
     {
-        [Required]
-        [Display(Name = "First name")]
         [ProtectedPersonalData]
         public string FirstName { get; set; } = null!;
 
-        [Required]
-        [Display(Name = "Last name")]
         [ProtectedPersonalData]
         public string LastName { get; set; } = null!;
+
+        public int? AddressId { get; set; }
+
+        public AddressEntity? Address { get; set; }
     }
 }

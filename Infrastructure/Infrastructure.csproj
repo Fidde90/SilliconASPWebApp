@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
-    <Folder Include="Entities\" />
     <Folder Include="Migrations\" />
     <Folder Include="Dtos\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
