@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
@@ -14,8 +15,10 @@ namespace SilliconASPWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult BasicInfo(AccountDetailsViewModel viewModel)
+        public IActionResult BasicInfo(AccountBasicInfoFormModel Model)
         {
+            AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
+
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
@@ -23,8 +26,10 @@ namespace SilliconASPWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddressInfo(AccountDetailsViewModel viewModel)
+        public IActionResult AddressInfo(AccountAddressFormModel Model)
         {
+            AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
+
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 

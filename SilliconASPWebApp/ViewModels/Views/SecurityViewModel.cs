@@ -9,7 +9,7 @@ namespace SilliconASPWebApp.ViewModels.Views
 
         public ProfileMenuModel ProfileMenuModel { get; set; } = new()
         {
-            Image = new() { Src ="/images/John-doe.svg", AltText = "Profile picture" },
+            Image = "/images/John-doe.svg",
             Name = "John Doe",
             Email = "john.doe@hotmail.com"
         };

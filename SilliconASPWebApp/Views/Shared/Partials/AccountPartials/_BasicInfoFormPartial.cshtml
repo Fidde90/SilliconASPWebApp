@@ -1,4 +1,4 @@
-﻿@model AccountDetailsViewModel
+﻿@model AccountBasicInfoFormModel
 
 <div class="basic-details">
     <h2>Account details</h2>
@@ -9,35 +9,35 @@
 
             <div class="names">
                 <div id="form-firstName" class="input-group">
-                    <label asp-for="BasicInfo.FirstName"></label>
-                    <span asp-validation-for="BasicInfo.FirstName"></span>
-                    <input asp-for="BasicInfo.FirstName">
+                    <label asp-for="@Model.FirstName"></label>
+                    <span asp-validation-for="@Model.FirstName"></span>
+                    <input asp-for="@Model.FirstName">
                 </div>
 
                 <div id="form-lastName" class="input-group">
-                    <label asp-for="BasicInfo.LastName"></label>
-                    <span asp-validation-for="BasicInfo.LastName"></span>
-                    <input asp-for="BasicInfo.LastName" />
+                    <label asp-for="@Model.LastName"></label>
+                    <span asp-validation-for="@Model.LastName"></span>
+                    <input asp-for="@Model.LastName" />
                 </div>
             </div>
 
             <div class="email-phone">
                 <div id="form-email" class="input-group">
-                    <label asp-for="BasicInfo.Email"></label>
-                    <span asp-validation-for="BasicInfo.Email"></span>
-                    <input asp-for="BasicInfo.Email" />
+                    <label asp-for="@Model.Email"></label>
+                    <span asp-validation-for="@Model.Email"></span>
+                    <input asp-for="@Model.Email" />
                 </div>
 
                 <div id="form-phone" class="input-group">
-                    <label asp-for="BasicInfo.Phone"></label>
-                    <span asp-validation-for="BasicInfo.Phone"></span>
-                    <input asp-for="BasicInfo.Phone">
+                    <label asp-for="@Model.Phone"></label>
+                    <span asp-validation-for="@Model.Phone"></span>
+                    <input asp-for="@Model.Phone">
                 </div>
             </div>
 
             <div id="form-bio" class="input-group">
-                <label asp-for="BasicInfo.Bio">Bio <span>(optional)</span></label>
-                <textarea asp-for="BasicInfo.Bio"></textarea>
+                <label asp-for="@Model.Bio">Bio <span>(optional)</span></label>
+                <textarea asp-for="@Model.Bio"></textarea>
             </div>
 
             <div class="buttons">

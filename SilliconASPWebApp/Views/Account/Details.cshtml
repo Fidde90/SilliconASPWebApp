@@ -8,13 +8,13 @@
 
         @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ProfileMenuPartial.cshtml", Model.ProfileMenuModel)
 
-        @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_BasicInfoFormPartial.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_BasicInfoFormPartial.cshtml", Model.BasicInfo)
 
         <div class="address">
             <h5>Address</h5>
             <div class="adress">
 
-                @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_AddressInfoFormPartial.cshtml")
+                @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_AddressInfoFormPartial.cshtml", Model.AddressInfo)
 
             </div>
         </div>

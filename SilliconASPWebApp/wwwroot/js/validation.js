@@ -1,6 +1,5 @@
 ﻿function formErrorHandler(event, result) {
     let spanElement = document.querySelector(`[data-valmsg-for="${event.target.name}"]`)
-
     if (result) {
         event.target.classList.remove('input-validation-error');
         spanElement.classList.remove('field-validation-error');
@@ -62,36 +61,40 @@ function passwordValidation(event) {
 }
 
 let forms = document.querySelectorAll('form');
-let inputs = forms[0].querySelectorAll('input');
 
-inputs.forEach(input => {
+forms.forEach(form => {
 
-    if (input.dataset.val === 'true') {
+    let inputs = form.querySelectorAll('input');
 
-        if (input.type === 'checkbox') {
-            input.addEventListener('change', (event) => {
-                checkboxValidation(event);
-            });
+    inputs.forEach(input => {
+
+        if (input.dataset.val === "true") {
+
+            if (input.type === 'checkbox') {
+                input.addEventListener('change', (event) => {
+                    checkboxValidation(event);
+                });
+            }
+            else {
+                input.addEventListener('keyup', (event) => {
+
+                    switch (event.target.type) {
+
+                        case 'text':
+                            validateText(event);
+                            break;
+
+                        case 'email':
+                            emailValidation(event);
+                            break;
+
+                        case 'password':
+                            passwordValidation(event);
+                            break;
+                    }
+                });
+            }
         }
-        else {
-
-            input.addEventListener('keyup', (event) => {
-
-                switch (event.target.type) {
-
-                    case 'text':
-                        validateText(event);
-                        break;
-
-                    case 'email':
-                        emailValidation(event);
-                        break;
-
-                    case 'password':
-                        passwordValidation(event);
-                        break;
-                }
-            });    
-        }
-    }
+    })
+   
 });
