@@ -53,7 +53,13 @@ header {
 
             @include xl {
                 display: flex;
+                justify-content:center;
+                align-items:center;  
             }
+        }
+
+        .profile-pic{
+            width:50px;
         }
 
         .btn-mobile {

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         [Route("/account")]

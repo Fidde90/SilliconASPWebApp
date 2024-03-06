@@ -2,26 +2,28 @@
 using Infrastructure.Factories;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.ViewModels.Views;
+using Microsoft.AspNetCore.Authentication;
+using Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager) : Controller
     {
-        private readonly UserService _userService;
-        public AuthController(UserService userService)
-        {
-            _userService = userService;
-        }
-
+        private readonly UserService _userService = userService;
+        private readonly AuthService _authService = authService;
+        private readonly SignInManager<AppUserEntity> _signInManager = signInManager;
 
         #region sign up 
         [Route("/signup")]
-        [HttpGet]
         public IActionResult SignUp()
         {
-            var viewModel = new SignUpViewModel();
-            return View(viewModel);
+            if (_signInManager.IsSignedIn(User))
+                RedirectToAction("Details", "Auth");
+
+            return View(new SignUpViewModel());
         }
+
 
         [Route("/signup")]
         [HttpPost]
@@ -30,7 +32,6 @@ namespace SilliconASPWebApp.Controllers
             if (ModelState.IsValid)
             {
                 var created = await _userService.CreateUser(userFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
-                
                 if (created)
                     return RedirectToAction("SignIn", "Auth");
             }
@@ -41,28 +42,35 @@ namespace SilliconASPWebApp.Controllers
 
         #region sign in 
         [Route("/signin")]
-        [HttpGet]
         public IActionResult SignIn()
         {
-            var viewModel = new SignInViewModel();
-            return View(viewModel);
+            if (_signInManager.IsSignedIn(User))
+                RedirectToAction("Details", "Auth");
+
+            return View(new SignInViewModel());  
         }
+
 
         [Route("/signin")]
         [HttpPost]
-        public IActionResult SignIn(SignInViewModel viewModel)
+        public async Task<IActionResult> SignIn(SignInViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-                return View(viewModel);
+            if (ModelState.IsValid)
+            {
+                var result = await _authService.SignIn(viewModel.Form);
+                if (result)
+                    return RedirectToAction("Details", "Account");
+            }
 
-            //var result = _authService.SignIn(viewModel.Form);
-
-            //if (result)
-            //return RedirectToAction("Account", "Index");
-
-            viewModel.ErrorMessage = "Incorrect email or password ";
+            viewModel.ErrorMessage = "Incorrect email or password";
             return View(viewModel);
         }
         #endregion
+
+        public new async Task<IActionResult> SignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("SignIn", "Auth");
+        }
     }
 }

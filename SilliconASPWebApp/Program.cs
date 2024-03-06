@@ -22,6 +22,7 @@ builder.Services.AddDefaultIdentity<AppUserEntity>(x =>
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<UserRepository>();
 
+builder.Services.AddScoped<AuthService>();
 
 
 

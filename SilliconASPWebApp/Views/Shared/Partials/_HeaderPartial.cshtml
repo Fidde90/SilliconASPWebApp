@@ -1,13 +1,14 @@
-﻿@{
+﻿@inject SignInManager<AppUserEntity> _signInManager
+@{
     bool isRoot = Context.Request.Path.Value!.Equals("/");
 }
 
 <div class="container">
     <a id="logo" asp-action="Index" asp-controller="Home"><img src="\images\IconLight.svg" alt="Icon"></a>
-    <button type="button" class="btn-mobile" ><i class="fa-solid fa-bars-staggered"></i></button>
+    <button type="button" class="btn-mobile"><i class="fa-solid fa-bars-staggered"></i></button>
     <div id="menu">
         <nav>
-            <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")" >Overview</a>
+            <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")">Overview</a>
             <a class="menu-link" href="#features">Features</a>
             <a class="menu-link" href="#contact.html">Contact</a>
             <a class="menu-link" href="#courses.html">Courses</a>
@@ -23,10 +24,20 @@
         <label>Dark</label>
     </div>
 
-    <div class="account-buttons">
-        <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
-        <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
-    </div>
+    @if (_signInManager.IsSignedIn(User))
+    {
+        <div class="account-buttons">
+            <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="/images/John-doe.svg" /></a>
+        </div>
+    }
+    else
+    {
+        <div class="account-buttons">
+            <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
+            <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
+        </div>
+    }
+
 
 
 </div>

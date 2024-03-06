@@ -410,7 +410,12 @@ header .container .account-buttons {
 @media (min-width: 1200px) {
   header .container .account-buttons {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
+}
+header .container .profile-pic {
+  width: 50px;
 }
 header .container .btn-mobile {
   grid-area: mobile;
