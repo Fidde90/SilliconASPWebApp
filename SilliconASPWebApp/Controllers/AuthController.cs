@@ -1,10 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Services;
+using Infrastructure.Factories;
+using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly UserService _userService;
+        public AuthController(UserService userService)
+        {
+            _userService = userService;
+        }
+
+
+        #region sign up 
         [Route("/signup")]
         [HttpGet]
         public IActionResult SignUp()
@@ -15,14 +25,21 @@ namespace SilliconASPWebApp.Controllers
 
         [Route("/signup")]
         [HttpPost]
-        public IActionResult SignUp(SignUpViewModel viewModel)
+        public async Task<IActionResult> SignUp(SignUpViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-                return View(viewModel);
-
-            return RedirectToAction("SignIn", "Auth");
+            if (ModelState.IsValid)
+            {
+                var created = await _userService.CreateUser(userFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
+                
+                if (created)
+                    return RedirectToAction("SignIn", "Auth");
+            }
+            viewModel.ErrorMessage = "A user with the same email already exsitis";
+            return View(viewModel);
         }
+        #endregion
 
+        #region sign in 
         [Route("/signin")]
         [HttpGet]
         public IActionResult SignIn()
@@ -41,10 +58,11 @@ namespace SilliconASPWebApp.Controllers
             //var result = _authService.SignIn(viewModel.Form);
 
             //if (result)
-                //return RedirectToAction("Account", "Index");
+            //return RedirectToAction("Account", "Index");
 
             viewModel.ErrorMessage = "Incorrect email or password ";
             return View(viewModel);
         }
+        #endregion
     }
 }
