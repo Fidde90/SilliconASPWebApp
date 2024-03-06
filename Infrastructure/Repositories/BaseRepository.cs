@@ -12,27 +12,28 @@ namespace Infrastructure.Repositories
         {
             _context = dataContext;
         }
-        //public virtual async Task<TEntity> AddToDB(TEntity entity)
-        //{
-        //    try
-        //    {
-        //        _context.Set<TEntity>().Add(entity);
-        //        await _context.SaveChangesAsync();
-        //        return entity;
-        //    }
-        //    catch (Exception e)
-        //    {
 
-        //    }
-
-        //    return null!;
-        //}
-
-        public virtual bool Exists(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<TEntity> AddToDB(TEntity entity)
         {
             try
             {
-                var Exists = _context.Set<TEntity>().Any(predicate);
+                _context.Set<TEntity>().Add(entity);
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return null!;
+        }
+
+        public async virtual Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
+        {
+            try
+            {
+                var Exists = await _context.Set<TEntity>().AnyAsync(predicate);
                 if (Exists)
                     return true;
             }
