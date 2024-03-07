@@ -11,7 +11,7 @@
 
             <div class="error-msg">@Model.ErrorMessage</div>
 
-            <form method="post" novalidate asp-controller="Auth" asp-action="SignIn">
+            <form method="post" novalidate asp-controller="Auth" asp-action="SignIn" asp-route-ReturnUrl="@ViewData["ReturnUrl"]">
 
                 <div id="form-email" class="input-group">
                     <label asp-for="Form.Email"></label>

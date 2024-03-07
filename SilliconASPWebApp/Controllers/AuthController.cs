@@ -42,10 +42,12 @@ namespace SilliconASPWebApp.Controllers
 
         #region sign in 
         [Route("/signin")]
-        public IActionResult SignIn()
+        public IActionResult SignIn(string returnUrl)
         {
             if (_signInManager.IsSignedIn(User))
                 RedirectToAction("Details", "Auth");
+
+            ViewData["ReturnUrl"] = returnUrl ?? Url.Content("~/account");
 
             return View(new SignInViewModel());  
         }
@@ -53,13 +55,21 @@ namespace SilliconASPWebApp.Controllers
 
         [Route("/signin")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInViewModel viewModel)
+        public async Task<IActionResult> SignIn(SignInViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
+
+
                 var result = await _authService.SignIn(viewModel.Form);
                 if (result)
+                {
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                        return Redirect(returnUrl);
+
                     return RedirectToAction("Details", "Account");
+                }
+       
             }
 
             viewModel.ErrorMessage = "Incorrect email or password";
@@ -67,10 +77,12 @@ namespace SilliconASPWebApp.Controllers
         }
         #endregion
 
+        #region sign out
         public new async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("SignIn", "Auth");
         }
+        #endregion
     }
 }

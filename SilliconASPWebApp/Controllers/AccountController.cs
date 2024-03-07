@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
 
 namespace SilliconASPWebApp.Controllers
 {
-    [Authorize]
+    //[Authorize] // ser till att du måste vara inloggad för att komma åt dessa sidor.
     public class AccountController : Controller
     {
         [Route("/account")]
