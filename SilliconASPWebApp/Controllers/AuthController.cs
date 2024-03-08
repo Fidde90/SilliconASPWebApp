@@ -59,8 +59,6 @@ namespace SilliconASPWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 var result = await _authService.SignIn(viewModel.Form);
                 if (result)
                 {
@@ -68,10 +66,8 @@ namespace SilliconASPWebApp.Controllers
                         return Redirect(returnUrl);
 
                     return RedirectToAction("Details", "Account");
-                }
-       
+                }      
             }
-
             viewModel.ErrorMessage = "Incorrect email or password";
             return View(viewModel);
         }

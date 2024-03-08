@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics;
 
 namespace Infrastructure.Services
 {
@@ -17,12 +18,16 @@ namespace Infrastructure.Services
 
         public async Task<bool> CreateUser(AppUserEntity newUser, string password)
         {
-            if (!await _UserRepository.Exists(x => x.Email == newUser.Email))
+            try
             {
-                var result = await _userManager.CreateAsync(newUser, password);
-                if (result.Succeeded)
-                    return true;
+                if (!await _UserRepository.Exists(x => x.Email == newUser.Email))
+                {
+                    var result = await _userManager.CreateAsync(newUser, password);
+                    if (result.Succeeded)
+                        return true;
+                }
             }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return false;
         }
     }

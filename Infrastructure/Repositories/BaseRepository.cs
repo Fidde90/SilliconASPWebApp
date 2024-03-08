@@ -21,11 +21,7 @@ namespace Infrastructure.Repositories
                 await _context.SaveChangesAsync();
                 return entity;
             }
-            catch (Exception e)
-            {
-
-            }
-
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;
         }
 
@@ -37,7 +33,7 @@ namespace Infrastructure.Repositories
                 if (Exists)
                     return true;
             }
-            catch (Exception e) { Debug.WriteLine("Error : " + e.Message); }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return false;
         }
     }

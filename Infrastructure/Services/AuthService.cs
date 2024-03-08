@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using SilliconASPWebApp.Models.Forms;
+using System.Diagnostics;
 
 namespace Infrastructure.Services
 {
@@ -21,7 +22,7 @@ namespace Infrastructure.Services
                 if (signedIn.Succeeded)
                     return true;
             }
-            catch (Exception e) { }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return false;
         }
     }
