@@ -10,7 +10,6 @@ namespace Infrastructure.Contexts
         {
 
         }
-
         public DbSet<AddressEntity> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

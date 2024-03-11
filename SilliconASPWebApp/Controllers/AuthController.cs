@@ -31,8 +31,8 @@ namespace SilliconASPWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var created = await _userService.CreateUser(userFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
-                if (created)
+                var createdUser = await _userService.CreateUser(userFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
+                if (createdUser != null)
                     return RedirectToAction("SignIn", "Auth");
             }
             viewModel.ErrorMessage = "A user with the same email already exsitis";

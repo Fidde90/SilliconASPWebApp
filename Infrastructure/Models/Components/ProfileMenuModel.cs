@@ -4,7 +4,7 @@ namespace SilliconASPWebApp.Models.Sections
 {
     public class ProfileMenuModel
     {
-        public string Image { get; set; } = "images/John-doe.svg";
+        public string? Image { get; set; }
 
         public string Name { get; set; } = null!;
 

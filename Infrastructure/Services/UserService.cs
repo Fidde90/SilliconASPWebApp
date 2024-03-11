@@ -16,7 +16,7 @@ namespace Infrastructure.Services
             _UserRepository = UserRepository;
         }
 
-        public async Task<bool> CreateUser(AppUserEntity newUser, string password)
+        public async Task<AppUserEntity> CreateUser(AppUserEntity newUser, string password)
         {
             try
             {
@@ -24,11 +24,25 @@ namespace Infrastructure.Services
                 {
                     var result = await _userManager.CreateAsync(newUser, password);
                     if (result.Succeeded)
-                        return true;
+                        return newUser;
                 }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
-            return false;
+            return null!;
+        }
+        public async Task<AppUserEntity> UpdateUser(AppUserEntity newValues)
+        {
+            try
+            {
+                if (await _UserRepository.Exists(x => x.Id == newValues.Id))
+                {
+                    var updatedUser = await _UserRepository.UpdateEntityInDB(newValues, x => x.Id == newValues.Id);
+                    if (updatedUser != null)
+                        return updatedUser;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
         }
     }
 }
