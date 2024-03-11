@@ -7,15 +7,11 @@ namespace SilliconASPWebApp.ViewModels.Views
     {
         public string Title { get; set; } = "Security";
 
-        public ProfileMenuModel ProfileMenuModel { get; set; } = new()
-        {
-            Image = "/images/John-doe.svg",
-            Name = "John Doe",
-            Email = "john.doe@hotmail.com"
-        };
-        public SecurityFormModel Form { get; set; } = new SecurityFormModel();
+        public ProfileMenuModel ProfileMenuModel { get; set; } = new();
 
-        public DeleteAccountFormModel DeleteForm { get; set; } = new DeleteAccountFormModel();
+        public SecurityFormModel Form { get; set; } = new();
+
+        public DeleteAccountFormModel DeleteForm { get; set; } = new();
 
         public string ChangePasswordErrorMessage { get; set; } = string.Empty;
     

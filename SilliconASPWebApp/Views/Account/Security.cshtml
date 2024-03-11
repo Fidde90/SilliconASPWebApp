@@ -11,35 +11,11 @@
         <div>
             <div class="security-form">
                 <h2>Security</h2>
-                <form method="post" novalidate asp-controller="Account" asp-action="ChangePassword">
-                    <h5>Password</h5>
+                <div class="error-msg">@Model.ChangePasswordErrorMessage</div>
 
-                    <div class="error-msg">@Model.ChangePasswordErrorMessage</div>
+                @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ChangePasswordFormPartial.cshtml", Model.Form)
 
-                    <div id="form-password" class="input-group">
-                        <label asp-for="Form.Password"></label>
-                        <span asp-validation-for="Form.Password"></span>
-                        <input asp-for="Form.Password" />
-                    </div>
 
-                    <div id="form-newPassword" class="input-group">
-                        <label asp-for="Form.NewPassword"></label>
-                        <span asp-validation-for="Form.NewPassword"></span>
-                        <input asp-for="Form.NewPassword" />
-                    </div>
-
-                    <div id="form-confirmPassword" class="input-group">
-                        <label asp-for="Form.ConfirmPassword"></label>
-                        <span asp-validation-for="Form.ConfirmPassword"></span>
-                        <input asp-for="Form.ConfirmPassword" />
-                    </div>
-
-                    <div class="buttons">
-                        <button class="btn-gray">Cancel</button>
-                        <button class="btn-theme">Change password</button>
-                    </div>
-                    <hr />
-                </form>
             </div>
             <div class="delete-account">
                 <h5>Delete account</h5>

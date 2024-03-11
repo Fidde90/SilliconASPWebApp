@@ -26,6 +26,18 @@ namespace Infrastructure.Services
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;
         }
+
+        public async Task<List<AddressEntity>> GetAddressess()
+        {
+            try
+            {
+                var result = await _addressRepository.GetAllFromDB();
+                return result.ToList();               
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
+        }
+
         public async Task<AddressEntity> GetOneAddress(AddressEntity address)
         {
             try

@@ -2,7 +2,6 @@
 using Infrastructure.Factories;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.ViewModels.Views;
-using Microsoft.AspNetCore.Authentication;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 
@@ -23,7 +22,6 @@ namespace SilliconASPWebApp.Controllers
 
             return View(new SignUpViewModel());
         }
-
 
         [Route("/signup")]
         [HttpPost]
@@ -52,7 +50,6 @@ namespace SilliconASPWebApp.Controllers
             return View(new SignInViewModel());  
         }
 
-
         [Route("/signin")]
         [HttpPost]
         public async Task<IActionResult> SignIn(SignInViewModel viewModel, string returnUrl)
@@ -65,11 +62,11 @@ namespace SilliconASPWebApp.Controllers
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
 
-                    return RedirectToAction("Details", "Account");
-                }      
+                    return RedirectToAction("Details", "Account");      
+                }
             }
             viewModel.ErrorMessage = "Incorrect email or password";
-            return View(viewModel);
+            return View(nameof(SignIn), new SignInViewModel());
         }
         #endregion
 

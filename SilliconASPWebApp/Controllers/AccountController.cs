@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
@@ -27,11 +28,10 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Details()
         {
-            AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
+            AccountDetailsViewModel viewModel = new();
 
             var user = await _usermanager.GetUserAsync(User);
             var address = await _addressService.GetOneAddressById((int)user!.AddressId!);
-
 
             viewModel.GetUserDetailsData(user!);
             viewModel.GetUserAddressData(address!);
@@ -41,12 +41,24 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> BasicInfo(AccountBasicInfoFormModel Model)
         {
-            AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
+            AccountDetailsViewModel viewModel = new();
 
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
+            var loggedInUser = await _usermanager.GetUserAsync(User);
 
+            loggedInUser!.FirstName = Model.FirstName;
+            loggedInUser.LastName = Model.LastName;
+            loggedInUser.Email = Model.Email;
+            loggedInUser.PhoneNumber = Model.Phone;
+            loggedInUser.Bio = Model.Bio;
+            loggedInUser.Email = Model.Email;
+
+            var updateUser = await _usermanager.UpdateAsync(loggedInUser);
+
+            viewModel.GetUserAddressData(loggedInUser!.Address!);
+            viewModel.GetUserDetailsData(loggedInUser!);
 
             return View(nameof(Details), viewModel);
         }
@@ -54,7 +66,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddressInfo(AccountAddressFormModel model)
         {
-            AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
+            AccountDetailsViewModel viewModel = new();
 
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
@@ -66,7 +78,7 @@ namespace SilliconASPWebApp.Controllers
                 AddressLine_1 = model.Addressline_1,
                 AddressLine_2 = model.Addressline_2,
                 City = model.City,
-                PostalCode = model.PostalCode               
+                PostalCode = model.PostalCode
             };
 
 
@@ -87,7 +99,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public IActionResult Security()
         {
-            SecurityViewModel viewModel = new SecurityViewModel();
+            SecurityViewModel viewModel = new();
 
             return View(viewModel);
         }
@@ -95,13 +107,24 @@ namespace SilliconASPWebApp.Controllers
 
         #region change password
         [HttpPost]
-        public IActionResult ChangePassword(SecurityViewModel viewModel)
+        public async Task<IActionResult> ChangePassword(SecurityFormModel model)
         {
+            SecurityViewModel viewModel = new();
+
             if (!ModelState.IsValid)
                 return View(nameof(Security), viewModel);
 
+            var loggedInUser = await _usermanager.GetUserAsync(User);
+            var updateUser = await _usermanager.ChangePasswordAsync(loggedInUser,model.Password,model.NewPassword);
+            
+         
+       
+
+
+
+
             viewModel.ChangePasswordErrorMessage = "Passwords did not match.";
-            return RedirectToAction("Account", "Details");
+            return View(nameof(Security), viewModel);
         }
         #endregion
 

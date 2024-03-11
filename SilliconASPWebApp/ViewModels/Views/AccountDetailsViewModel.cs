@@ -1,5 +1,4 @@
 ﻿using Infrastructure.Entities;
-using Infrastructure.Services;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.Models.Sections;
 
@@ -7,13 +6,6 @@ namespace SilliconASPWebApp.ViewModels.Views
 {
     public class AccountDetailsViewModel
     {
-
-
-        public AccountDetailsViewModel()
-        {
-
-        }
-
         public string Title = "Account details";
 
         public ProfileMenuModel ProfileMenuModel { get; set; } = new();
