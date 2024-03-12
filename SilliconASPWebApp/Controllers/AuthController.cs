@@ -29,7 +29,7 @@ namespace SilliconASPWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var createdUser = await _userService.CreateUser(userFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
+                var createdUser = await _userService.CreateUser(MappingFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
                 if (createdUser != null)
                     return RedirectToAction("SignIn", "Auth");
             }

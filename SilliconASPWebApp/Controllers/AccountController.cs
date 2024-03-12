@@ -1,27 +1,19 @@
 ﻿using Infrastructure.Entities;
+using Infrastructure.Factories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Manage.Internal;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
-using System.Net;
 
 namespace SilliconASPWebApp.Controllers
 {
-    //[Authorize] // ser till att du måste vara inloggad för att komma åt dessa sidor.
-    public class AccountController : Controller
+    [Authorize] // ser till att du måste vara inloggad för att komma åt dessa sidor.
+    public class AccountController(UserManager<AppUserEntity> usermanager, AddressService addressService, UserService userService) : Controller
     {
-        private readonly UserManager<AppUserEntity> _usermanager;
-        private readonly AddressService _addressService;
-        private readonly UserService _userService;
-
-        public AccountController(UserManager<AppUserEntity> usermanager, AddressService addressService, UserService userService)
-        {
-            _usermanager = usermanager;
-            _addressService = addressService;
-            _userService = userService;
-        }
+        private readonly UserManager<AppUserEntity> _usermanager = usermanager;
+        private readonly AddressService _addressService = addressService;
+        private readonly UserService _userService = userService;
 
         #region home/details
         [Route("/account")]
@@ -31,10 +23,16 @@ namespace SilliconASPWebApp.Controllers
             AccountDetailsViewModel viewModel = new();
 
             var user = await _usermanager.GetUserAsync(User);
-            var address = await _addressService.GetOneAddressById((int)user!.AddressId!);
 
-            viewModel.GetUserDetailsData(user!);
-            viewModel.GetUserAddressData(address!);
+            if (user != null)
+                viewModel.GetUserDetailsData(user!);
+
+            if (user!.AddressId != null)
+            {
+                var address = await _addressService.GetOneAddressById((int)user!.AddressId!);
+                viewModel.GetUserAddressData(address!);
+            }
+
             return View(viewModel);
         }
 
@@ -46,19 +44,20 @@ namespace SilliconASPWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
-            var loggedInUser = await _usermanager.GetUserAsync(User);
+            var user = await _usermanager.GetUserAsync(User);
+            var loggedInUser = MappingFactory.MapNewUserValues(user!, Model);
 
-            loggedInUser!.FirstName = Model.FirstName;
-            loggedInUser.LastName = Model.LastName;
-            loggedInUser.Email = Model.Email;
-            loggedInUser.PhoneNumber = Model.Phone;
-            loggedInUser.Bio = Model.Bio;
-            loggedInUser.Email = Model.Email;
+            if (loggedInUser != null)
+            {
+                var updateUser = await _usermanager.UpdateAsync(loggedInUser);
+                viewModel.GetUserDetailsData(loggedInUser!);
 
-            var updateUser = await _usermanager.UpdateAsync(loggedInUser);
-
-            viewModel.GetUserAddressData(loggedInUser!.Address!);
-            viewModel.GetUserDetailsData(loggedInUser!);
+                if (user!.AddressId != null)
+                {
+                    var address = await _addressService.GetOneAddressById((int)user!.AddressId!);
+                    viewModel.GetUserAddressData(address!);
+                }
+            }
 
             return View(nameof(Details), viewModel);
         }
@@ -73,16 +72,9 @@ namespace SilliconASPWebApp.Controllers
 
             var loggedInUser = await _usermanager.GetUserAsync(User);
 
-            var newAddress = new AddressEntity
-            {
-                AddressLine_1 = model.Addressline_1,
-                AddressLine_2 = model.Addressline_2,
-                City = model.City,
-                PostalCode = model.PostalCode
-            };
-
-
+            var newAddress = MappingFactory.NewAddressMapping(model);
             var updatedAddress = await _addressService.UpdateAddress(newAddress);
+
             if (updatedAddress != null)
             {
                 loggedInUser!.AddressId = updatedAddress.Id;
@@ -100,12 +92,9 @@ namespace SilliconASPWebApp.Controllers
         public IActionResult Security()
         {
             SecurityViewModel viewModel = new();
-
             return View(viewModel);
         }
-        #endregion
 
-        #region change password
         [HttpPost]
         public async Task<IActionResult> ChangePassword(SecurityFormModel model)
         {
@@ -115,25 +104,30 @@ namespace SilliconASPWebApp.Controllers
                 return View(nameof(Security), viewModel);
 
             var loggedInUser = await _usermanager.GetUserAsync(User);
-            var updateUser = await _usermanager.ChangePasswordAsync(loggedInUser,model.Password,model.NewPassword);
-            
-         
-       
 
-
-
+            if (loggedInUser != null)
+            {
+                var updateUser = await _usermanager.ChangePasswordAsync(loggedInUser!, model.Password, model.NewPassword);
+            }
 
             viewModel.ChangePasswordErrorMessage = "Passwords did not match.";
             return View(nameof(Security), viewModel);
         }
-        #endregion
 
-        #region delete
         [HttpPost]
-        public IActionResult DeleteAccount(SecurityViewModel viewModel)
+        public async Task<IActionResult> DeleteAccount(DeleteAccountFormModel model)
         {
+            SecurityViewModel viewModel = new();
+
             if (!ModelState.IsValid)
                 return View(nameof(Security), viewModel);
+
+            var activeUser = await _usermanager.GetUserAsync(User);
+
+            if (activeUser != null)
+            {
+                var deleteUser = await _usermanager.DeleteAsync(activeUser);
+            }
 
             viewModel.DeleteAccountErrorMessage = "Confirm the checkbox.";
             return RedirectToAction("Account", "Details");
@@ -150,3 +144,7 @@ namespace SilliconASPWebApp.Controllers
         #endregion
     }
 }
+
+
+
+

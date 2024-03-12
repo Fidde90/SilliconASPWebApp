@@ -27,20 +27,10 @@
                     link to reactivate your account.
                 </p>
 
-                <form novalidate asp-controller="Account" asp-action="DeleteAccount">
+                <div class="error-msg">@Model.DeleteAccountErrorMessage</div>
 
-                    <div class="error-msg">@Model.DeleteAccountErrorMessage</div>
+                @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_DeleteAccountFormPartial.cshtml", Model.DeleteForm)
 
-                    <div id="form-delete" class="checkbox-group">
-                        <div class="checkbox">
-                            <input asp-for="DeleteForm.Delete" />
-                            <label asp-for="DeleteForm.Delete"></label>
-                        </div>
-                        <span asp-validation-for="DeleteForm.Delete"></span>
-                    </div>
-                    <button class="btn-theme">Delete</button>
-                </form>
-              
             </div>
         </div>
     </div>

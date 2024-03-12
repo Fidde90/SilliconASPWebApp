@@ -1,0 +1,12 @@
+﻿@model DeleteAccountFormModel
+
+<form novalidate asp-controller="Account" asp-action="DeleteAccount">
+    <div id="form-delete" class="checkbox-group">
+        <div class="checkbox">
+            <input asp-for="@Model.Delete" />
+            <label asp-for="@Model.Delete"></label>
+        </div>
+        <span asp-validation-for="@Model.Delete"></span>
+    </div>
+    <button type="submit" class="btn-theme">Delete</button>
+</form>
