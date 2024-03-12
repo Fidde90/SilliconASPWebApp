@@ -869,7 +869,8 @@ footer .container .display-none {
   text-decoration: none;
 }
 .top-work-tools .cards a .card {
-  width: 310px;
+  max-width: 310px;
+  min-width: 290px;
   height: 220px;
   display: flex;
   flex-direction: column;
