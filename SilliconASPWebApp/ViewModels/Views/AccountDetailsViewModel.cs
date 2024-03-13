@@ -16,14 +16,16 @@ namespace SilliconASPWebApp.ViewModels.Views
 
         public string ErrorMessage { get; set; } = string.Empty;
 
+        //public bool IsExternalAccount { get; set; }
 
         public void GetUserDetailsData(AppUserEntity user)
         {
             if(user != null)
             {
-                ProfileMenuModel.Image = "/images/John-doe.svg";
+                ProfileMenuModel.Image = user.ProfilePicUrl;
                 ProfileMenuModel.Name = $"{user.FirstName} {user.LastName}";
                 ProfileMenuModel.Email = user.Email!;
+                BasicInfo.IsExternalAccount = user.IsExternal;
 
                 BasicInfo.FirstName = user.FirstName!;
                 BasicInfo.LastName = user.LastName!;

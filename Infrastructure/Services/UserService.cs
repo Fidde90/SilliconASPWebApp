@@ -16,7 +16,7 @@ namespace Infrastructure.Services
             _UserRepository = UserRepository;
         }
 
-        public async Task<AppUserEntity> CreateUser(AppUserEntity newUser, string password)
+        public async Task<AppUserEntity> CreateUserAsync(AppUserEntity newUser, string password)
         {
             try
             {
@@ -30,6 +30,20 @@ namespace Infrastructure.Services
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;
         }
+        public async Task<bool> CreateUserNoPasswordAsync(AppUserEntity newUser)
+        {
+            try
+            {
+                if (!await _UserRepository.Exists(x => x.Email == newUser.Email))
+                {
+                    var isCreated = await _userManager.CreateAsync(newUser);
+                    if (isCreated.Succeeded)
+                        return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return false;
+        }
         public async Task<AppUserEntity> UpdateUser(AppUserEntity newValues)
         {
             try
@@ -39,6 +53,33 @@ namespace Infrastructure.Services
                     var updatedUser = await _UserRepository.UpdateEntityInDB(newValues, x => x.Id == newValues.Id);
                     if (updatedUser != null)
                         return updatedUser;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
+        }
+        public async Task<bool> UpdateWithUserManagerAsync(AppUserEntity newValues)
+        {
+            try
+            {
+                if (await _UserRepository.Exists(x => x.Email == newValues.Email))
+                {
+                    var updatedUser = await _userManager.UpdateAsync(newValues);
+                    if (updatedUser.Succeeded)
+                        return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return false;
+        }
+        public async Task<AppUserEntity> GetByEmailAsync(AppUserEntity externalUser)
+        {
+            try
+            {
+                if (await _UserRepository.Exists(x => x.Email == externalUser.Email))
+                {
+                    var user = await _userManager.FindByEmailAsync(externalUser.Email!);
+                    if (user != null) return user;
                 }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
