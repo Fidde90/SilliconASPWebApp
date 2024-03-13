@@ -43,11 +43,11 @@ namespace SilliconASPWebApp.Controllers
         public IActionResult SignIn(string returnUrl)
         {
             if (_signInManager.IsSignedIn(User))
-                RedirectToAction("Details", "Auth");
+                return RedirectToAction("Details", "Account");
 
-            ViewData["ReturnUrl"] = returnUrl ?? Url.Content("~/account");
-
-            return View(new SignInViewModel());  
+            var viewModel = new SignInViewModel();
+            viewModel.ReturnUrl = returnUrl ?? "/account";
+            return View(viewModel);  
         }
 
         [Route("/signin")]
@@ -56,7 +56,7 @@ namespace SilliconASPWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _authService.SignIn(viewModel.Form);
+                var result = await _authService.SignIn(new Models.Forms.SignInFormModel { Email = viewModel.Email, Password = viewModel.Password, Remeber = false});
                 if (result)
                 {
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -66,7 +66,7 @@ namespace SilliconASPWebApp.Controllers
                 }
             }
             viewModel.ErrorMessage = "Incorrect email or password";
-            return View(nameof(SignIn), new SignInViewModel());
+            return View("SignIn", viewModel);
         }
         #endregion
 
