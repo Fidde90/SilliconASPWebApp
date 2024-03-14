@@ -3,6 +3,7 @@ using Infrastructure.Entities;
 using Infrastructure.Helpers.MIddlewares;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,11 @@ builder.Services.AddAuthentication().AddFacebook(x =>
     x.Fields.Add("first_name");
     x.Fields.Add("last_name");
 });
+builder.Services.AddAuthentication().AddGoogle(g =>
+{
+    g.ClientId = "115908931583-62p0vbcglk7qqd419eisvnfhqf723rel.apps.googleusercontent.com";
+    g.ClientSecret = "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";
+}); 
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<UserRepository>();

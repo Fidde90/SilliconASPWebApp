@@ -136,6 +136,59 @@ namespace SilliconASPWebApp.Controllers
             ViewData["StatusMessage"] = "danger|Faild to authenticate with Facebook.";
             return RedirectToAction("SignIn", "Auth");
         }
+
+
+        [HttpGet]
+        public IActionResult Google()
+        {
+            var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("GoogleCallback"));
+            return new ChallengeResult("Google", authProps);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GoogleCallback()
+        {
+            var data = await _signInManager.GetExternalLoginInfoAsync(); //hämtar data från facebook
+            if (data != null)
+            {
+                var FbUser = new AppUserEntity
+                {
+                    FirstName = data.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                    LastName = data.Principal.FindFirstValue(ClaimTypes.Surname)! ?? "",
+                    Email = data.Principal.FindFirstValue(ClaimTypes.Email)!,
+                    UserName = data.Principal.FindFirstValue(ClaimTypes.Email)!,
+                    IsExternal = true
+                }; // skapar ny användare med nya datan
+
+                var user = await _userService.GetByEmailAsync(FbUser); //hämtar upp användaren via email i databasen (om den finns)
+                if (user == null)//om inte
+                {
+                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser); // skapar den
+                    if (registerNewUser) // om den lyckades
+                        user = await _userService.GetByEmailAsync(FbUser); // nu sparar vi in den skapade/hämtade användaren i "user variabeln"
+                }
+
+                if (user != null) //antingen fanns användaren redan eller så har vi nu skapat den vid dehär laget. Så nu ska den inte vara null
+                {
+                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email)// om det finns skillnader i datan 
+                    {
+                        user.FirstName = FbUser.FirstName;
+                        user.LastName = FbUser.LastName;
+                        user.Email = FbUser.Email;
+
+                        await _userService.UpdateWithUserManagerAsync(user);
+                    }
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    if (HttpContext.User != null)
+                        return RedirectToAction("Details", "Account");
+                }
+            }
+
+            ModelState.AddModelError("InvalidFacebookAuthentication", "danger|Faild to authenticate with Facebook.");
+            ViewData["StatusMessage"] = "danger|Faild to authenticate with Facebook.";
+            return RedirectToAction("SignIn", "Auth");
+        }
         #endregion
     }
 }
