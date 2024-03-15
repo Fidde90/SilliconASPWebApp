@@ -12,7 +12,7 @@
                     <label asp-for="@Model.FirstName"></label>
                     @if (Model.IsExternalAccount == true)
                     {
-                        <input asp-for="@Model.FirstName" disabled>
+                        <input class="gray-background" asp-for="@Model.FirstName" readonly>
                     }
                     else
                     {
@@ -25,7 +25,7 @@
                     <label asp-for="@Model.LastName"></label>
                     @if (Model.IsExternalAccount)
                     {
-                        <input asp-for="@Model.LastName" disabled/>
+                        <input class="gray-background" asp-for="@Model.LastName" readonly />
                     }
                     else
                     {
@@ -40,7 +40,7 @@
                     <label asp-for="@Model.Email"></label>
                     @if (Model.IsExternalAccount)
                     {
-                        <input asp-for="@Model.Email" disabled/>
+                        <input class="gray-background" asp-for="@Model.Email" readonly />
                     }
                     else
                     {

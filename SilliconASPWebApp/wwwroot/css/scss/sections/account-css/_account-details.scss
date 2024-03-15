@@ -127,6 +127,10 @@
         }
     }
 
+    .gray-background {
+        background-color: $gray-300;
+    }
+
     .buttons {
         display: flex;
         flex-wrap: wrap;

@@ -95,15 +95,15 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> FacebookCallback()
         {
-            var data = await _signInManager.GetExternalLoginInfoAsync(); //hämtar data från facebook
-            if (data != null)
+            var facebookData = await _signInManager.GetExternalLoginInfoAsync(); //hämtar data från facebook
+            if (facebookData != null)
             {
                 var FbUser = new AppUserEntity
                 {
-                    FirstName = data.Principal.FindFirstValue(ClaimTypes.GivenName)!,
-                    LastName = data.Principal.FindFirstValue(ClaimTypes.Surname)!,
-                    Email = data.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    UserName = data.Principal.FindFirstValue(ClaimTypes.Email)!,
+                    FirstName = facebookData.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                    LastName = facebookData.Principal.FindFirstValue(ClaimTypes.Surname)!,
+                    Email = facebookData.Principal.FindFirstValue(ClaimTypes.Email)!,
+                    UserName = facebookData.Principal.FindFirstValue(ClaimTypes.Email)!,
                     IsExternal = true
                 }; // skapar ny användare med nya datan
 
@@ -148,29 +148,29 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GoogleCallback()
         {
-            var data = await _signInManager.GetExternalLoginInfoAsync(); //hämtar data från facebook
-            if (data != null)
+            var googleData = await _signInManager.GetExternalLoginInfoAsync(); 
+            if (googleData != null)
             {
                 var FbUser = new AppUserEntity
                 {
-                    FirstName = data.Principal.FindFirstValue(ClaimTypes.GivenName)!,
-                    LastName = data.Principal.FindFirstValue(ClaimTypes.Surname)! ?? "",
-                    Email = data.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    UserName = data.Principal.FindFirstValue(ClaimTypes.Email)!,
+                    FirstName = googleData.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                    LastName = googleData.Principal.FindFirstValue(ClaimTypes.Surname)! ?? "-",// att ange ett efternamn var inte ett krav när man skapade ett Google-konto. Men det är ett måste här, så sätter ett värde bara för att där ska finnas något. 
+                    Email = googleData.Principal.FindFirstValue(ClaimTypes.Email)!,
+                    UserName = googleData.Principal.FindFirstValue(ClaimTypes.Email)!,
                     IsExternal = true
-                }; // skapar ny användare med nya datan
+                }; 
 
-                var user = await _userService.GetByEmailAsync(FbUser); //hämtar upp användaren via email i databasen (om den finns)
-                if (user == null)//om inte
+                var user = await _userService.GetByEmailAsync(FbUser); 
+                if (user == null)
                 {
-                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser); // skapar den
-                    if (registerNewUser) // om den lyckades
-                        user = await _userService.GetByEmailAsync(FbUser); // nu sparar vi in den skapade/hämtade användaren i "user variabeln"
+                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser); 
+                    if (registerNewUser) 
+                        user = await _userService.GetByEmailAsync(FbUser); 
                 }
 
-                if (user != null) //antingen fanns användaren redan eller så har vi nu skapat den vid dehär laget. Så nu ska den inte vara null
+                if (user != null) 
                 {
-                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email)// om det finns skillnader i datan 
+                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email) 
                     {
                         user.FirstName = FbUser.FirstName;
                         user.LastName = FbUser.LastName;
@@ -185,8 +185,8 @@ namespace SilliconASPWebApp.Controllers
                 }
             }
 
-            ModelState.AddModelError("InvalidFacebookAuthentication", "danger|Faild to authenticate with Facebook.");
-            ViewData["StatusMessage"] = "danger|Faild to authenticate with Facebook.";
+            ModelState.AddModelError("InvalidFacebookAuthentication", "danger|Faild to authenticate with Google.");
+            ViewData["StatusMessage"] = "danger|Faild to authenticate with Google.";
             return RedirectToAction("SignIn", "Auth");
         }
         #endregion

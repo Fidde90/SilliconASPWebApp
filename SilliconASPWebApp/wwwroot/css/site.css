@@ -1247,6 +1247,9 @@ footer .container .display-none {
   position: absolute;
   right: 0;
 }
+.account-details .gray-background {
+  background-color: #E2E5F1;
+}
 .account-details .buttons {
   display: flex;
   flex-wrap: wrap;
