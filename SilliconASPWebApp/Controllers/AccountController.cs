@@ -77,7 +77,6 @@ namespace SilliconASPWebApp.Controllers
                 return View(nameof(Details), viewModel);
             }
     
-
             var loggedInUser = await _usermanager.GetUserAsync(User);
 
             var newAddress = MappingFactory.NewAddressMapping(model);

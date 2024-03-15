@@ -12,7 +12,7 @@
                     <label asp-for="@Model.FirstName"></label>
                     @if (Model.IsExternalAccount == true)
                     {
-                        <input class="gray-background" asp-for="@Model.FirstName" readonly>
+                        <input class="gray-background" asp-for="@Model.FirstName" readonly> // eftersom "disabled" inte skickar med information till modellen så använder jag readonly och sätter grå bakgrund med en klass.
                     }
                     else
                     {
