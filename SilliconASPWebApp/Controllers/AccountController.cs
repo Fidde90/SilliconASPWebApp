@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
+using System.Net;
 
 namespace SilliconASPWebApp.Controllers
 {
@@ -34,11 +35,11 @@ namespace SilliconASPWebApp.Controllers
                 viewModel.GetUserAddressData(address!);
             }
 
-            return View(viewModel);
+            return View(nameof(Details), viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> BasicInfo(AccountBasicInfoFormModel Model)
+        public async Task<IActionResult> BasicInfo(AccountBasicInfoFormModel model)
         {
             AccountDetailsViewModel viewModel = new();
 
@@ -46,7 +47,7 @@ namespace SilliconASPWebApp.Controllers
                 return View(nameof(Details), viewModel);
 
             var user = await _usermanager.GetUserAsync(User);
-            var loggedInUser = MappingFactory.MapNewUserValues(user!, Model);
+            var loggedInUser = MappingFactory.MapNewUserValues(user!, model);
 
             if (loggedInUser != null)
             {
@@ -69,8 +70,13 @@ namespace SilliconASPWebApp.Controllers
             AccountDetailsViewModel viewModel = new();
 
             if (!ModelState.IsValid)
+            {
+                var user = await _usermanager.GetUserAsync(User);
+                viewModel.GetUserDetailsData(user!);
+                viewModel.GetUserAddressData(user!.Address!);
                 return View(nameof(Details), viewModel);
-
+            }
+    
             var loggedInUser = await _usermanager.GetUserAsync(User);
 
             var newAddress = MappingFactory.NewAddressMapping(model);

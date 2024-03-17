@@ -16,5 +16,10 @@ namespace Infrastructure.Entities
         public int? AddressId { get; set; }
 
         public AddressEntity? Address { get; set; }
+
+        [ProtectedPersonalData]
+        public string? ProfilePicUrl { get; set; } = "/images/John-doe.svg";
+
+        public bool IsExternal { get; set; } = false;
     }
 }

@@ -26,5 +26,7 @@ namespace SilliconASPWebApp.Models.Forms
         [DataType(DataType.MultilineText)]
         [Display(Name = "Bio", Prompt = "Add a short bio...", Order = 4)]
         public string? Bio { get; set; }
+
+        public bool IsExternalAccount { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Infrastructure.Entities;
 using Infrastructure.Helpers.MIddlewares;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,6 @@ builder.Services.AddDefaultIdentity<AppUserEntity>(x =>
     x.Password.RequiredLength = 8;
 
 }).AddEntityFrameworkStores<DataContext>();
-
 builder.Services.ConfigureApplicationCookie(x =>
 {
     x.Cookie.HttpOnly = true; // förhindrar att någon kan läsa ut cookie informationen (vanligt bland javascript).
@@ -27,7 +27,18 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     x.SlidingExpiration = true;
 });
-
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "1488473432015630";
+    x.AppSecret = "5d3f6ee7f45f1a683421f4361aea5266";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
+});
+builder.Services.AddAuthentication().AddGoogle(g =>
+{
+    g.ClientId = "115908931583-62p0vbcglk7qqd419eisvnfhqf723rel.apps.googleusercontent.com";
+    g.ClientSecret = "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";
+}); 
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<UserRepository>();
@@ -35,8 +46,6 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<AddressRepository>();
-
-
 
 
 var app = builder.Build();

@@ -10,22 +10,43 @@
             <div class="names">
                 <div id="form-firstName" class="input-group">
                     <label asp-for="@Model.FirstName"></label>
-                    <span asp-validation-for="@Model.FirstName"></span>
-                    <input asp-for="@Model.FirstName">
+                    @if (Model.IsExternalAccount == true)
+                    {
+                        <input class="gray-background" asp-for="@Model.FirstName" readonly> // eftersom "disabled" inte skickar med information till modellen så använder jag readonly och sätter grå bakgrund med en klass.
+                    }
+                    else
+                    {
+                        <span asp-validation-for="@Model.FirstName"></span>
+                        <input asp-for="@Model.FirstName">
+                    }
                 </div>
 
                 <div id="form-lastName" class="input-group">
                     <label asp-for="@Model.LastName"></label>
-                    <span asp-validation-for="@Model.LastName"></span>
-                    <input asp-for="@Model.LastName" />
+                    @if (Model.IsExternalAccount)
+                    {
+                        <input class="gray-background" asp-for="@Model.LastName" readonly />
+                    }
+                    else
+                    {
+                        <span asp-validation-for="@Model.LastName"></span>
+                        <input asp-for="@Model.LastName" />
+                    }
                 </div>
             </div>
 
             <div class="email-phone">
                 <div id="form-email" class="input-group">
                     <label asp-for="@Model.Email"></label>
-                    <span asp-validation-for="@Model.Email"></span>
-                    <input asp-for="@Model.Email" />
+                    @if (Model.IsExternalAccount)
+                    {
+                        <input class="gray-background" asp-for="@Model.Email" readonly />
+                    }
+                    else
+                    {
+                        <span asp-validation-for="@Model.Email"></span>
+                        <input asp-for="@Model.Email" />
+                    }
                 </div>
 
                 <div id="form-phone" class="input-group">
