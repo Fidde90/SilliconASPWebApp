@@ -13,8 +13,8 @@
         <nav>
             <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")">Overview</a>
             <a class="menu-link" href="#features">Features</a>
-            <a class="menu-link" href="#contact.html">Contact</a>
-            <a class="menu-link" href="#courses.html">Courses</a>
+            <a class="menu-link" >Contact</a>
+            <a class="menu-link" asp-action="courses" asp-controller="Courses">Courses</a>
         </nav>
     </div>
 

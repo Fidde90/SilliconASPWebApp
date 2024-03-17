@@ -1584,3 +1584,40 @@ footer .container .display-none {
     max-width: 320px;
   }
 }
+
+.not-found .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.not-found .container img {
+  margin-top: 10%;
+  max-width: 700px;
+  width: 100%;
+}
+.not-found .container h1 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 48px !important;
+  margin-top: 20px;
+}
+.not-found .container p {
+  font-size: 16px;
+}
+@media (min-width: 768px) {
+  .not-found .container p {
+    font-size: 20px;
+  }
+}
+.not-found .container a {
+  text-decoration: none;
+}
+.not-found .container a button {
+  margin-top: 40px;
+  border: none;
+}

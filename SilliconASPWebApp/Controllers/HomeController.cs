@@ -12,5 +12,11 @@ namespace SilliconASPWebApp.Controllers
             ViewData["Title"] = viewModel.Title = "Home";
             return View(viewModel);
         }
+
+        [Route("/error")]
+        public IActionResult Error404(int statuscode)
+        {
+            return View();
+        }
     }
 }
