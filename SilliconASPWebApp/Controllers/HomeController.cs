@@ -18,5 +18,11 @@ namespace SilliconASPWebApp.Controllers
         {
             return View();
         }
+
+        [Route("/denied")]
+        public IActionResult Denied(int statuscode)
+        {
+            return View();
+        }
     }
 }

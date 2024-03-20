@@ -3,12 +3,11 @@ using Infrastructure.Entities;
 using Infrastructure.Helpers.MIddlewares;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 builder.Services.AddDefaultIdentity<AppUserEntity>(x =>
 {
@@ -16,7 +15,9 @@ builder.Services.AddDefaultIdentity<AppUserEntity>(x =>
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;
 
-}).AddEntityFrameworkStores<DataContext>();
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<DataContext>();
 builder.Services.ConfigureApplicationCookie(x =>
 {
     x.Cookie.HttpOnly = true; // förhindrar att någon kan läsa ut cookie informationen (vanligt bland javascript).
@@ -47,8 +48,21 @@ builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<AddressRepository>();
 
-
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    string[] roles = { "User", "Admin" };
+
+    for(int index = 0; index < roles.Length; index++)
+    {
+        if(!await roleManager.RoleExistsAsync(roles[index]))
+        {
+            await roleManager.CreateAsync(new IdentityRole(roles[index]));
+        }
+    }
+}
 
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error","?statusCode{0}");

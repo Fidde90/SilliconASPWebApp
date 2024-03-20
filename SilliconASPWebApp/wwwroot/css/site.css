@@ -1588,6 +1588,15 @@ footer .container .display-none {
   }
 }
 
+.container {
+  /*   display: flex;
+     justify-content:center;*/
+}
+.container .text-content {
+  margin-top: 50px;
+  text-align: center;
+}
+
 .not-found .container {
   display: flex;
   flex-direction: column;
@@ -1623,4 +1632,8 @@ footer .container .display-none {
 .not-found .container a button {
   margin-top: 40px;
   border: none;
+}
+
+#denied .container {
+  text-align: center;
 }

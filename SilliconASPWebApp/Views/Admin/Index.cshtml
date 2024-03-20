@@ -1,0 +1,24 @@
+﻿@inject UserRepository _userRepository
+@{
+    ViewData["Title"] = "AdminPage";
+}
+
+<section class="container">
+    <div class="text-content">
+        <h1>Welcome Admin!</h1>
+        <p>Use your powers as you wish!</p>
+    </div>
+
+    <div class="users">
+        @foreach (var user in await _userRepository.GetAllFromDB())
+        {
+            <h4>@user.FirstName @user.LastName</h4>
+            <p>@user.Email</p>
+            @if (user.PhoneNumber != null)
+            {
+                <p>@user.PhoneNumber</p>
+            }
+            <p>@user.Bio</p>
+        }
+    </div>
+</section>

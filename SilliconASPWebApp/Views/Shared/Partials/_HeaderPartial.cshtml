@@ -1,10 +1,8 @@
 ﻿@inject SignInManager<AppUserEntity> _signInManager
-
 @{
     bool isRoot = Context.Request.Path.Value!.Equals("/");
     bool active = _signInManager.IsSignedIn(User);
 }
-
 
 <div class="container">
     <a id="logo" asp-action="Index" asp-controller="Home"><img src="\images\IconLight.svg" alt="Icon"></a>
@@ -15,6 +13,12 @@
             <a class="menu-link" href="#features">Features</a>
             <a class="menu-link" >Contact</a>
             <a class="menu-link" asp-action="courses" asp-controller="Courses">Courses</a>
+
+            @if(active && User.IsInRole("Admin"))
+            {
+                <a class="menu-link" asp-action="Index" asp-controller="Admin">The Admin Dimension</a>
+            }
+
         </nav>
     </div>
 
@@ -27,7 +31,7 @@
         <label>Dark</label>
     </div>
 
-    @if (_signInManager.IsSignedIn(User))
+    @if (active)
     {
         <div class="account-buttons">
             <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="/images/John-doe.svg" /></a>
@@ -44,7 +48,7 @@
 </div>
 
 <div id="mobile-menu" class="invisible">
-    @if (_signInManager.IsSignedIn(User))
+    @if (active)
     {
         <a class="menu-link" asp-page="@(isRoot ? "/#Features" : "/index")">Overview</a>
         <a class="menu-link" href="#features">Features</a>

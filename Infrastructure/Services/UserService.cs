@@ -24,7 +24,15 @@ namespace Infrastructure.Services
                 {
                     var result = await _userManager.CreateAsync(newUser, password);
                     if (result.Succeeded)
+                    {
+                        var numbersOfUsers = _userManager.Users.Count();
+                        if (numbersOfUsers > 1)
+                            await _userManager.AddToRoleAsync(newUser, "User");
+                        else
+                            await _userManager.AddToRoleAsync(newUser, "Admin");
+
                         return newUser;
+                    }
                 }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
