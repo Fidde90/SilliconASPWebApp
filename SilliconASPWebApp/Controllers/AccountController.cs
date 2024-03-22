@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
-using System.Net;
 
 namespace SilliconASPWebApp.Controllers
 {
@@ -142,7 +141,7 @@ namespace SilliconASPWebApp.Controllers
         #endregion
 
         #region saved courses
-        [Route("/courses")]
+        [Route("/savedcourses")]
         [HttpGet]
         public IActionResult Courses(SavedCoursesViewModel viewModel)
         {

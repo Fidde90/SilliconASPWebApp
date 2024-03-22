@@ -1,0 +1,57 @@
+﻿.work-with-us {
+    margin-top: 6rem;
+
+    .container {
+        background-color: $gray-100;
+        padding: 4rem 7rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            display: none;
+        }
+
+        .text-button {
+            max-width: 520px;
+
+
+            p {
+                @include text-lead;
+            }
+
+            h1 {
+                @include h3;
+                margin-bottom: 30px;
+
+                span {
+                    color: $theme;
+                }
+            }
+
+            a {
+                text-decoration: none;
+
+                div {
+                    display: inline;
+                    @include theme-shadow;
+                    max-width: 80px;
+                    padding: 15px 30px;
+                }
+            }
+        }
+
+        @include lg {
+            img {
+                display: block;
+            }
+
+            .text-button {
+
+                h1 {
+                    @include h1;
+                }
+            }
+        }
+    }
+}

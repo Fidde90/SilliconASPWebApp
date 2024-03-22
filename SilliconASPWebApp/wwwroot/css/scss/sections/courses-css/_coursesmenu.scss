@@ -1,0 +1,86 @@
+﻿.courses-menu {
+
+    .container {
+
+        p {
+            margin-top: 3.5rem;
+
+            .fa-house {
+                margin-right: 10px;
+            }
+
+            .fa-angles-right {
+                margin-left: 10px;
+            }
+
+            a {
+                color: blue;
+                margin-left: 10px;
+            }
+        }
+
+        .header-nav {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+
+            form {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .dropdown {
+                display: inline-block;
+                padding-right: 10px;
+                padding-left: 10px;
+                margin-right: 20px;
+                margin-bottom: 20px;
+                margin-top: 10px;
+                border: 2px solid $gray-500;
+                width: 250px;
+                height: 44px;
+                border-radius: 7px;
+
+                .select-box {
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    outline: none;
+                    background-color: transparent;
+                }
+
+                @include md {
+                    margin-bottom: 0px;
+                    margin-top: 0px;
+                }
+            }
+
+            .search-box {
+                display: flex;
+                min-width: 280px;
+                height: 44px;
+                padding-left: 10px;
+                border: 2px solid $gray-500;
+                border-radius: 7px;
+
+                input {
+                    border: none;
+                    outline: none;
+                    height: 100%;
+                    width: 100%;
+                }
+
+                button {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+    margin-bottom: 3rem;
+}
