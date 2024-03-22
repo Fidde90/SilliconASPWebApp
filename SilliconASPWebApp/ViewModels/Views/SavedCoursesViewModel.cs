@@ -13,12 +13,13 @@ namespace SilliconASPWebApp.ViewModels.Views
 
         public CourseCardModel CourseCard = new()
         {
-            Image = new() { Src = "/images/course-jmetter.svg", AltText = "blablabla" },
-            Title = "något",
-            Teacher = "någon",
-            Price = 38,
-            Hours = "150h",
-            rates = "50% 2k"
+            //Image = new() { Src = "/images/course-jmetter.svg", AltText = "blablabla" },
+            //Title = "något",
+            //Author = "någon",
+            //Price = "38",
+            //Hours = "150h",
+            //LikesInProcent = "50%",
+            //LikesInNumbers ="2k",   
         };
     }
 }

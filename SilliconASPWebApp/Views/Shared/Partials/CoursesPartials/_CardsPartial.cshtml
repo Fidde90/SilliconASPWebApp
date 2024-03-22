@@ -1,176 +1,43 @@
-﻿<section class="courses">
+﻿@model IEnumerable<CourseCardModel>
+
+<section class="courses">
     <div class="container">
         <div class="course-cards">
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-laptop.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">Fullstack web developer course from scratch</div>
-                        <p>By Robert Fox</p>
-                        <label>$12.50</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
+
+
+            @foreach (var course in Model)
+            {
+                <a class="card-link" asp-controller="Courses" asp-action="CourseDetails">
+                    <div class="card">
+                        <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
+                        <div class="pic">
+                            <img src="@course.PictureUrl" alt="laptop" />
+                        </div>
+                        <div class="info">
+                            <div class="title">@course.Title</div>
+                            <p>@course.Author</p>
+                            <label>@course.Price</label>
+                            <div class="line"></div>
+                            <div class="time-rates">
+                                <div><i class="fa-regular fa-clock"></i> <span>@course.Hours</span></div>
+                                <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent (@course.LikesInNumbers)</span></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-html-css-javascript.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">HTML, CSS, JavaScript Web Developer</div>
-                        <p>By Jenny Wilson & Marvin McKinney</p>
-                        <label>$15.99</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-front-end.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">The Complete Front-End Web Development Course</div>
-                        <p>By Albert Floresx</p>
-                        <label class="red">$9.99 <span>$44.99</span></label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-ios-swift.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">iOS & Swift - The Complete iOS App Development Course</div>
-                        <p>By Marvin McKinney</p>
-                        <label>$15.99</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-data-science.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">Data Science & Machine Learning with Python</div>
-                        <p>By Esther Howard</p>
-                        <label>$11.20</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-css-drawing.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">Creative CSS Drawing Course: Make Art With CSS</div>
-                        <p>By Robert Fox</p>
-                        <label>$10.50</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-blender.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">Blender Character Creator v2.0 for Video Games Design</div>
-                        <p>By Ralph Edwards</p>
-                        <label>$18.99</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-ultimate-guide.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">The Ultimate Guide to 2D Mobile Game Development</div>
-                        <p>By Albert Flores</p>
-                        <label class="red">$12.99 <span>$44.99</span></label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a class="card-link" href="#">
-                <div class="card">
-                    <img class="card-symbol" src="images\course-symbol.svg" alt="course symbol">
-                    <div class="pic">
-                        <img src="images\course-jmetter.svg" alt="laptop" />
-                    </div>
-                    <div class="info">
-                        <div class="title">Learn JMETER from Scratch on Live Apps-Performance Testing</div>
-                        <p>By Jenny Wilson</p>
-                        <label>$114.50</label>
-                        <div class="line"></div>
-                        <div class="time-rates">
-                            <div><i class="fa-regular fa-clock"></i> <span>160 hours</span></div>
-                            <div><i class="fa-light fa-thumbs-up"></i> <span>92% (3.1K)</span></div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="buttons">
-            <button class="arrow left"><i class="fa-solid fa-chevron-left"></i></button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button class="arrow right"><i class="fa-solid fa-chevron-right"></i></button>
+                </a>
+            }
+
+
+
+
+            <div class="buttons">
+                <button class="arrow left"><i class="fa-solid fa-chevron-left"></i></button>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button class="arrow right"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
         </div>
     </div>
 </section>
