@@ -1,0 +1,168 @@
+﻿.bottom-img {
+
+    .container {
+        display: flex;
+        justify-content: center;
+
+        @include xl {
+            justify-content: flex-start;
+        }
+
+        .info-box {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-top: 50px;
+            background-color: $gray-900;
+            z-index: -2;
+
+            @include lg {
+                flex-wrap: nowrap;
+                min-width: 100%;
+            }
+
+            @include xl {
+                width: 100%;
+                flex-wrap: nowrap;
+            }
+
+            .person-img {
+                height: 100%;
+                max-width: 525px;
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    max-width: 525px;
+                }
+            }
+
+            .info {
+                max-width: 525px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 10%;
+                margin-right: 10px;
+
+                @include lg {
+                    margin-left: 10px;
+                    padding: 0px 10px;
+                }
+
+                @include xl {
+                    margin-left: 5%;
+                }
+
+                @include xxl {
+                    margin-left: 10%;
+                }
+
+                h5 {
+                    color: $gray-600;
+                }
+
+                h1 {
+                    color: white;
+                }
+
+                p {
+                    margin-top: 20px;
+                    color: $gray-600;
+                }
+
+                .buttons {
+                    margin-top: 30px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+
+                    .youtube-btn {
+                        @include button;
+                        background-color: #EF4444;
+                        color: white;
+                        border: none;
+                    }
+
+                    .facebook-btn {
+                        @include button;
+                        background-color: #4C82F7;
+                        color: white;
+                        border: none;
+                    }
+
+                    padding-bottom: 20px;
+                }
+            }
+
+            .line1 {
+                position: absolute;
+                right: 110px;
+                top: -25px;
+                z-index: 0;
+            }
+
+            .line2 {
+                position: absolute;
+                right: -10px;
+                top: 125px;
+                z-index: -1;
+            }
+
+            .line3 {
+                position: absolute;
+                right: -50px;
+                bottom: -10px;
+                z-index: -1;
+            }
+
+            .line4 {
+                position: absolute;
+                right: -40px;
+                bottom: 0px;
+                z-index: -1;
+            }
+
+            .line5 {
+                position: absolute;
+                right: 300px;
+                bottom: 140px;
+                z-index: -1;
+            }
+
+            .line6 {
+                position: absolute;
+                left: 530px;
+                top: -10px;
+                z-index: -1;
+            }
+
+            .line7 {
+                position: absolute;
+                z-index: -1;
+                left: 390px;
+                top: -8px;
+            }
+
+            .line8 {
+                position: absolute;
+                left: 550px;
+                bottom: -10px;
+                z-index: -1;
+            }
+
+            .line9 {
+                position: absolute;
+                left: 470px;
+                bottom: -10px;
+                z-index: -1;
+            }
+        }
+    }
+}

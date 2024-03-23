@@ -30,7 +30,7 @@ namespace Infrastructure.Services
                             await _userManager.AddToRoleAsync(newUser, "User");
                         else
                             await _userManager.AddToRoleAsync(newUser, "Admin");
-
+                      
                         return newUser;
                     }
                 }

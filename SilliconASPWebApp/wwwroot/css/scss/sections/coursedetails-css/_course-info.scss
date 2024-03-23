@@ -1,0 +1,79 @@
+﻿.course-descripton-info {
+
+    .container {
+        display: grid;
+        grid-template-areas: "includes" "description " "learn ";
+
+        @include lg {
+            grid-template-areas: "description description includes" "learn none includes ";
+        }
+
+        .course-description {
+            grid-area: description;
+            max-width: 750px;
+            width: 100%;
+            margin-top: 70px;
+            padding-left: 10px;
+
+            h1 {
+                margin-bottom: 20px;
+            }
+        }
+
+        .learn {
+            grid-area: learn;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+
+            p {
+                margin-left: 10px;
+                margin-top: 20px;
+            }
+
+            .fa-circle-check {
+                margin-right: 10px;
+                color: $theme;
+            }
+        }
+
+        .includes-price {
+            grid-area: includes;
+            max-width: 415px;
+            width: 100%;
+            margin-bottom: 20px;
+            margin-top: 70px;
+            height: fit-content;
+            padding: 40px;
+            @include shadow-l;
+
+            h4 {
+                margin-bottom: 20px;
+            }
+
+            .price {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 40px;
+
+                h5 {
+                    color: $gray-500;
+                    text-decoration: line-through;
+                }
+            }
+
+            button {
+                @include theme-shadow;
+            }
+
+            @include md {
+                margin-left: 20px;
+            }
+
+            @include xl {
+                margin-left: 0px;
+            }
+        }
+    }
+}

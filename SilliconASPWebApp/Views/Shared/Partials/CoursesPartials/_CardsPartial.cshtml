@@ -7,28 +7,29 @@
 
             @foreach (var course in Model)
             {
-                <a class="card-link" asp-controller="Courses" asp-action="CourseDetails">
+                <a class="card-link" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">
                     <div class="card">
                         <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
+                        @if (course.IsBestSeller)
+                        {
+                            <p class="best-seller">Best seller</p>
+                        }
                         <div class="pic">
                             <img src="@course.PictureUrl" alt="laptop" />
                         </div>
                         <div class="info">
                             <div class="title">@course.Title</div>
-                            <p>@course.Author</p>
-                            <label>@course.Price</label>
+                            <p>By @course.Author</p>
+                            <label>$@course.Price</label>
                             <div class="line"></div>
                             <div class="time-rates">
-                                <div><i class="fa-regular fa-clock"></i> <span>@course.Hours</span></div>
-                                <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent (@course.LikesInNumbers)</span></div>
+                                <div><i class="fa-regular fa-clock"></i> <span>@course.Hours hours</span></div>
+                                <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent% (@course.LikesInNumbers K)</span></div>
                             </div>
                         </div>
                     </div>
                 </a>
             }
-
-
-
 
             <div class="buttons">
                 <button class="arrow left"><i class="fa-solid fa-chevron-left"></i></button>
