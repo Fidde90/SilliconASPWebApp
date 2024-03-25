@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SubscribeFormModel;
+@{
 }
 
 <div class="subscribe">
@@ -45,10 +46,12 @@
                 </div>
             </div>
 
-            <div class="input-button">
-                <input id="text-box" type="text" placeholder="Your email@hotmail.com" />
-                <button id="button" class="btn-theme" type="submit">Subscribe*</button>
+            <div class="input-group">
+                <span asp-validation-for="Email"></span>
+                <input asp-for="Email" />
             </div>
+
+            <button id="button" class="btn-theme" type="submit">Subscribe*</button>
 
             <p class="terms">
                 * Yes, I agree to the <span><a href="#">terms</a></span> and <span>
@@ -58,5 +61,6 @@
             <div class="envelope"></div>
 
         </form>
+        @await Html.PartialAsync("_ValidationScriptPartial")
     </div>
 </div>

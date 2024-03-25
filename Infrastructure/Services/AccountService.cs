@@ -16,15 +16,5 @@ namespace Infrastructure.Services
             _userManager = userManager;
             _userRepository = userRepository;
         }
-
-        //public async Task<AppUserEntity> GetUserInfo()
-        //{
-        //    try
-        //    {
-
-        //    }
-        //    catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
-        //    return null!;
-        //}
     }
 }

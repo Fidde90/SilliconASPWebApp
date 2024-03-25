@@ -2,14 +2,13 @@
 
     .container {
 
+
         .course-cards {
             display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
 
             @include md {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            @include lg {
                 grid-template-columns: 1fr 1fr;
             }
 
@@ -22,9 +21,9 @@
                 text-decoration: none;
 
                 .card {
-                    position: relative;
                     display: flex;
                     flex-direction: row;
+                    position: relative;
                     max-width: 340px;
                     height: 180px;
                     margin-bottom: 20px;
@@ -54,16 +53,17 @@
 
                     @include lg {
                         max-width: 420px;
+                        width: 100%;
                         height: 470px;
-                        flex-direction: column;
                         margin-top: 25px;
+                        flex-direction: column;
 
                         .card-symbol {
                             position: absolute;
                             left: 350px;
                             top: 18px;
                             border: none;
-                            box-shadow:none;
+                            box-shadow: none;
                         }
                     }
 
@@ -174,9 +174,9 @@
         .buttons {
             display: flex;
             justify-content: center;
-            align-self: center;
             gap: 20px;
             margin-top: 30px;
+            grid-area: buttons;
 
             button {
                 width: 40px;

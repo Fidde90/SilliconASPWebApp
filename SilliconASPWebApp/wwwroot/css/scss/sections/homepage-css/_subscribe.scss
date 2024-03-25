@@ -41,6 +41,64 @@
                 }
             }
 
+            .input-group {
+
+                input {
+                    padding: 10px 15px;
+                    border: 1px solid $gray-400;
+                    border-radius: 7px !important;
+                    overflow: hidden;
+                    outline: none;
+                    width: 100%;
+                    margin-bottom: 20px;
+
+                    &.input-validation-error {
+                        color: $danger;
+                        border: 0.5px solid $danger !important;
+
+                        &::placeholder {
+                            color: $danger;
+                            opacity: 0.4;
+                        }
+                    }
+                }
+
+                label {
+                    font-weight: 600;
+                    font-size: 16px;
+                    color: $gray-900;
+                    margin-bottom: 5px;
+                    margin-right: 20px;
+                }
+
+                span {
+
+                    &.field-validation-error {
+                        color: $danger;
+                        opacity: 0.6;
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+            }
+
+            #button {
+                width: 100%;
+            }
+
+            @include lg {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+
+                #button {
+                    width: 20%;
+                    height: 48px;
+                    margin-bottom: 3px;
+                }
+            }
+
             .input-button {
 
                 #text-box {
@@ -49,23 +107,6 @@
                     padding: 10px 0px 10px 20px;
                     border: 1px solid $gray-500;
                     border-radius: 5px;
-                }
-
-                #button {
-                    width: 100%;
-                }
-
-                @include lg {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 20px;
-
-                    #button {
-                        width: 20%;
-                        height: 48px;
-                        margin-bottom: 3px;
-                    }
                 }
             }
 

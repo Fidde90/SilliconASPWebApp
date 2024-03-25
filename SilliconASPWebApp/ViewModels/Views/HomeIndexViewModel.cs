@@ -1,4 +1,5 @@
-﻿using SilliconASPWebApp.Models.Components;
+﻿using Infrastructure.Models.Forms;
+using SilliconASPWebApp.Models.Components;
 using SilliconASPWebApp.Models.Sections;
 using SilliconASPWebApp.Models.Sections.HomeSections;
 
@@ -38,6 +39,8 @@ namespace SilliconASPWebApp.ViewModels.Views
                     new() { BoxClass = "box-content bottom", Image = new() { Src = "/images/shield.svg", AltText = "shield image" }, BoxTitle = "Data Security", BoxText = "Aliquam malesuada neque eget elit nulla vestibulum nunc cras." }
                ]
         };
+
+        public SubscribeFormModel SubscribeModel = new();
 
     }
 }

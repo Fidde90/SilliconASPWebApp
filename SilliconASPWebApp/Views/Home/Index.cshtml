@@ -16,14 +16,14 @@
     @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_MangeYourWorkPartial.cshtml")
 </section>
 
-<section id="manage-your-work">
+<section id="download-Our-App">
     @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_DownloadOurAppPartial.cshtml")
 </section>
 
-<section id="manage-your-work">
+<section id="top-work-tools">
     @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_TopWorkToolsPartial.cshtml")
 </section>
 
-<section id="manage-your-work">
-    @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_SubscribePartail.cshtml")
+<section id="subscribe">
+    @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_SubscribePartail.cshtml", Model.SubscribeModel)
 </section>

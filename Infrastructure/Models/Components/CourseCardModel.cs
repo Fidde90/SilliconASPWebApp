@@ -28,12 +28,7 @@
             if (string.IsNullOrWhiteSpace(PictureUrl))
                 return;
 
-            int index = PictureUrl.IndexOf(@"images\") + 7;
-
-            if (index == -1)
-                return;
-     
-            BackgroundImg = PictureUrl[index..];
+            BackgroundImg = PictureUrl;
         }
     }
 }
