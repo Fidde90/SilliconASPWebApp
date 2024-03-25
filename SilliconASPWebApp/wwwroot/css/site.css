@@ -916,10 +916,11 @@ footer .container .display-none {
 .subscribe .container .mail-window .checkboxes {
   display: grid;
   grid-template-columns: 1fr;
+  margin-bottom: 10px;
 }
 @media (min-width: 400px) {
   .subscribe .container .mail-window .checkboxes {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 }
 @media (min-width: 768px) {
@@ -934,63 +935,70 @@ footer .container .display-none {
 }
 .subscribe .container .mail-window .checkboxes h5 {
   margin-bottom: 25px;
-  width: 120px;
+}
+@media (min-width: 992px) {
+  .subscribe .container .mail-window .checkboxes h5 {
+    width: 120px;
+  }
 }
 .subscribe .container .mail-window .checkboxes div {
   margin-bottom: 15px;
 }
-.subscribe .container .mail-window .input-group input {
-  padding: 10px 15px;
+.subscribe .container .mail-window .input-button {
+  position: relative;
+}
+.subscribe .container .mail-window .input-button .input-group input {
+  margin-top: 14px;
+  margin-bottom: 15px;
+  padding: 10px 40px;
   border: 1px solid #D4D7E5;
   border-radius: 7px !important;
   overflow: hidden;
   outline: none;
   width: 100%;
-  margin-bottom: 20px;
 }
-.subscribe .container .mail-window .input-group input.input-validation-error {
+.subscribe .container .mail-window .input-button .input-group input::placeholder {
+  color: #9397AD;
+}
+.subscribe .container .mail-window .input-button .input-group input.input-validation-error {
   color: #EF4444;
   border: 0.5px solid #EF4444 !important;
 }
-.subscribe .container .mail-window .input-group input.input-validation-error::placeholder {
+.subscribe .container .mail-window .input-button .input-group input.input-validation-error::placeholder {
   color: #EF4444;
   opacity: 0.4;
 }
-.subscribe .container .mail-window .input-group label {
-  font-weight: 600;
-  font-size: 16px;
-  color: #0B0F19;
-  margin-bottom: 5px;
-  margin-right: 20px;
-}
-.subscribe .container .mail-window .input-group span.field-validation-error {
+.subscribe .container .mail-window .input-button .input-group span.field-validation-error {
   color: #EF4444;
   opacity: 0.6;
   position: absolute;
-  right: 0;
+  top: -30px;
+  left: 0;
 }
-.subscribe .container .mail-window #button {
+.subscribe .container .mail-window .input-button i {
+  position: absolute;
+  top: 28px;
+  left: 15px;
+  font-weight: 20px;
+  font-size: 20px;
+  color: #B4B7C9;
+}
+.subscribe .container .mail-window .input-button #button {
   width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 @media (min-width: 992px) {
-  .subscribe .container .mail-window {
+  .subscribe .container .mail-window .input-button {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 20px;
   }
-  .subscribe .container .mail-window #button {
+  .subscribe .container .mail-window .input-button #button {
     width: 20%;
     height: 48px;
-    margin-bottom: 3px;
+    margin-bottom: 0px;
   }
-}
-.subscribe .container .mail-window .input-button #text-box {
-  margin-bottom: 5px;
-  width: 100%;
-  padding: 10px 0px 10px 20px;
-  border: 1px solid #B4B7C9;
-  border-radius: 5px;
 }
 .subscribe .container .mail-window .terms {
   margin-bottom: 40px;
@@ -998,6 +1006,11 @@ footer .container .display-none {
 .subscribe .container .mail-window .terms a {
   text-decoration: underline;
   color: blue;
+}
+@media (min-width: 992px) {
+  .subscribe .container .mail-window .terms {
+    margin-top: 0px;
+  }
 }
 
 .create-account {

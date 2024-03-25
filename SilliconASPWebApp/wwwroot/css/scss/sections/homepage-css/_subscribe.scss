@@ -18,9 +18,10 @@
             .checkboxes {
                 display: grid;
                 grid-template-columns: 1fr;
+                margin-bottom: 10px;
 
                 @media(min-width:400px) {
-                    grid-template-columns: 1fr 1fr;
+                    grid-template-columns: 1fr;
                 }
 
                 @include md {
@@ -31,9 +32,13 @@
                     grid-template-columns: 1fr 1fr 1fr 1fr;
                 }
 
+
                 h5 {
                     margin-bottom: 25px;
-                    width: 120px;
+
+                    @include lg {
+                        width: 120px;
+                    }
                 }
 
                 div {
@@ -41,72 +46,71 @@
                 }
             }
 
-            .input-group {
+            .input-button {
+                position: relative;
 
-                input {
-                    padding: 10px 15px;
-                    border: 1px solid $gray-400;
-                    border-radius: 7px !important;
-                    overflow: hidden;
-                    outline: none;
-                    width: 100%;
-                    margin-bottom: 20px;
+                .input-group {
 
-                    &.input-validation-error {
-                        color: $danger;
-                        border: 0.5px solid $danger !important;
-
-                        &::placeholder {
+                    input {
+                        margin-top: 14px;
+                        margin-bottom:15px;
+                        padding: 10px 40px;
+                        border: 1px solid $gray-400;
+                        border-radius: 7px !important;
+                        overflow: hidden;
+                        outline: none;
+                        width: 100%;
+                        &::placeholder{
+                            color:$gray-600;
+                        }
+                        &.input-validation-error {
                             color: $danger;
-                            opacity: 0.4;
+                            border: 0.5px solid $danger !important;
+
+                            &::placeholder {
+                                color: $danger;
+                                opacity: 0.4;
+                            }
+                        }
+                    }
+
+                    span {
+
+                        &.field-validation-error {
+                            color: $danger;
+                            opacity: 0.6;
+                            position: absolute;
+                            top: -30px;
+                            left: 0;
                         }
                     }
                 }
 
-                label {
-                    font-weight: 600;
-                    font-size: 16px;
-                    color: $gray-900;
-                    margin-bottom: 5px;
-                    margin-right: 20px;
+                i {
+                    position: absolute;
+                    top:28px;
+                    left:15px;
+                    font-weight:20px;
+                    font-size:20px;
+                    color:$gray-500;
                 }
-
-                span {
-
-                    &.field-validation-error {
-                        color: $danger;
-                        opacity: 0.6;
-                        position: absolute;
-                        right: 0;
-                    }
-                }
-            }
-
-            #button {
-                width: 100%;
-            }
-
-            @include lg {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 20px;
 
                 #button {
-                    width: 20%;
-                    height: 48px;
-                    margin-bottom: 3px;
-                }
-            }
-
-            .input-button {
-
-                #text-box {
-                    margin-bottom: 5px;
                     width: 100%;
-                    padding: 10px 0px 10px 20px;
-                    border: 1px solid $gray-500;
-                    border-radius: 5px;
+                    margin-top: 15px;
+                    margin-bottom:15px;
+                }
+
+                @include lg {
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+
+                    #button {
+                        width: 20%;
+                        height: 48px;
+                        margin-bottom: 0px;
+                    }
                 }
             }
 
@@ -116,6 +120,10 @@
                 a {
                     text-decoration: underline;
                     color: blue;
+                }
+
+                @include lg {
+                    margin-top: 0px;
                 }
             }
         }

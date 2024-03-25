@@ -46,13 +46,16 @@
                 </div>
             </div>
 
-            <div class="input-group">
-                <span asp-validation-for="Email"></span>
-                <input asp-for="Email" />
+            <div class="input-button">
+                <div class="input-group">
+                    <span asp-validation-for="Email"></span>
+                    <input asp-for="Email"/>
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+
+                <button id="button" class="btn-theme" type="submit">Subscribe*</button>
             </div>
-
-            <button id="button" class="btn-theme" type="submit">Subscribe*</button>
-
+           
             <p class="terms">
                 * Yes, I agree to the <span><a href="#">terms</a></span> and <span>
                     <a href="#">privacy policy</a>
