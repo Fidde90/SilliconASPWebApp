@@ -913,6 +913,26 @@ footer .container .display-none {
   display: flex;
   margin-bottom: 30px;
 }
+.subscribe .container .error-message {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  background-color: indianred;
+  border-radius: 10px;
+  padding: 10px 0px;
+}
+.subscribe .container .susccess-message {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  background-color: #90d6a5;
+  border-radius: 10px;
+  padding: 10px 0px;
+}
 .subscribe .container .mail-window .checkboxes {
   display: grid;
   grid-template-columns: 1fr;

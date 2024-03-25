@@ -13,6 +13,28 @@
             margin-bottom: 30px;
         }
 
+        .error-message {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+            background-color: indianred;
+            border-radius: 10px;
+            padding: 10px 0px;
+        }
+
+        .susccess-message {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+            background-color: #90d6a5;
+            border-radius: 10px;
+            padding: 10px 0px;
+        }
+
         .mail-window {
 
             .checkboxes {
@@ -53,16 +75,18 @@
 
                     input {
                         margin-top: 14px;
-                        margin-bottom:15px;
+                        margin-bottom: 15px;
                         padding: 10px 40px;
                         border: 1px solid $gray-400;
                         border-radius: 7px !important;
                         overflow: hidden;
                         outline: none;
                         width: 100%;
-                        &::placeholder{
-                            color:$gray-600;
+
+                        &::placeholder {
+                            color: $gray-600;
                         }
+
                         &.input-validation-error {
                             color: $danger;
                             border: 0.5px solid $danger !important;
@@ -88,17 +112,17 @@
 
                 i {
                     position: absolute;
-                    top:28px;
-                    left:15px;
-                    font-weight:20px;
-                    font-size:20px;
-                    color:$gray-500;
+                    top: 28px;
+                    left: 15px;
+                    font-weight: 20px;
+                    font-size: 20px;
+                    color: $gray-500;
                 }
 
                 #button {
                     width: 100%;
                     margin-top: 15px;
-                    margin-bottom:15px;
+                    margin-bottom: 15px;
                 }
 
                 @include lg {

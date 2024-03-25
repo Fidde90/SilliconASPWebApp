@@ -1,5 +1,10 @@
 ﻿@model SubscribeFormModel;
 @{
+    string message = "";
+    if(TempData["message"] != null)
+    {
+       message = TempData["message"]!.ToString()!;
+    }
 }
 
 <div class="subscribe">
@@ -10,7 +15,16 @@
             <img id="curly-arrow" src="/images/curlyarrow.svg" />
         </div>
 
-        <form class="mail-window">
+        @if (message == "subscribed")
+        {
+            <div class="susccess-message">You are now a subscriber!</div>
+        }
+        else if(message == "failed")
+        {
+            <div class="error-message">Try again.</div>
+        }
+
+        <form class="mail-window" method="post" novalidate asp-controller="Subscribers" asp-action="Subscribe">
             <div class="checkboxes">
                 <h5>Sign up for newsletters</h5>
                 <div>

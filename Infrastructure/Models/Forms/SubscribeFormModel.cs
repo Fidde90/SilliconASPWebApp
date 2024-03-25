@@ -8,6 +8,6 @@ namespace Infrastructure.Models.Forms
         [DataType(DataType.EmailAddress)]
         [Display(Prompt = "Your Email")]
         [RegularExpression("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid email")]
-        public string Email { get; set; } = null!; 
+        public string Email { get; set; } = null!;
     }
 }
