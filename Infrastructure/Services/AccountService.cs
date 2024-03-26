@@ -1,8 +1,6 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Diagnostics;
 
 namespace Infrastructure.Services
 {

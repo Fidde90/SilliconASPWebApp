@@ -1,9 +1,19 @@
-﻿.container{
-/*   display: flex;
-   justify-content:center;*/
+﻿.container {
+    margin-top: 40px;
 
-   .text-content{
-       margin-top: 50px;
-       text-align:center;
-   }
+    .headers {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .nav-buttons {
+        margin-top: 70px;
+        width: 100%;
+
+        a {
+            @include theme-shadow;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+    }
 }

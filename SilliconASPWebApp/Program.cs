@@ -43,10 +43,16 @@ builder.Services.AddAuthentication().AddGoogle(g =>
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<UserRepository>();
+
 builder.Services.AddScoped<AuthService>();
+
 builder.Services.AddScoped<AccountService>();
+
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<AddressRepository>();
+
+builder.Services.AddScoped<SubscriberService>();
+
 
 var app = builder.Build();
 

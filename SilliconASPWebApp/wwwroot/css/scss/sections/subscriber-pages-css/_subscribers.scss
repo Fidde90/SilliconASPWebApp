@@ -1,0 +1,52 @@
+﻿#subscribers {
+    margin-top: 40px;
+    background-color:$gray-200;
+    height:100%;
+    .container {
+
+        .headers {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .error-message {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+            background-color: indianred;
+            border-radius: 10px;
+            padding: 10px 0px;
+        }
+
+        .sub-content {
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 50px;
+            border-radius: 5px;
+            background-color: $gray-400;
+            @include theme-shadow;
+
+            .sub {
+                width: 50%;
+                @include standard-text;
+                font-weight: 700;
+            }
+
+            a {
+                background-color: $danger;
+
+                &:hover {
+                    transform: scale(1.02);
+                }
+            }
+
+            &:hover {
+                transform: scale(1.002);
+            }
+        }
+    }
+}
