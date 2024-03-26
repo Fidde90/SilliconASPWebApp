@@ -1,23 +1,20 @@
-﻿@inject UserRepository _userRepository
-@{
+﻿@{
     ViewData["Title"] = "AdminPage";
 }
 
-<section class="container">
-    <<div class="headers">
-        <h1>
-            Admin Dimension
-        </h1>
+<section id="admin-page">
+    <div class="container">
+        <div class="headers">
+            <h1>
+                Admin Dimension
+            </h1>
 
-        <h3>Use your powers as you wish!</h3>
+            <h3>Use your powers as you wish!</h3>
+        </div>
+
+        <div class="nav-buttons">
+            <a asp-action="Subscribers" asp-controller="Subscribers" class="btn-theme">Manage Subscribers</a>
+            <a class="btn-theme">Manage Courses</a>
+        </div>
     </div>
-
-    <div class="nav-buttons">
-        <a asp-action="Subscribers" asp-controller="Subscribers" class="btn-theme">Manage Subscribers</a>
-        <a class="btn-theme" >Manage Courses</a>
-    </div>
-
-
-
-
 </section>

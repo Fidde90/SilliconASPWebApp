@@ -1,8 +1,10 @@
 ﻿#subscribers {
     margin-top: 40px;
-    background-color:$gray-200;
-    height:100%;
+    background-color: $gray-200;
+    height: 100%;
+
     .container {
+        padding-top: 40px;
 
         .headers {
             text-align: center;
@@ -37,11 +39,7 @@
             }
 
             a {
-                background-color: $danger;
-
-                &:hover {
-                    transform: scale(1.02);
-                }
+                background-color: $danger;        
             }
 
             &:hover {

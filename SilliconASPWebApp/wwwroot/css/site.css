@@ -2351,6 +2351,9 @@ footer .container .display-none {
   background-color: #EFF2FC;
   height: 100%;
 }
+#subscribers .container {
+  padding-top: 40px;
+}
 #subscribers .container .headers {
   text-align: center;
   margin-bottom: 4rem;
@@ -2386,25 +2389,39 @@ footer .container .display-none {
 #subscribers .container .sub-content a {
   background-color: #EF4444;
 }
-#subscribers .container .sub-content a:hover {
-  transform: scale(1.02);
-}
 #subscribers .container .sub-content:hover {
   transform: scale(1.002);
 }
 
-.container {
+#subscriber-details {
   margin-top: 40px;
+  background-color: #EFF2FC;
+  height: 100%;
 }
-.container .headers {
+#subscriber-details .container {
+  padding-top: 40px;
+}
+#subscriber-details .container .headers {
   text-align: center;
   margin-bottom: 4rem;
 }
-.container .nav-buttons {
+#admin-page {
+  margin-top: 40px;
+  background-color: #EFF2FC;
+  height: 100%;
+}
+#admin-page .container {
+  padding-top: 40px;
+}
+#admin-page .container .headers {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+#admin-page .container .nav-buttons {
   margin-top: 70px;
   width: 100%;
 }
-.container .nav-buttons a {
+#admin-page .container .nav-buttons a {
   box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
   margin-bottom: 30px;
   width: 100%;

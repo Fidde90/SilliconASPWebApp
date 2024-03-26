@@ -1,19 +1,26 @@
-﻿.container {
+﻿#admin-page {
     margin-top: 40px;
+    background-color: $gray-200;
+    height: 100%;
 
-    .headers {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
+    .container {
+        padding-top:40px;
 
-    .nav-buttons {
-        margin-top: 70px;
-        width: 100%;
+        .headers {
+            text-align: center;
+            margin-bottom: 4rem;
 
-        a {
-            @include theme-shadow;
-            margin-bottom: 30px;
+        }
+
+        .nav-buttons {
+            margin-top: 70px;
             width: 100%;
+
+            a {
+                @include theme-shadow;
+                margin-bottom: 30px;
+                width: 100%;
+            }
         }
     }
 }

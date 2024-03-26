@@ -66,6 +66,59 @@ namespace SilliconASPWebApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> SubscriberDetails(int id)
+        {
+            var url = "https://localhost:7295/api/subscribers";
+
+            using var client = new HttpClient();
+            var response = await client.GetAsync($"{url}/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<SubscriberDto>(json);
+                var formData = new UpdateSubscriberFormModel
+                {
+                    Id = data!.Id,
+                    Email = data!.Email
+                };
+                return View(formData);
+            }
+
+            return RedirectToAction("subscribers", "subscribers");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateSubscriber(UpdateSubscriberFormModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateSubscriber = new SubscriberDto
+                {
+                    Id = model.Id,
+                    Email = model.Email
+                };
+
+                string url = "https://localhost:7295/api/subscribers";
+
+                using var client = new HttpClient();
+
+                var json = JsonConvert.SerializeObject(updateSubscriber);
+                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["message"] = "subscribed";
+                    return Redirect(Url.Action("Index", "Home") + "#subscribe");
+                }
+            }
+
+            TempData["message"] = "failed";
+            return Redirect(Url.Action("Index", "Home") + "#subscribe");
+        }
+
+
         public async Task<IActionResult> DeleteSubscriber(int id)
         {
             var url = "https://localhost:7295/api/subscribers";

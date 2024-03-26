@@ -1,0 +1,28 @@
+﻿@model UpdateSubscriberFormModel
+
+@{
+    ViewData["Title"] = "subscriberDetails";
+}
+<section id="subscriber-details">
+    <div class="container">
+        <div class="headers">
+            <h1>
+                Admin Dimension
+            </h1>
+
+            <h3>Subscriber details</h3>
+        </div>
+
+        <div class="sub-details">
+            <form method="post" novalidate asp-controller="Subscribers" asp-action="UpdateSubscriber" asp-route-id="@Model.Id">
+                <div>subscriber Id: @Model.Id</div>
+                <label asp-for="Email">Enter new Email</label>
+                <input asp-for= "Email" placeholder="@Model.Email"/>
+
+                <button type="submit">Save changes</button>
+            </form>
+
+        </div>
+
+    </div>
+</section>
