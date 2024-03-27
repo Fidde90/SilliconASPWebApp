@@ -3,7 +3,6 @@ using Infrastructure.Models.Forms;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SilliconASPWebApp.ViewModels.Views;
 using System.Text;
 namespace SilliconASPWebApp.Controllers
 {
@@ -94,28 +93,23 @@ namespace SilliconASPWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var updateSubscriber = new SubscriberDto
-                {
-                    Id = model.Id,
-                    Email = model.Email
-                };
+                string newEmail = model.Email;
+                int id = model.Id;
 
-                string url = "https://localhost:7295/api/subscribers";
+                string url = $"https://localhost:7295/api/subscribers/{id}?newEmail={newEmail}";
 
                 using var client = new HttpClient();
-
-                var json = JsonConvert.SerializeObject(updateSubscriber);
-                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                using var content = new StringContent("", Encoding.UTF8, "application/json");
                 var response = await client.PutAsync(url, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    TempData["message"] = "subscribed";
-                    return Redirect(Url.Action("Index", "Home") + "#subscribe");
+                    TempData["message"] = "Updated";
+                    return RedirectToAction("SubscriberDetails", new { id });
                 }
             }
 
             TempData["message"] = "failed";
-            return Redirect(Url.Action("Index", "Home") + "#subscribe");
+            return RedirectToAction("SubscriberDetails", new { model.Id });
         }
 
 

@@ -2,27 +2,48 @@
 
 @{
     ViewData["Title"] = "subscriberDetails";
+
+    string message = "";
+    if (TempData["message"] != null)
+    {
+        message = TempData["message"]!.ToString()!;
+    }
 }
 <section id="subscriber-details">
     <div class="container">
-        <div class="headers">
-            <h1>
-                Admin Dimension
-            </h1>
 
+        <div class="headers">
+            <h1>Admin Dimension </h1>
             <h3>Subscriber details</h3>
         </div>
 
-        <div class="sub-details">
-            <form method="post" novalidate asp-controller="Subscribers" asp-action="UpdateSubscriber" asp-route-id="@Model.Id">
-                <div>subscriber Id: @Model.Id</div>
-                <label asp-for="Email">Enter new Email</label>
-                <input asp-for= "Email" placeholder="@Model.Email"/>
+        <nav id="menu-buttons">
+            <a asp-action="Subscribers" asp-controller="Subscribers" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>subscribers</a>
+            <a asp-action="Index" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Main page</a>
+        </nav>
 
-                <button type="submit">Save changes</button>
+        <div class="input-group">
+
+            @if (message == "Updated")
+            {
+                <div class="susccess-message">Updated successfully</div>
+            }
+            else if (message == "failed")
+            {
+                <div class="error-message">
+                    either the email already exists or you did not enter a valid email
+                </div>
+            }
+
+            <form method="post" novalidate asp-controller="Subscribers" asp-action="UpdateSubscriber" asp-route-id="@Model.Id">
+                <div class="id">subscriber Id: @Model.Id</div>
+                <label asp-for="Email">Enter new Email</label>
+                <input asp-for="Email" value="" />
+                <button class="btn-theme" type="submit">Save changes</button>
             </form>
 
         </div>
 
     </div>
 </section>
+@await Html.PartialAsync("_ValidationScriptPartial")

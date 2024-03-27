@@ -6,12 +6,13 @@
 <section id="subscribers">
     <div class="container">
         <div class="headers">
-            <h1>
-                Admin Dimension
-            </h1>
-
+            <h1>Admin Dimension</h1>
             <h3>Subscribers</h3>
         </div>
+
+        <nav id="menu-button">
+            <a asp-action="Index" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Main page</a>
+        </nav>
 
         @if (!string.IsNullOrWhiteSpace(message))
         {
@@ -26,7 +27,7 @@
                     <div class="sub-content">
                         <div class="sub">@sub.Email</div>
                         <a asp-controller="Subscribers" asp-action="DeleteSubscriber" asp-route-id="@sub.Id" class="btn-theme">Delete subscriber</a>
-                        <a asp-controller="Subscribers" asp-action="SubscriberDetails" asp-route-id="@sub.Id" class="btn-theme">Details/update</a>
+                        <a asp-controller="Subscribers" asp-action="SubscriberDetails" asp-route-id="@sub.Id" id="details-btn" class="btn-theme">Details/update</a>
                     </div>
                 }
             }
