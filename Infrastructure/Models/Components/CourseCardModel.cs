@@ -3,6 +3,7 @@
     public class CourseCardModel
     {
         public int Id { get; set; }
+
         public string PictureUrl { get; set; } = null!;
 
         public string Title { get; set; } = null!;

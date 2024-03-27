@@ -1,0 +1,74 @@
+﻿@model CourseDto
+@{
+    ViewData["Title"] = "New course";
+    string message = "";
+    if (TempData["message"] != null)
+    {
+        message = TempData["message"]!.ToString()!;
+    }
+}
+
+<section id="create-course">
+
+    <div class="container">
+
+        <div class="headers">
+            <h1>Admin Dimension </h1>
+            <h3>Create course</h3>
+        </div>
+
+        <nav id="menu-buttons">
+            <a asp-action="CoursesOptions" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Courses options</a>
+            <a asp-action="Index" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Main page</a>
+        </nav>
+
+
+        <div class="input-group">
+
+            @if (message == "created")
+            {
+                <div class="susccess-message">Course created successfully</div>
+            }
+            else if (message == "confilct")
+            {
+                <div class="error-message">Course already exists</div>
+            }
+            else if (message == "bad data")
+            {
+                <div class="error-message">Enter valid information</div>
+            }
+
+            <form method="post" novalidate asp-controller="Courses" asp-action="CreateCourse">
+                <label asp-for="Title">Title *</label>
+                <input asp-for="Title" />
+
+                <label asp-for="Author">Author</label>
+                <input asp-for="Author" />
+
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" />
+
+                <label asp-for="DiscountPrice">DiscountPrice</label>
+                <input asp-for="DiscountPrice" />
+
+                <label asp-for="IsBestSeller">Is Best Seller? (True or False)</label>
+                <input asp-for="IsBestSeller" />
+
+                <label asp-for="LikesInNumbers">LikesInNumbers</label>
+                <input asp-for="LikesInNumbers" />
+
+                <label asp-for="LikesInProcent">LikesInProcent</label>
+                <input asp-for="LikesInProcent" />
+
+                <label asp-for="Hours">Hours</label>
+                <input asp-for="Hours" />
+
+                <label asp-for="PictureUrl">PictureUrl *</label>
+                <input asp-for="PictureUrl" />
+
+                <button class="btn-theme" type="submit">Create</button>
+            </form>
+
+        </div>
+
+</section>

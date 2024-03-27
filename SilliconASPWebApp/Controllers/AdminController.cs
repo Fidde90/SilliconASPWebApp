@@ -10,5 +10,10 @@ namespace SilliconASPWebApp.Controllers
         {
             return View();
         }
+
+        public IActionResult CoursesOptions()
+        {
+            return View();
+        }
     }
 }

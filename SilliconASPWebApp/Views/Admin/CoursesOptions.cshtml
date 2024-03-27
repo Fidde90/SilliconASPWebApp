@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "course options";
+}
+
+<section id="course-options">
+
+    <div class="container">
+
+        <div class="headers">
+            <h1>Admin Dimension </h1>
+
+            <h3>Course options</h3>
+        </div>
+
+        <nav id="menu-buttons">
+            <a asp-action="CreateCourse" asp-controller="Courses" class="btn-theme"><i class="fa-solid fa-plus"></i>Add new course</a>
+            <a asp-action="AllCourses" asp-controller="Courses" class="btn-theme">All courses</a>
+            <a asp-action="Index" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Main page</a>
+        </nav>
+
+    </div>
+
+</section>

@@ -1,0 +1,91 @@
+﻿#create-course {
+    margin-top: 40px;
+    background-color: $gray-200;
+    height: 100%;
+
+    .container {
+        padding-top: 40px;
+
+        .headers {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        #menu-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 5rem;
+
+            a {
+                background-color: #8a5ddb;
+                @include theme-shadow;
+            }
+        }
+
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+
+
+        .input-group {
+            position: relative;
+
+            @include lg {
+                width: 50%;
+            }
+
+            .error-message {
+                position: absolute;
+                top: - 50px;
+                color: white;
+                font-size: 16px;
+                margin-bottom: 20px;
+                width: 190px;
+                text-align: center;
+                background-color: #fc6262;
+                border-radius: 10px;
+                padding: 5px 0px;
+            }
+
+            .susccess-message {
+                position: absolute;
+                top: - 50px;
+                color: white;
+                font-size: 16px;
+                margin-bottom: 20px;
+                width: 250px;
+                text-align: center;
+                background-color: #90d6a5;
+                border-radius: 10px;
+                padding: 5px 0px;
+            }
+
+            input {
+                padding: 10px 15px;
+                border: 1px solid $gray-400;
+                border-radius: 7px !important;
+                overflow: hidden;
+                outline: none;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-weight: 600;
+                font-size: 16px;
+                color: $gray-900;
+                margin-bottom: 5px;
+                margin-right: 20px;
+            }
+
+            button {
+                width: 100%;
+                @include theme-shadow;
+                margin-top: 10px;
+                background-color: #8a5ddb;
+            }
+        }
+    }
+}
