@@ -2321,6 +2321,181 @@ footer .container .display-none {
   background-color: #8a5ddb;
 }
 
+#all-courses {
+  margin-top: 40px;
+  background-color: #EFF2FC;
+  height: 100%;
+}
+#all-courses .container {
+  padding-top: 40px;
+}
+#all-courses .container .headers {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+#all-courses .container #menu-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
+  gap: 20px;
+}
+#all-courses .container #menu-buttons a {
+  background-color: #8a5ddb;
+  box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
+}
+#all-courses .container .course-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 768px) {
+  #all-courses .container .course-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1400px) {
+  #all-courses .container .course-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+}
+#all-courses .container .course-cards .card-link {
+  text-decoration: none;
+}
+#all-courses .container .course-cards .card-link .card {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  max-width: 340px;
+  height: 180px;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
+  border-color: none;
+  /* @include lg {
+       max-width: 420px;
+       width: 100%;
+       height: 470px;
+       margin-top: 25px;
+       flex-direction: column;
+
+       .card-symbol {
+           position: absolute;
+           left: 350px;
+           top: 18px;
+           border: none;
+           box-shadow: none;
+       }
+   }*/
+  /*  @include xl {
+        &:hover {
+            box-shadow: 0px 4px 13px -2px black;
+        }
+
+        &:active {
+            box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
+        }
+    }*/
+}
+#all-courses .container .course-cards .card-link .card .card-symbol {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
+}
+#all-courses .container .course-cards .card-link .card .best-seller {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background-color: #22C55E;
+  color: white;
+  padding: 0px 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+#all-courses .container .course-cards .card-link .card .pic {
+  width: 180px;
+  height: 100%;
+  /* @include lg {
+       width: 100%;
+       height: 240px;
+   }*/
+}
+#all-courses .container .course-cards .card-link .card .pic img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  object-fit: cover;
+}
+@media (min-width: 992px) {
+  #all-courses .container .course-cards .card-link .card .pic img {
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 7px;
+  }
+}
+#all-courses .container .course-cards .card-link .card .info {
+  padding: 10px;
+  width: 200px;
+  /* @include lg {
+       width: 100%;
+       padding: 25px;
+
+       .title {
+           font-size: 20px;
+           font-weight: bold;
+       }
+
+       .line {
+           height: 1px;
+           width: 100%;
+           background-color: $gray-400;
+           margin-top: 15px;
+       }
+
+       .time-rates {
+           display: block;
+           margin-top: 20px;
+           display: flex;
+           gap: 20px;
+           color: $gray-500;
+           font-weight: 600;
+       }
+   }*/
+}
+#all-courses .container .course-cards .card-link .card .info .title {
+  font-size: 15px;
+  font-weight: 700;
+}
+#all-courses .container .course-cards .card-link .card .info p {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #9397AD;
+  font-weight: 600;
+}
+#all-courses .container .course-cards .card-link .card .info label {
+  color: #4C82F7;
+  font-weight: bold;
+  font-size: 18px;
+}
+#all-courses .container .course-cards .card-link .card .info label span {
+  color: #B4B7C9;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+#all-courses .container .course-cards .card-link .card .info .red {
+  color: red;
+}
+#all-courses .container .course-cards .card-link .card .info .time-rates {
+  display: none;
+}
+#all-courses .container .course-cards .card-link .card:active {
+  box-shadow: 0px 4px 13px -2px black;
+}
+
 #subscribers {
   margin-top: 40px;
   background-color: #EFF2FC;

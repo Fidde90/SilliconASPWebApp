@@ -44,7 +44,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse(CourseDto newCourse)
         {
-            if(newCourse.IsBestSeller == "true" || newCourse.IsBestSeller == "false")
+            if (newCourse.IsBestSeller == "true" || newCourse.IsBestSeller == "false")
             {
                 if (ModelState.IsValid)
                 {
@@ -77,10 +77,21 @@ namespace SilliconASPWebApp.Controllers
 
             using var client = new HttpClient();
             var response = await client.GetAsync(url);
-            var json = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<IEnumerable<CourseCardModel>>(json);
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseCardModel>>(json);
 
-            return View(data);
+                if (data!.Any())
+                    return View(data);
+
+                TempData["Message"] = "no courses";
+                return View();
+
+            }
+            TempData["Message"] = "faild";
+            return View();
+
         }
         #endregion
     }

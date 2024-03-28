@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CourseCardModel>
+@{
+    ViewData["Title"] = "all courses";
+
+    string message = "";
+    if (TempData["Message"] != null)
+    {
+        message = TempData["Message"]!.ToString()!;
+    }
+}
+
+<section id="all-courses">
+
+    <div class="container">
+
+        <div class="headers">
+            <h1>Admin Dimension </h1>
+            <h3>All courses</h3>
+        </div>
+
+        <nav id="menu-buttons">
+            <a asp-action="CoursesOptions" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Courses options</a>
+            <a asp-action="CreateCourse" asp-controller="Courses" class="btn-theme"><i class="fa-solid fa-plus"></i>Add new course</a>
+            <a asp-action="Index" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Main page</a>
+        </nav>
+
+        @if (message == "no courses")
+        {
+            <div class="error-messagee">No courses found</div>
+        }
+        else if (message == "failed")
+        {
+            <div class="error-message">Something went wrong </div>
+        }
+
+        <div class="course-cards">
+            @foreach (var course in Model)
+            {
+                <a class="card-link" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">
+                    <div class="card">
+                        <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
+                        @if (course.IsBestSeller)
+                        {
+                            <p class="best-seller">Best seller</p>
+                        }
+                        <div class="pic">
+                            <img src="/images/@course.PictureUrl" alt="laptop" />
+                        </div>
+                        <div class="info">
+                            <div class="title">@course.Title</div>
+                            <p>By @course.Author</p>
+                            <label>$@course.Price</label>
+                            <div class="line"></div>
+                            <div class="time-rates">
+                                <div><i class="fa-regular fa-clock"></i> <span>@course.Hours hours</span></div>
+                                <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent% (@course.LikesInNumbers K)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</section>
