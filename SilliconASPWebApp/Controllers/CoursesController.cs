@@ -11,7 +11,7 @@ namespace SilliconASPWebApp.Controllers
         #region user courses actions
         public async Task<IActionResult> Index()
         {
-            var url = "https://localhost:7295/api/courses";
+            var url = "https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
             using var client = new HttpClient();
             var response = await client.GetAsync(url);
@@ -25,7 +25,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var url = $"https://localhost:7295/api/courses/{id}";
+            var url = $"https://localhost:7295/api/courses/{id}?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
             using var client = new HttpClient();
             var response = await client.GetAsync(url);
@@ -48,7 +48,7 @@ namespace SilliconASPWebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var url = $"https://localhost:7295/api/courses";
+                    var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
                     using var client = new HttpClient();
 
@@ -73,7 +73,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> AllCourses(int id)
         {
-            var url = $"https://localhost:7295/api/courses";
+            var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
             using var client = new HttpClient();
             var response = await client.GetAsync(url);
