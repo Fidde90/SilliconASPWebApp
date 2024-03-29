@@ -1,12 +1,14 @@
 ﻿.download-our-app {
-    margin-top: 40px;
-    background-color: $gray-100;
-    padding: 5rem 0rem;
+    background-color: var(--color-gray-featureboxes);
 
     .container {
+        padding: 40px 0px;
+        background-color: var(--color-gray-featureboxhover);
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 10px;
+
 
         @include lg {
             gap: 1rem;
@@ -36,7 +38,7 @@
             margin-bottom: 50px;
 
             #app {
-                color: $gray-600;
+                color: var(--color-gray-600);
             }
 
             @media(min-width:500px) {
@@ -59,7 +61,7 @@
             margin: bottom 5px;
 
             #google {
-                color: $gray-600;
+                color: var(--color-gray-600);
             }
 
             @media(min-width:500px) {

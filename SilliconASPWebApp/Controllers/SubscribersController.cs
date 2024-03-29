@@ -25,7 +25,7 @@ namespace SilliconASPWebApp.Controllers
                     Email = model.Email
                 };
 
-                string url = "https://localhost:7295/api/subscribers";
+                string url = "https://localhost:7295/api/subscribers/NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
                 using var client = new HttpClient();
 

@@ -1,4 +1,7 @@
 ﻿:root {
+    --color-transparnt: transparnat;
+    --color-gray-featureboxes: #F3F6FF;
+    --color-gray-featureboxhover: #FFFFFF;
     --color-gray-000: #FFFFFF;
     --color-gray-100: #F3F6FF;
     --color-gray-200: #EFF2FC;
@@ -9,18 +12,16 @@
     --color-gray-700: #565973;
     --color-gray-800: #33354D;
     --color-gray-900: #0B0F19;
-
     --color-white: #FFFFFF;
     --color-black: #000000;
     --color-gray: #EFF2FC;
     --color-theme: #6366F1;
-    --color-danger: #F5D7DA;
-    --color-danger-dark: #e57e88;
+    --color-danger: #e57e88;
+    --color-danger-light: #F5D7DA;
     --color-success: #bcf7d2;
     --color-warning: #ffe8ad;
     --color-info: #cfdefd;
     --font-standard: "Manrope", sans-serif;
-
     --color-theme-secondary: #8B5CF6;
     --color-theme-opacity: #6365f114;
     --color-theme-gradient: linear-gradient(90deg, #6366F1 0%, #8B5CF6 50%, #D946EF 100%);
@@ -28,6 +29,9 @@
 }
 
 :root.dark {
+    --color-transparnt: transparnat;
+    --color-gray-featureboxes: #151822;
+    --color-gray-featureboxhover: #1E212B;
     --color-gray-000: #0B0F19;
     --color-gray-100: #33354D;
     --color-gray-200: #565973;
@@ -38,18 +42,16 @@
     --color-gray-700: #EFF2FC;
     --color-gray-800: #F3F6FF;
     --color-gray-900: #FFFFFF;
-
     --color-white: #FFFFFF;
     --color-black: #000000;
     --color-gray: #EFF2FC;
     --color-theme: #6366F1;
-    --color-danger: #F5D7DA;
-    --color-danger-dark: #e57e88;
+    --color-danger: #e57e88;
+    --color-danger-light: #F5D7DA;
     --color-success: #bcf7d2;
     --color-warning: #ffe8ad;
     --color-info: #cfdefd;
     --font-standard: "Manrope", sans-serif;
-
     --color-theme-secondary: #8B5CF6;
     --color-theme-opacity: #6365f114;
     --color-theme-gradient: linear-gradient(90deg, #6366F1 0%, #8B5CF6 50%, #D946EF 100%);

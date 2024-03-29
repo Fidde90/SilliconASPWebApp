@@ -1,10 +1,18 @@
 ﻿.features {
-    background-color: $gray-100;
+    background-color: var(--color-gray-featureboxes);
     padding-top: 100px;
     padding-bottom: 180px;
 
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .section-title {
         text-align: center;
+        width: 650px;
+        margin-bottom: 30px;
     }
 
     .boxes {
@@ -13,12 +21,12 @@
         .box-content {
             padding: 40px 0px;
             text-align: center;
-            border: 1px $gray-300 solid;
+            border: 1px var(--color-gray-300) solid;
             margin-bottom: 5px;
         }
 
         :hover {
-            background-color: white;
+            background-color: var(--color-gray-featureboxhover);
             border-radius: 0.3rem;
         }
 
@@ -27,7 +35,7 @@
             grid-template-columns: 1fr 1fr;
 
             .box-content {
-                border: 1px $gray-300 solid;
+                border: 1px var(--color-gray-300) solid;
                 margin-bottom: 0;
             }
         }
@@ -44,16 +52,16 @@
 
             .middlebox {
                 border: none;
-                border-left: 1px $gray-300 solid;
-                border-right: 1px $gray-300 solid;
+                border-left: 1px var(--color-gray-300) solid;
+                border-right: 1px var(--color-gray-300) solid;
             }
 
             .bottom {
-                border-top: 1px $gray-300 solid;
+                border-top: 1px var(--color-gray-300) solid;
             }
 
             .bottom-middlebox {
-                border: 1px $gray-300 solid;
+                border: 1px var(--color-gray-300) solid;
                 border-bottom: none;
             }
         }

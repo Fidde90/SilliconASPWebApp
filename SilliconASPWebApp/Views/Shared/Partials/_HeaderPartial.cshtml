@@ -8,7 +8,7 @@
 }
 
 <div class="container">
-    <a id="logo" asp-action="Index" asp-controller="Home"><img src="\images\IconLight.svg" alt="Icon"></a>
+    <a id="logo" asp-action="Index" asp-controller="Home"><img src="/images/@(isDark ? "IconDark.svg" : "IconLight.svg")" alt="Icon"></a>
     <button type="button" class="btn-mobile"><i class="fa-solid fa-bars-staggered"></i></button>
     <div id="menu">
         <nav>
