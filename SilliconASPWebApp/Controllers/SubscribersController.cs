@@ -25,7 +25,7 @@ namespace SilliconASPWebApp.Controllers
                     Email = model.Email
                 };
 
-                string url = "https://localhost:7295/api/subscribers/NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+                string url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
                 using var client = new HttpClient();
 
@@ -49,7 +49,7 @@ namespace SilliconASPWebApp.Controllers
 
             TempData["Message"] = "";
 
-            var url = "https://localhost:7295/api/subscribers";
+            var url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
             using var client = new HttpClient();
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
@@ -68,7 +68,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> SubscriberDetails(int id)
         {
-            var url = "https://localhost:7295/api/subscribers";
+            var url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
             using var client = new HttpClient();
             var response = await client.GetAsync($"{url}/{id}");
@@ -96,7 +96,7 @@ namespace SilliconASPWebApp.Controllers
                 string newEmail = model.Email;
                 int id = model.Id;
 
-                string url = $"https://localhost:7295/api/subscribers/{id}?newEmail={newEmail}";
+                string url = $"https://localhost:7295/api/subscribers/{id}?newEmail={newEmail}?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
                 using var client = new HttpClient();
                 using var content = new StringContent("", Encoding.UTF8, "application/json");
@@ -115,7 +115,7 @@ namespace SilliconASPWebApp.Controllers
 
         public async Task<IActionResult> DeleteSubscriber(int id)
         {
-            var url = "https://localhost:7295/api/subscribers";
+            var url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
             using var client = new HttpClient();
             var response = await client.DeleteAsync($"{url}/{id}");
