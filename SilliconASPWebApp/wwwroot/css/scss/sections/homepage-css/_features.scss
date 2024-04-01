@@ -1,5 +1,5 @@
 ﻿.features {
-    background-color: var(--color-gray-featureboxes);
+    background-color: var(--color-gray-100);
     padding-top: 100px;
     padding-bottom: 180px;
 
@@ -26,7 +26,7 @@
         }
 
         :hover {
-            background-color: var(--color-gray-featureboxhover);
+            background-color: var(--color-gray-000);
             border-radius: 0.3rem;
         }
 

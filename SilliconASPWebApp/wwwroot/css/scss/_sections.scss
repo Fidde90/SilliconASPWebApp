@@ -27,6 +27,8 @@
 @import './sections/course-pages-css/_coursesbottom.scss';
 @import './sections/course-pages-css/_create-course.scss';
 @import './sections/course-pages-css/_all-courses.scss';
+@import './sections/course-pages-css/_bottom-img.scss';
+
 
 
 @import'./sections/subscriber-pages-css/_subscribers.scss';
@@ -34,6 +36,8 @@
 
 @import './sections/admin-css/_admin.scss';
 @import './sections/admin-css/_course-options.scss';
+
+@import './components/_forms.scss';
 
 @import './sections/_error404.scss';
 @import './sections/_denied.scss';

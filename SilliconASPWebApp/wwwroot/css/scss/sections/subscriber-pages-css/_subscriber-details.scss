@@ -1,6 +1,6 @@
 ﻿#subscriber-details {
     margin-top: 40px;
-    background-color: $gray-200;
+    background-color: var(--color-gray-200);
     height: 100%;
 
     .container {
@@ -19,77 +19,30 @@
 
             a {
                 background-color: #8a5ddb;
-                @include theme-shadow;
             }
         }
 
         .input-group {
             position: relative;
 
-            .error-message {
-                position: absolute;
-                top: - 50px;
-                color: white;
-                font-size: 16px;
-                margin-bottom: 20px;
-                width: 190px;
-                text-align: center;
-                background-color: #fc6262;
-                border-radius: 10px;
-                padding: 5px 0px;
-            }
-
             .susccess-message {
-                position: absolute;
-                top: - 50px;
-                color: white;
-                font-size: 16px;
-                margin-bottom: 20px;
                 width: 190px;
-                text-align: center;
-                background-color: #90d6a5;
-                border-radius: 10px;
-                padding: 5px 0px;
             }
 
             .id {
                 font-weight: 600;
                 font-size: 16px;
-                color: $gray-900;
+                color: var(--color-gray-900);
                 margin-bottom: 10px;
             }
 
             input {
-                padding: 10px 15px;
-                border: 1px solid $gray-400;
-                border-radius: 7px !important;
-                overflow: hidden;
-                outline: none;
-                width: 100%;
-                margin-bottom: 20px;
-
-                &.input-validation-error {
-                    color: $danger;
-                    border: 0.5px solid $danger !important;
-
-                    &::placeholder {
-                        color: $danger;
-                        opacity: 0.4;
-                    }
-                }
-            }
-
-            label {
-                font-weight: 600;
-                font-size: 16px;
-                color: $gray-900;
-                margin-bottom: 5px;
-                margin-right: 20px;
+                background-color: var(--color-white);
+                color: var(--color-black);
             }
 
             button {
                 width: 100%;
-                @include theme-shadow;
                 margin-top: 10px;
                 background-color: #8a5ddb;
             }

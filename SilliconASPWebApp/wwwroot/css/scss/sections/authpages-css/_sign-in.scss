@@ -23,43 +23,6 @@
 
             form {
 
-                .input-group {
-
-                    input {
-                        padding: 10px 15px;
-                        border: 1px solid var(--color-gray-400);
-                        border-radius: 7px !important;
-                        overflow: hidden;
-                        outline: none;
-                        width: 100%;
-                        margin-bottom: 20px;
-
-                        &.input-validation-error {
-                            color: var(--color-danger);
-                            border: 0.5px solid var(--color-danger) !important;
-
-                            &::placeholder {
-                                color: var(--color-danger);
-                                opacity: 0.4;
-                            }
-                        }
-                    }
-
-                    span {
-
-                        &.field-validation-error {
-                            color: var(--color-danger);
-                            opacity: 0.6;
-                            position: absolute;
-                            right: 0;
-                        }
-                    }
-
-                    label {
-                        color: var(--color-gray-900);
-                    }
-                }
-
                 .checkbox-group {
 
                     input {

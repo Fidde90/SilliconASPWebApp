@@ -1,0 +1,68 @@
+﻿.input-group {
+
+    input {
+        padding: 10px 15px;
+        border: 1px solid var(--color-gray-400);
+        border-radius: 7px !important;
+        overflow: hidden;
+        outline: none;
+        width: 100%;
+        margin-bottom: 20px;
+        background-color: var(--color-gray-100);
+        color: var(--color-gray-900);
+
+        &.input-validation-error {
+            color: var(--color-danger);
+            border: 0.5px solid var(--color-danger) !important;
+
+            &::placeholder {
+                color: var(--color-danger);
+                opacity: 0.4;
+            }
+        }
+    }
+
+    label {
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--color-gray-900);
+        margin-bottom: 5px;
+        margin-right: 20px;
+    }
+
+    span {
+
+        &.field-validation-error {
+            color: var(--color-danger);
+            opacity: 0.6;
+            position: absolute;
+            right: 0;
+        }
+    }
+}
+
+.error-message {
+    position: absolute;
+    top: - 50px;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 550px;
+    text-align: center;
+    background-color: #fc6262;
+    border-radius: 10px !important;
+    padding: 5px 0px;
+}
+
+.susccess-message {
+    position: absolute;
+    top: - 50px;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+    width: 250px;
+    text-align: center;
+    background-color: #90d6a5;
+    border-radius: 10px !important;
+    padding: 5px 0px;
+}

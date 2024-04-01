@@ -17,8 +17,8 @@
 
     &:hover {
         text-decoration: none;
-        background: var(--color-gray-700);
-        color: var(--color-white);
+        background: var(--color-gray-300);
+        color: var(--color-gray-800);
     }
 }
 
@@ -33,21 +33,21 @@
     &:hover {
         @include theme-secondary-shadow;
         text-decoration: none;
-        background: var(--color-gray-700);
-        color: var(--color-white);
+        background: var(--color-gray-300);
+        color: var(--color-gray-000);
     }
 }
 
 .btn-gray {
     @include button;
-    background: var(--color-gray-200);
+    background: var(--color-gray);
     color: var(--color-gray-800);
     border: none;
 
     &:hover {
         text-decoration: none;
-        background: var(--color-gray-700);
-        color: var(--color-white);
+        background: var(--color-gray-400);
+        color: var(--color-gray-900);
     }
 }
 

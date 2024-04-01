@@ -1,6 +1,6 @@
 ﻿#all-courses {
     margin-top: 40px;
-    background-color: $gray-200;
+    background-color: var(--color-gray-200);
     height: 100%;
 
     .container {
@@ -19,7 +19,6 @@
 
             a {
                 background-color: #8a5ddb;
-                @include theme-shadow;
             }
         }
 
@@ -71,22 +70,6 @@
                         font-weight: 600;
                     }
 
-                   /* @include lg {
-                        max-width: 420px;
-                        width: 100%;
-                        height: 470px;
-                        margin-top: 25px;
-                        flex-direction: column;
-
-                        .card-symbol {
-                            position: absolute;
-                            left: 350px;
-                            top: 18px;
-                            border: none;
-                            box-shadow: none;
-                        }
-                    }*/
-
                     .pic {
                         width: 180px;
                         height: 100%;
@@ -97,17 +80,7 @@
                             border-top-left-radius: 7px;
                             border-bottom-left-radius: 7px;
                             object-fit: cover;
-
-                            @include lg {
-                                border-bottom-left-radius: 0;
-                                border-top-right-radius: 7px;
-                            }
                         }
-
-                       /* @include lg {
-                            width: 100%;
-                            height: 240px;
-                        }*/
                     }
 
                     .info {
@@ -146,47 +119,15 @@
                         .time-rates {
                             display: none;
                         }
-
-                       /* @include lg {
-                            width: 100%;
-                            padding: 25px;
-
-                            .title {
-                                font-size: 20px;
-                                font-weight: bold;
-                            }
-
-                            .line {
-                                height: 1px;
-                                width: 100%;
-                                background-color: $gray-400;
-                                margin-top: 15px;
-                            }
-
-                            .time-rates {
-                                display: block;
-                                margin-top: 20px;
-                                display: flex;
-                                gap: 20px;
-                                color: $gray-500;
-                                font-weight: 600;
-                            }
-                        }*/
                     }
 
-                    &:active {
+                    &:hover {
                         box-shadow: 0px 4px 13px -2px black;
                     }
 
-                  /*  @include xl {
-                        &:hover {
-                            box-shadow: 0px 4px 13px -2px black;
-                        }
-
-                        &:active {
-                            box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
-                        }
-                    }*/
+                    &:active {
+                        box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 ﻿#course-options {
     margin-top: 40px;
-    background-color: $gray-200;
+    background-color: var(--color-gray-200);
     height: 100%;
 
     .container {
@@ -19,7 +19,6 @@
 
             a {
                 background-color: #8a5ddb;
-                @include theme-shadow;
             }
         }
     }

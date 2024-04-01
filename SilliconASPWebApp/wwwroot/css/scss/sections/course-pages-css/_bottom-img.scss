@@ -18,8 +18,9 @@
             overflow: hidden;
             border-radius: 10px;
             margin-top: 50px;
-            background-color: $gray-900;
-            z-index: -2;
+            background-color: #0B0F19;
+            border:1px solid var(--color-gray-900);
+            z-index: -2; 
 
             @include lg {
                 flex-wrap: nowrap;
@@ -65,7 +66,7 @@
                 }
 
                 h5 {
-                    color: $gray-600;
+                    color: var(--color-gary-600);
                 }
 
                 h1 {
@@ -74,7 +75,7 @@
 
                 p {
                     margin-top: 20px;
-                    color: $gray-600;
+                    color: var(--color-gary-600);
                 }
 
                 .buttons {

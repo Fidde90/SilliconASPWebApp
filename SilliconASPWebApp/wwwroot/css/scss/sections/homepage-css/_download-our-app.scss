@@ -1,9 +1,9 @@
 ﻿.download-our-app {
-    background-color: var(--color-gray-featureboxes);
+    background-color: var(--color-gray-100);
 
     .container {
         padding: 40px 0px;
-        background-color: var(--color-gray-featureboxhover);
+        background-color: var(--color-gray-000);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -58,7 +58,7 @@
         }
 
         .googleplay {
-            margin: bottom 5px;
+            margin-bottom: 5px;
 
             #google {
                 color: var(--color-gray-600);

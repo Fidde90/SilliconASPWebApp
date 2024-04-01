@@ -40,10 +40,10 @@
                     height: 60px;
                     width: 60px;
                     border-radius: 50%;
-                    background-color: white;
+                    background-color: var(--color-gray-000);
                     font-size: 24px;
                     font-weight: 900;
-                    box-shadow: 0px 0px 2px 13px $gray-200;
+                    box-shadow: 0px 0px 2px 13px var(--color-gray-200);
                 }
 
                 .description {

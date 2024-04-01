@@ -1,9 +1,7 @@
 ﻿:root {
     --color-transparnt: transparnat;
-    --color-gray-featureboxes: #F3F6FF;
-    --color-gray-featureboxhover: #FFFFFF;
     --color-gray-000: #FFFFFF;
-    --color-gray-100: #F3F6FF;
+    --color-gray-100: #F3F6FF; 
     --color-gray-200: #EFF2FC;
     --color-gray-300: #E2E5F1;
     --color-gray-400: #D4D7E5;
@@ -30,10 +28,8 @@
 
 :root.dark {
     --color-transparnt: transparnat;
-    --color-gray-featureboxes: #151822;
-    --color-gray-featureboxhover: #1E212B;
     --color-gray-000: #0B0F19;
-    --color-gray-100: #33354D;
+    --color-gray-100: #151822;
     --color-gray-200: #565973;
     --color-gray-300: #9397AD;
     --color-gray-400: #B4B7C9;
@@ -44,7 +40,7 @@
     --color-gray-900: #FFFFFF;
     --color-white: #FFFFFF;
     --color-black: #000000;
-    --color-gray: #EFF2FC;
+    --color-gray: #171B25;
     --color-theme: #6366F1;
     --color-danger: #e57e88;
     --color-danger-light: #F5D7DA;
