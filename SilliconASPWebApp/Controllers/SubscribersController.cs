@@ -115,10 +115,10 @@ namespace SilliconASPWebApp.Controllers
 
         public async Task<IActionResult> DeleteSubscriber(int id)
         {
-            var url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+            var url = "https://localhost:7295/api/subscribers";
 
             using var client = new HttpClient();
-            var response = await client.DeleteAsync($"{url}/{id}");
+            var response = await client.DeleteAsync($"{url}/{id}?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1");
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("subscribers", "subscribers");
