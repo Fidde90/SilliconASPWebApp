@@ -1,15 +1,15 @@
-﻿const btnClicked = document.querySelector('.btn-mobile')
+﻿let btnClicked = document.querySelector('.btn-mobile')
 let m_menu = document.querySelector('#mobile-menu')
-let active = false; 
+let active = false;
 
 btnClicked.addEventListener('click', () => {
     active = !active
-   
+
     if (active) {
         m_menu.classList.remove('invisible')
         m_menu.classList.add('mobile-menu')
         btnClicked.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-    } else {    
+    } else {
         m_menu.classList.add('invisible')
         m_menu.classList.remove('mobile-menu')
         btnClicked.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>'
@@ -17,7 +17,7 @@ btnClicked.addEventListener('click', () => {
 })
 
 const checkScreenSize = () => {
- 
+
     btnClicked.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>'
     if (window.innerWidth >= 1200) {
         m_menu.classList.add('invisible')
@@ -27,11 +27,29 @@ const checkScreenSize = () => {
 
         if (!document.getElementById('mobile-menu').classList.contains('invisible')) {
             document.getElementById('mobile-menu').classList.add('invisible');
-            m_menu.classList.remove('mobile-menu') 
-            active = !active         
+            m_menu.classList.remove('mobile-menu')
+            active = !active
         }
     }
 }
 
 window.addEventListener('resize', checkScreenSize);
 checkScreenSize();
+//---------------------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+    let switchButton = document.querySelector('#switch-mode')
+    switchButton.addEventListener('change', function () {
+        let theme = this.checked ? "dark" : "light"
+
+        fetch(`/sitesettings/changetheme?theme=${theme}`)
+            .then(res => {
+                if (res.ok)
+                    window.location.reload()
+                else
+                    console.log("tjena")
+            })
+    })
+})
+
+

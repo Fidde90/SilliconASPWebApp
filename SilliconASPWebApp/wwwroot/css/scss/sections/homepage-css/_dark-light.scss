@@ -15,22 +15,21 @@
         height: 950px;
     }
 
-    .light,
-    .dark {
+    .lightbox,
+    .darkbox {
         height: 100%;
         width: 100%;
     }
 
-    .dark {
-        background-color: $gray-900;
+    .darkbox {
+        background-color: var(--color-gray-900);
 
-        h1 {
+        #dark-h1 {
             padding-top: 50px;
             text-align: end;
-            color: white;
+            color: var(--color-gray-000) !important;
             margin-right: 0.5rem;
             @include h3;
-            color: white;
 
             @media(min-width:850px) {
                 padding-top: 110px;
@@ -38,10 +37,12 @@
         }
     }
 
-    .light {
-        h1 {
+    .lightbox {
+        background-color: var(--color-gray-000);
+
+        #light-h1 {
             padding-top: 50px;
-            color: $gray-900;
+            color: var(--color-gray-900);
             margin-left: 0.5rem;
             @include h3;
 
@@ -70,7 +71,7 @@
         top: 0;
         left: 50%;
         transform: translate(-50%);
-        background-color: $theme;
+        background-color: var(--color-theme);
 
         &::before {
             content: '';

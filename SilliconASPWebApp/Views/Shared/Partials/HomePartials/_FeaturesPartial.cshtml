@@ -1,5 +1,12 @@
 ﻿@model FeaturesModel
+@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
 
+    var lightList = new List<string> { "chat-bubbles.svg", "computerscreen.svg", "vectorWithPlus.svg", "bell.svg", "tasks.svg", "shield.svg" };
+    var darkList = new List<string> { "dark-chatbubbles.svg", "dark-analytics.svg", "dark-add.svg", "dark-bell.svg", "dark-tasks.svg", "dark-shield.svg" };
+    int i = 0;
+}
 <div class="features">
     <div class="container">
         <div class="section-title">
@@ -10,10 +17,11 @@
             @foreach (var box in Model.FeaturesBoxes)
             {
                 <div class="@box.BoxClass">
-                    <img src="@box.Image.Src" alt="@box.Image.AltText" />
+                    <img src="/images/@(isDark ? darkList[i] : lightList[i])" alt="@box.Image.AltText" />
                     <h5>@box.BoxTitle</h5>
                     <p>@box.BoxText</p>
                 </div>
+                i++;
             }
         </div>
     </div>

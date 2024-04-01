@@ -1,5 +1,5 @@
 ﻿.subscribe {
-    background-color: $gray-100;
+    background-color: var(--color-gray-featureboxes);
     padding: 50px 0px;
 
     .container {
@@ -19,7 +19,7 @@
             margin-bottom: 20px;
             width: 100%;
             text-align: center;
-            background-color: indianred;
+            background-color: var(--color-danger);
             border-radius: 10px;
             padding: 10px 0px;
         }
@@ -30,7 +30,7 @@
             margin-bottom: 20px;
             width: 100%;
             text-align: center;
-            background-color: #90d6a5;
+            background-color: var(--color-success);
             border-radius: 10px;
             padding: 10px 0px;
         }
@@ -77,22 +77,24 @@
                         margin-top: 14px;
                         margin-bottom: 15px;
                         padding: 10px 40px;
-                        border: 1px solid $gray-400;
+                        border: 1px solid var(--color-gray-400);
                         border-radius: 7px !important;
                         overflow: hidden;
                         outline: none;
                         width: 100%;
+                        background-color: var(--color-gray-featureboxhover);
+                        color: var(--color-gray-900);
 
                         &::placeholder {
-                            color: $gray-600;
+                            color: var(--color-gray-600);
                         }
 
                         &.input-validation-error {
-                            color: $danger;
-                            border: 0.5px solid $danger !important;
+                            color: var(--color-danger);
+                            border: 0.5px solid var(--color-danger) !important;
 
                             &::placeholder {
-                                color: $danger;
+                                color: var(--color-danger);
                                 opacity: 0.4;
                             }
                         }
@@ -101,7 +103,7 @@
                     span {
 
                         &.field-validation-error {
-                            color: $danger;
+                            color: var(--color-danger);
                             opacity: 0.6;
                             position: absolute;
                             top: -30px;
@@ -116,7 +118,7 @@
                     left: 15px;
                     font-weight: 20px;
                     font-size: 20px;
-                    color: $gray-500;
+                    color: var(--color-gray-500);
                 }
 
                 #button {
@@ -143,7 +145,7 @@
 
                 a {
                     text-decoration: underline;
-                    color: blue;
+                    color: var(--color-theme);
                 }
 
                 @include lg {
