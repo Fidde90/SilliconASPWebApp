@@ -33,7 +33,7 @@
 
             .fa-circle-check {
                 margin-right: 10px;
-                color: $theme;
+                color: var(--color-theme);
             }
         }
 
@@ -45,9 +45,9 @@
             margin-top: 70px;
             height: fit-content;
             padding: 40px;
-            background-color: var(--color-gray-100);
+            background-color: var(--color-background);
             border: 1px solid var(--color-white);
-            border-radius:5px;
+            border-radius: 5px;
             @include shadow-l;
 
             h4 {
@@ -61,7 +61,7 @@
                 margin-top: 40px;
 
                 h5 {
-                    color: $gray-500;
+                    color: var(--color-gray-500);
                     text-decoration: line-through;
                 }
             }

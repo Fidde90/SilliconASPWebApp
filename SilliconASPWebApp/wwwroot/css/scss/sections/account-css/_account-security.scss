@@ -1,25 +1,38 @@
 ﻿.security {
 
     .container {
+        display: flex;
+        gap: 150px;
+        flex-wrap: wrap;
 
         @include lg {
-            display: flex;
-            gap: 150px;
+            flex-wrap: nowrap;
         }
 
         .security-form {
             margin-top: 30px;
 
             form {
+                @include lg {
+
+                    .password-inputs {
+                        display: flex;
+                        gap: 20px;
+                    }
+                }
+
+                label{
+                    font-weight:bold;
+                }
 
                 .error-msg {
-                    color: $danger;
+                    color: var(--color-danger);
                     margin-bottom: 30px;
                     text-align: center;
                 }
 
                 h5 {
-                    color: $theme;
+                    color: var(--color-theme);
                     margin-bottom: 20px;
                 }
 
@@ -28,6 +41,10 @@
                     align-items: center;
                     gap: 20px;
                     margin-bottom: 40px;
+
+                    button {
+                        font-weight: bold;
+                    }
                 }
             }
         }
@@ -35,7 +52,7 @@
         .delete-account {
 
             h5 {
-                color: $theme;
+                color: var(--color-theme);
                 margin-bottom: 20px;
             }
 
@@ -51,24 +68,11 @@
                         flex-direction: row;
                     }
                 }
-
-                input {
-                    height: 1.2rem;
-                    width: 1.2rem;
-                }
-
-                span {
-
-                    &.field-validation-error {
-                        color: $danger;
-                        opacity: 0.6;
-                        position: static;
-                    }
-                }
             }
 
             button {
-                background-color: $danger;
+                color: var(--color-white);
+                background-color: red;
             }
         }
     }

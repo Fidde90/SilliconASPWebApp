@@ -27,9 +27,9 @@
                     height: 180px;
                     margin-bottom: 20px;
                     border: none;
-                    box-shadow: 0px 4px 13px -2px var(--color-gray-500);
+                    @include shadow-s;
                     border-color: none;
-                    background-color: var(--color-gray-000);
+                    background-color: var(--color-background);
 
                     .card-symbol {
                         position: absolute;
@@ -109,7 +109,7 @@
                         }
 
                         label {
-                            color: $info;
+                            color: var(--color-theme);
                             font-weight: bold;
                             font-size: 18px;
 

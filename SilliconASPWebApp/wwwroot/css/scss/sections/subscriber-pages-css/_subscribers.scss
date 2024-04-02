@@ -1,6 +1,6 @@
 ﻿#subscribers {
     margin-top: 40px;
-    background-color: $gray-200;
+    background-color: var(--color-gray-200);
     height: 100%;
 
     .container {
@@ -40,7 +40,7 @@
             margin-bottom: 20px;
             gap: 50px;
             border-radius: 5px;
-            background-color: $gray-400;
+            background-color: var(--color-gray-400);
             @include theme-shadow;
 
             .sub {
@@ -50,11 +50,11 @@
             }
 
             a {
-                background-color: $danger;
+                background-color: var(--color-danger);
             }
 
             #details-btn {
-                background-color: $theme;
+                background-color: var(--color-theme);
             }
 
             &:hover {

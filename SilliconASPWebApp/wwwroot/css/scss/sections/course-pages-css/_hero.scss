@@ -1,5 +1,4 @@
 ﻿.hero-section {
-
     background-repeat: no-repeat;
     background-color: #131022b3;
     background-size: cover;
@@ -42,7 +41,7 @@
 
             .category {
                 background-color: white;
-                color: $gray-900;
+                color: var(--color-gray-900);
                 padding: 2px 15px;
                 border-radius: 8px;
                 font-size: 18px;

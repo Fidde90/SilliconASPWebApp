@@ -1,6 +1,18 @@
-﻿<section class="not-found">
+﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
+
+<section class="not-found">
     <div class="container">
-        <img src="/images/404.png" alt="">
+        @if(isDark)
+        {
+            <img src="/images/dark-404.png" />
+        }
+        else
+        {
+            <img src="/images/404.png" alt="">
+        }
 
         <h1>Ooops!</h1>
         <p>The page you are looking for is not available.</p>

@@ -1,21 +1,27 @@
 ﻿.saved-courses {
 
     .container {
+        display: flex;
+        flex-wrap: wrap;
 
         @include lg {
-            display: flex;
-            gap: 40px;
+            flex-wrap: nowrap;
         }
 
-
-
-
         .courses {
-
+            width:100%;
             .title-delete {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
                 align-items: center;
+                flex-wrap: wrap;
+                min-width: 100%;
+
+                @include lg {
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding-left: 110px;
+                }
 
                 h2 {
                     margin-top: 30px;
@@ -26,171 +32,13 @@
                     @include button;
                     border-color: #EF444459;
                     background-color: transparent;
-                    color: $danger;
+                    color: var(--color-danger);
                     font-weight: 600;
 
                     &:hover {
-                        background-color: $danger;
+                        background-color: var(--color-danger);
                         color: white;
                         box-shadow: 0px 3px 6.4px 1px #e6535359;
-                    }
-                }
-            }
-
-            .course-cards {
-                margin-top: 20px;
-                display: grid;
-
-                @include md {
-                    grid-template-columns: 1fr 1fr;
-                    gap: 30px;
-                }
-
-                @include lg {
-                    margin-top: 0;
-                }
-
-                .card-link {
-                    text-decoration: none;
-
-                    .card {
-                        position: relative;
-                        display: flex;
-                        flex-direction: row;
-                        max-width: 340px;
-                        height: 180px;
-                        margin-bottom: 20px;
-                        border: none;
-                        box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
-                        border-color: none;
-
-                        .card-symbol {
-                            position: absolute;
-                            left: 5px;
-                            top: 5px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            height: 40px;
-                            width: 40px;
-                            border-radius: 50%;
-                            background-color: white;
-                            font-size: 17px;
-                        }
-
-                        @include lg {
-                            max-width: 420px;
-                            height: 470px;
-                            flex-direction: column;
-                            margin-bottom: 0px;
-
-                            .card-symbol {
-                                position: absolute;
-                                right: 20px;
-                                top: 20px;
-                            }
-                        }
-
-                        .pic {
-                            width: 180px;
-                            height: 100%;
-
-                            img {
-                                width: 100%;
-                                height: 100%;
-                                border-top-left-radius: 7px;
-                                border-bottom-left-radius: 7px;
-                                object-fit: cover;
-                            }
-
-                            @include lg {
-                                width: 100%;
-                                height: 240px;
-
-                                img {
-                                    border-bottom-left-radius: 0;
-                                    border-top-right-radius: 7px;
-                                }
-                            }
-                        }
-
-                        .info {
-                            padding: 10px;
-                            width: 200px;
-
-                            .title {
-                                font-size: 15px;
-                                font-weight: 700;
-                            }
-
-                            p {
-                                margin-top: 10px;
-                                margin-bottom: 5px;
-                                font-size: 14px;
-                                color: $gray-600;
-                                font-weight: 600;
-                            }
-
-                            label {
-                                color: $info;
-                                font-weight: bold;
-                                font-size: 18px;
-
-                                span {
-                                    color: $gray-500;
-                                    text-decoration: line-through;
-                                    margin-left: 5px;
-                                }
-                            }
-
-                            .red {
-                                color: red;
-                            }
-
-                            .time-rates {
-                                display: none;
-                            }
-
-                            @include lg {
-                                width: 100%;
-                                padding: 25px;
-
-                                .title {
-                                    font-size: 20px;
-                                    font-weight: bold;
-                                }
-
-                                .line {
-                                    height: 1px;
-                                    width: 100%;
-                                    background-color: $gray-400;
-                                    margin-top: 15px;
-                                }
-
-                                .time-rates {
-                                    display: block;
-                                    margin-top: 20px;
-                                    display: flex;
-                                    gap: 20px;
-                                    color: $gray-500;
-                                    font-weight: 600;
-                                }
-                            }
-                        }
-
-                        &:active {
-                            box-shadow: 0px 4px 13px -2px black;
-                        }
-
-                        @include xl {
-                            &:hover {
-                                box-shadow: 0px 4px 13px -2px black;
-                            }
-
-                            &:active {
-                                box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
-                            }
-                        }
                     }
                 }
             }

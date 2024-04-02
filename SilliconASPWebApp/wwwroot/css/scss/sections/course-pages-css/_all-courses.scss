@@ -96,17 +96,17 @@
                             margin-top: 10px;
                             margin-bottom: 5px;
                             font-size: 14px;
-                            color: $gray-600;
+                            color: var(--color-gray-600);
                             font-weight: 600;
                         }
 
                         label {
-                            color: $info;
+                            color: var(--color-info);
                             font-weight: bold;
                             font-size: 18px;
 
                             span {
-                                color: $gray-500;
+                                color: var(--color-gray-500);
                                 text-decoration: line-through;
                                 margin-left: 5px;
                             }

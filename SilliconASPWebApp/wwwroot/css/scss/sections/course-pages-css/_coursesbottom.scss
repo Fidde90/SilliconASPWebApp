@@ -2,7 +2,7 @@
     margin-top: 6rem;
 
     .container {
-        background-color: $gray-100;
+        background-color: var(--color-gray-100);
         padding: 4rem 7rem;
         display: flex;
         justify-content: space-between;
@@ -24,7 +24,7 @@
                 margin-bottom: 30px;
 
                 span {
-                    color: $theme;
+                    color: var(--color-theme);
                 }
             }
 
