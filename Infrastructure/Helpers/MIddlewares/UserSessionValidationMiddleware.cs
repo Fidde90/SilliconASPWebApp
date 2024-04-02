@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Helpers.MIddlewares
 {
@@ -33,8 +32,7 @@ namespace Infrastructure.Helpers.MIddlewares
                         context.Response.Redirect(signInPath);
                         return;
                     }
-                }
-         
+                }       
             }
             await _next(context);
         }

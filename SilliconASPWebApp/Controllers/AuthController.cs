@@ -8,11 +8,12 @@ using System.Security.Claims;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager) : Controller
+    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager, IConfiguration configuration) : Controller
     {
         private readonly UserService _userService = userService;
         private readonly AuthService _authService = authService;
         private readonly SignInManager<AppUserEntity> _signInManager = signInManager;
+        private readonly UserManager<AppUserEntity> _userManager = userManager;
 
         #region Individual Account
 
@@ -62,6 +63,29 @@ namespace SilliconASPWebApp.Controllers
                 var result = await _authService.SignIn(new Models.Forms.SignInFormModel { Email = viewModel.Email, Password = viewModel.Password, Remeber = false });
                 if (result)
                 {
+                    var user = await _userService.GetByEmailAsync(viewModel.Email);
+                    var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+
+                    if (isAdmin)
+                    {
+                        string url = "https://localhost:7295/token?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+
+                        using var client = new HttpClient();
+                        var response = await client.PostAsync(url, null);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var token = await response.Content.ReadAsStringAsync();
+                            var cookieOptions = new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                Expires = DateTime.Now.AddDays(1)
+                            };
+
+                            Response.Cookies.Append("AccessToken", token, cookieOptions);
+                        }
+                    }
+
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
 
@@ -78,6 +102,7 @@ namespace SilliconASPWebApp.Controllers
         #region sign out
         public new async Task<IActionResult> SignOut()
         {
+            Response.Cookies.Delete("AccessToken");
             await _signInManager.SignOutAsync();
             return RedirectToAction("SignIn", "Auth");
         }

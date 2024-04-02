@@ -51,9 +51,6 @@ builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<AddressRepository>();
 
-builder.Services.AddScoped<SubscriberService>();
-
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

@@ -93,5 +93,18 @@ namespace Infrastructure.Services
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;
         }
+        public async Task<AppUserEntity> GetByEmailAsync(string email)
+        {
+            try
+            {
+                if (await _UserRepository.Exists(x => x.Email == email))
+                {
+                    var user = await _userManager.FindByEmailAsync(email!);
+                    if (user != null) return user;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
+        }
     }
 }

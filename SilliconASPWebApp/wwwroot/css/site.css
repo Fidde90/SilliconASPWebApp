@@ -1033,6 +1033,9 @@ footer .container .display-none {
   background-color: var(--color-gray-100);
   padding: 50px 0px;
 }
+.subscribe .container {
+  position: relative;
+}
 @media (min-width: 1200px) {
   .subscribe .container {
     padding-left: 180px;
@@ -1044,6 +1047,7 @@ footer .container .display-none {
   margin-bottom: 30px;
 }
 .subscribe .container .error-message {
+  position: absolute;
   color: white;
   font-size: 20px;
   margin-bottom: 20px;
@@ -1054,6 +1058,7 @@ footer .container .display-none {
   padding: 10px 0px;
 }
 .subscribe .container .susccess-message {
+  position: absolute;
   color: white;
   font-size: 20px;
   margin-bottom: 20px;

@@ -1,7 +1,5 @@
 ﻿using Infrastructure.Contexts;
-using Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
 

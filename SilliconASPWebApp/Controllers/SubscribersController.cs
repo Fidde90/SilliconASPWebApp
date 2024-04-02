@@ -1,21 +1,13 @@
 ﻿using Infrastructure.Dtos;
 using Infrastructure.Models.Forms;
-using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 namespace SilliconASPWebApp.Controllers
 {
     public class SubscribersController : Controller
     {
-        private readonly SubscriberService _subscriberService;
-
-        public SubscribersController()
-        {
-            _subscriberService = new SubscriberService();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Subscribe(SubscribeFormModel model)
         {
@@ -26,17 +18,23 @@ namespace SilliconASPWebApp.Controllers
                     Email = model.Email
                 };
 
-                string url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
-
-                using var client = new HttpClient();
-
-                var json = JsonConvert.SerializeObject(subscriber);
-                using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
-                if (response.IsSuccessStatusCode)
+                if(HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
                 {
-                    TempData["message"] = "subscribed";
-                    return Redirect(Url.Action("Index", "Home") + "#subscribe");
+
+
+
+                    string url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+
+                    using var client = new HttpClient();
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    var json = JsonConvert.SerializeObject(subscriber);
+                    using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(url, content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        TempData["message"] = "subscribed";
+                        return Redirect(Url.Action("Index", "Home") + "#subscribe");
+                    }
                 }
             }
 
