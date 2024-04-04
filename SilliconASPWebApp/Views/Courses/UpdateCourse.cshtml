@@ -1,0 +1,115 @@
+﻿@model CourseCardModel
+@{
+
+}
+
+<section id="update-course">
+    <div class="container">
+
+        <nav id="menu-buttons">
+            <a asp-action="CoursesOptions" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>All courses</a>
+            <a asp-action="CreateCourse" asp-controller="Courses" class="btn-theme"><i class="fa-solid fa-plus"></i>Add new course</a>
+            <a asp-action="CoursesOptions" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Courses options</a>
+            <a asp-action="Index" asp-controller="Admin" class="btn-theme"><i class="fa-solid fa-arrow-left"></i>Main page</a>
+        </nav>
+
+        <div class="action-buttons">
+            <a asp-controller="Courses" id="delete-btn" asp-action="DeleteCourse" asp-route-id="@Model.Id" class="btn-theme">Delete course</a>
+            <a asp-controller="Courses" id="modifyBtn" class="btn-theme">Modify course</a>
+        </div>
+
+        <div class="content">
+
+            <div class="cards">
+
+                @if (Model != null)
+                {
+                    <a class="large-card" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@Model.Id">
+                        <div class="card">
+                            <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
+                            @if (@Model.IsBestSeller)
+                            {
+                                <p class="best-seller">Best seller</p>
+                            }
+                            <div class="pic">
+                                <img src="/images/@Model.PictureUrl" alt="laptop" />
+                            </div>
+                            <div class="info">
+                                <div class="title">@Model.Title</div>
+                                <p>By @Model.Author</p>
+                                <label>$@Model.Price</label>
+                                <div class="line"></div>
+                                <div class="time-rates">
+                                    <div><i class="fa-regular fa-clock"></i> <span>@Model.Hours hours</span></div>
+                                    <div><i class="fa-light fa-thumbs-up"></i> <span>@Model.LikesInProcent% (@Model.LikesInNumbers K)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a class="small-card" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@Model.Id">
+                        <div class="card">
+                            <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
+                            @if (@Model.IsBestSeller)
+                            {
+                                <p class="best-seller">Best seller</p>
+                            }
+                            <div class="pic">
+                                <img src="/images/@Model.PictureUrl" alt="laptop" />
+                            </div>
+                            <div class="info">
+                                <div class="title">@Model.Title</div>
+                                <p>By @Model.Author</p>
+                                <label>$@Model.Price</label>
+                                <div class="line"></div>
+                                <div class="time-rates">
+                                    <div><i class="fa-regular fa-clock"></i> <span>@Model.Hours hours</span></div>
+                                    <div><i class="fa-light fa-thumbs-up"></i> <span>@Model.LikesInProcent% (@Model.LikesInNumbers K)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <div>No course found</div>
+                }
+            </div>
+         
+            <div id="update-form" class="input-group">
+                <form method="post" novalidate asp-controller="Courses" asp-action="UpdateCourse">
+                    <label asp-for="Title">Title *</label>
+                    <input asp-for="Title" />
+
+                    <label asp-for="Author">Author</label>
+                    <input asp-for="Author" />
+
+                    <label asp-for="Price">Price</label>
+                    <input asp-for="Price" />
+
+                    <label asp-for="DiscountPrice">DiscountPrice</label>
+                    <input asp-for="DiscountPrice" />
+
+                    <label asp-for="IsBestSeller">Is Best Seller? (True or False)</label>
+                    <input asp-for="IsBestSeller" />
+
+                    <label asp-for="LikesInNumbers">LikesInNumbers</label>
+                    <input asp-for="LikesInNumbers" />
+
+                    <label asp-for="LikesInProcent">LikesInProcent</label>
+                    <input asp-for="LikesInProcent" />
+
+                    <label asp-for="Hours">Hours</label>
+                    <input asp-for="Hours" />
+
+                    <label asp-for="PictureUrl">PictureUrl *</label>
+                    <input asp-for="PictureUrl" />
+
+                    <button id="update-btn" class="btn-theme" type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</section>

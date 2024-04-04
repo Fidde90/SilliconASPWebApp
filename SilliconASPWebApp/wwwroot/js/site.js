@@ -51,5 +51,33 @@ document.addEventListener('DOMContentLoaded', function () {
             })
     })
 })
+//---------------------------------------------------------------------------------------
+
+const modifyBtn = document.getElementById('modifyBtn')
+const updateBtn = document.getElementById('update-btn')
+let form = document.getElementById('update-form')
+let show = false
 
 
+form.classList.add('hidden')
+modifyBtn.addEventListener('click', function (event) {
+    event.preventDefault(event);
+    HideShow('show-form','hidden')
+})
+
+updateBtn.addEventListener('click', () => {
+    HideShow('show-form','hidden')
+})
+
+function HideShow(showClass, hideClass) {
+
+    show = !show
+    if (show === true) {
+        form.classList.add(`${showClass}`)
+        form.classList.remove(`${hideClass}`)
+    } else {
+        form.classList.add(`${hideClass}`)
+        form.classList.remove(`${showClass}`)
+    }
+}
+//---------------------------------------------------------------------------------------

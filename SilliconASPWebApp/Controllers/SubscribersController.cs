@@ -2,7 +2,6 @@
 using Infrastructure.Models.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using System.Text;
 namespace SilliconASPWebApp.Controllers
 {
@@ -17,16 +16,9 @@ namespace SilliconASPWebApp.Controllers
                 {
                     Email = model.Email
                 };
-
-                if(HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
-                {
-
-
-
                     string url = "https://localhost:7295/api/subscribers?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
-                    using var client = new HttpClient();
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    using var client = new HttpClient();                 
                     var json = JsonConvert.SerializeObject(subscriber);
                     using var content = new StringContent(json, Encoding.UTF8, "application/json");
                     var response = await client.PostAsync(url, content);
@@ -35,7 +27,6 @@ namespace SilliconASPWebApp.Controllers
                         TempData["message"] = "subscribed";
                         return Redirect(Url.Action("Index", "Home") + "#subscribe");
                     }
-                }
             }
 
             TempData["message"] = "failed";
@@ -110,7 +101,6 @@ namespace SilliconASPWebApp.Controllers
             TempData["message"] = "failed";
             return RedirectToAction("SubscriberDetails", new { model.Id });
         }
-
 
         public async Task<IActionResult> DeleteSubscriber(int id)
         {

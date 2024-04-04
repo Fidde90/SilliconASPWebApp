@@ -1,13 +1,21 @@
 ﻿using Infrastructure.Dtos;
+using Infrastructure.Factories;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SilliconASPWebApp.Models.Components;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class CoursesController : Controller
+    public class CoursesController(IConfiguration configuration) : Controller
     {
+        private readonly IConfiguration _configuration = configuration;
+        private readonly string _url = "https://localhost:7295/api/courses";
+
+
         #region user courses actions
         public async Task<IActionResult> Index()
         {
@@ -20,7 +28,6 @@ namespace SilliconASPWebApp.Controllers
 
             return View(data);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
@@ -48,20 +55,23 @@ namespace SilliconASPWebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
-
-                    using var client = new HttpClient();
-
-                    var json = JsonConvert.SerializeObject(newCourse);
-                    using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var response = await client.PostAsync(url, content);
-                    if (response.IsSuccessStatusCode)
+                    if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
                     {
-                        TempData["Message"] = "created";
-                        return RedirectToAction("CreateCourse", "Courses");
+                        using var client = new HttpClient();
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                        var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+                        var json = JsonConvert.SerializeObject(newCourse);
+                        using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                        var response = await client.PostAsync(url, content);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            TempData["Message"] = "created";
+                            return RedirectToAction("CreateCourse", "Courses");
+                        }
+                        TempData["Message"] = "confilct";
+                        return View(newCourse);
                     }
-                    TempData["Message"] = "confilct";
-                    return View(newCourse);
                 }
             }
 
@@ -69,9 +79,8 @@ namespace SilliconASPWebApp.Controllers
             return View(newCourse);
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> AllCourses(int id)
+        public async Task<IActionResult> AllCourses()
         {
             var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
@@ -91,7 +100,67 @@ namespace SilliconASPWebApp.Controllers
             }
             TempData["Message"] = "faild";
             return View();
+        }
+  
+        public async Task<IActionResult> UpdateCourse(int id)
+        {
+            var url = $"https://localhost:7295/api/courses/{id}?key={_configuration["ApiKey:Secret"]}";
 
+            using var client = new HttpClient();
+            var response = await client.GetAsync(url);
+            var json = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<CourseCardModel>(json);
+            data!.GetBackgorundImg();
+
+            if(data != null)
+                return View(data);
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCourse(CourseCardModel dto)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newDto = CourseMapping.ToUpdateCourseDto(dto);
+
+                    using var client = new HttpClient();
+                    var json = JsonConvert.SerializeObject(newDto);
+                    using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PutAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        TempData["message"] = "Updated";
+                        return RedirectToAction("UpdateCourse", "Courses");
+                    }
+
+                    return RedirectToAction("UpdateCourse", "Courses");
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+ 
+            return RedirectToAction("UpdateCourse", "Courses");
+        }
+
+        public async Task<IActionResult> DeleteCourse(int id)
+        {
+            if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
+            {
+                var url = "https://localhost:7295/api/courses";
+
+                using var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await client.DeleteAsync($"{url}/{id}?key={_configuration["ApiKey:Secret"]}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("AllCourses", "Courses");
+                }
+            }
+            return RedirectToAction("UpdateCourse", "Courses");
         }
         #endregion
     }
