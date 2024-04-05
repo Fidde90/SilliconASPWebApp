@@ -2699,6 +2699,13 @@ footer .container .display-none {
   font-weight: bold;
 }
 
+#category {
+  margin-top: 60px;
+}
+#category .container form {
+  max-width: 40%;
+}
+
 #subscribers {
   margin-top: 40px;
   background-color: var(--color-gray-200);

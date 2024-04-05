@@ -1,0 +1,30 @@
+﻿@model CategoryFormModel
+@{
+    ViewData["Title"] = "Category";
+}
+
+<section id="category">
+    <div class="container">
+
+        @if (TempData["Message"]?.ToString() == "created")
+        {
+            <div>Created</div>
+        }
+        else if (TempData["Message"]?.ToString() == "confilct")
+        {
+            <div>Category already exists</div>
+        }
+
+        <form novalidate method="post" asp-action="CreateCategory" asp-controller="Categories">
+            <div id="form-categoryName" class="input-group">
+                <label asp-for="CategoryName"></label>
+                <span asp-validation-for="CategoryName"></span>
+                <input asp-for="CategoryName" />
+            </div>
+
+            <button type="submit" class="btn-theme">Add category</button>
+        </form>
+
+    </div>
+</section>
+@await Html.PartialAsync("_ValidationScriptPartial")
