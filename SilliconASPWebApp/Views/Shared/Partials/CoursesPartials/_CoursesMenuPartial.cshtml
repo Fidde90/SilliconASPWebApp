@@ -5,21 +5,24 @@
         </p>
         <div class="header-nav">
             <h1>Courses</h1>
+
             <form id="form">
                 <div class="dropdown">
-                    <select class="select-box">
-                        <option value="">All catagories</option>
-                        <option value="Html,css">Html,css</option>
-                        <option value="Front-end">Front-end</option>
-                        <option value="Fullstack">Fullstack</option>
-                        <option value="Data">Data</option>
-                        <option value="Programming">Programming</option>
-                    </select>
+                    <div class="selected">All categories</div>
+                    <div class="select-options">
+                        <div class="option" data-value="all">All categories</div>
+                    </div>
+
+
+                
                 </div>
-                <div class="search-box">
-                    <input id="search-value" type="text" placeholder="Serach courses">
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+                <div class="input-group">
+                    <input id="searchQuery" name=" searchQuery" placeholder="Serach courses"/>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
                 </div>
+
             </form>
         </div>
     </div>

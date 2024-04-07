@@ -1,31 +1,41 @@
 ﻿using Infrastructure.Dtos;
 using Infrastructure.Factories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SilliconASPWebApp.Models.Components;
+using SilliconASPWebApp.ViewModels.Views;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class CoursesController(IConfiguration configuration) : Controller
+    public class CoursesController(IConfiguration configuration,CourseService courseService, CategoryService categoryService, HttpClient httpClient) : Controller
     {
         private readonly IConfiguration _configuration = configuration;
-        private readonly string _url = "https://localhost:7295/api/courses";
-
+        private readonly string _url = "https://localhost:7295/api/courses"; //släng in i appsettings sen
+        private readonly CategoryService _categoryService = categoryService;
+        private readonly HttpClient _client = httpClient;
+        private readonly CourseService _courseService = courseService;
 
         #region user courses actions
         public async Task<IActionResult> Index()
         {
-            var url = "https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+            var viewModel = new CoursesIndexViewModel
+            {
+                Categories = await _categoryService.GetCategoriesAsync(),
+                Courses = await _courseService.GetCoursesAsync()
+            };
 
-            using var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            var json = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<IEnumerable<CourseCardModel>>(json);
+            //var url = "https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+            //var response = await _client.GetAsync(url);
+            //var json = await response.Content.ReadAsStringAsync();
+            //var data = JsonConvert.DeserializeObject<CourseResult>(json);
 
-            return View(data);
+
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -33,8 +43,8 @@ namespace SilliconASPWebApp.Controllers
         {
             var url = $"https://localhost:7295/api/courses/{id}?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
-            using var client = new HttpClient();
-            var response = await client.GetAsync(url);
+
+            var response = await _client.GetAsync(url);
             var json = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<CourseCardModel>(json);
             data!.GetBackgorundImg();
@@ -50,18 +60,16 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse(CourseDto newCourse)
         {
-
             if (ModelState.IsValid)
             {
                 if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
                 {
-                    using var client = new HttpClient();
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                     var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
                     var json = JsonConvert.SerializeObject(newCourse);
                     using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var response = await client.PostAsync(url, content);
+                    var response = await _client.PostAsync(url, content);
                     if (response.IsSuccessStatusCode)
                     {
                         TempData["Message"] = "created";
@@ -81,8 +89,7 @@ namespace SilliconASPWebApp.Controllers
         {
             var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
-            using var client = new HttpClient();
-            var response = await client.GetAsync(url);
+            var response = await _client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
@@ -103,8 +110,7 @@ namespace SilliconASPWebApp.Controllers
         {
             var url = $"https://localhost:7295/api/courses/{id}?key={_configuration["ApiKey:Secret"]}";
 
-            using var client = new HttpClient();
-            var response = await client.GetAsync(url);
+            var response = await _client.GetAsync(url);
             var json = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<CourseCardModel>(json);
             data!.GetBackgorundImg();
@@ -124,10 +130,9 @@ namespace SilliconASPWebApp.Controllers
                 {
                     var newDto = CourseMapping.ToUpdateCourseDto(dto);
 
-                    using var client = new HttpClient();
                     var json = JsonConvert.SerializeObject(newDto);
                     using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var response = await client.PutAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
+                    var response = await _client.PutAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
                     if (response.IsSuccessStatusCode)
                     {
                         TempData["message"] = "Updated";
@@ -148,10 +153,9 @@ namespace SilliconASPWebApp.Controllers
             {
                 var url = "https://localhost:7295/api/courses";
 
-                using var client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var response = await client.DeleteAsync($"{url}/{id}?key={_configuration["ApiKey:Secret"]}");
+                var response = await _client.DeleteAsync($"{url}/{id}?key={_configuration["ApiKey:Secret"]}");
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AllCourses", "Courses");

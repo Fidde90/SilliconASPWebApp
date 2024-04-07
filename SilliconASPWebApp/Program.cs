@@ -5,6 +5,7 @@ using Infrastructure.Repositories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SilliconASPWebApp.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -39,17 +40,11 @@ builder.Services.AddAuthentication().AddGoogle(g =>
 {
     g.ClientId = "115908931583-62p0vbcglk7qqd419eisvnfhqf723rel.apps.googleusercontent.com";
     g.ClientSecret = "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";
-}); 
+});
 
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<UserRepository>();
+builder.Services.RegisterRepositories(builder.Configuration);
+builder.Services.RegisterServices(builder.Configuration);
 
-builder.Services.AddScoped<AuthService>();
-
-builder.Services.AddScoped<AccountService>();
-
-builder.Services.AddScoped<AddressService>();
-builder.Services.AddScoped<AddressRepository>();
 
 var app = builder.Build();
 

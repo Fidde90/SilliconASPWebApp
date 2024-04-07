@@ -24,6 +24,6 @@
 
         public DateTime LastUpdated { get; set; }
 
-        public CategoryDto? Category { get; set; }
+        public string Category { get; set; } = null!;
     }
 }

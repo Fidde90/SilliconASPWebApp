@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager, IConfiguration configuration) : Controller
+    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager) : Controller
     {
         private readonly UserService _userService = userService;
         private readonly AuthService _authService = authService;

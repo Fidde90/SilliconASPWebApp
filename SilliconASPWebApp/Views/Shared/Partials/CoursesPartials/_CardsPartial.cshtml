@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourseCardModel>
+﻿@model IEnumerable<CourseDto>
 
 <section class="courses">
 
@@ -7,20 +7,20 @@
         <div class="course-cards">
             @foreach (var course in Model)
             {
-                <a class="card-link" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">
-                    <div class="card">
-                        <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
-                        @if (course.IsBestSeller)
-                        {
-                            <p class="best-seller">Best seller</p>
-                        }
-                        <div class="pic">
-                            <img src="/images/@course.PictureUrl" alt="laptop" />
-                        </div>
+                <div class="card">
+                    <button  class="bookmark" asp-action="Join" asp-controller="Courses"><i class="fa-regular fa-bookmark"></i></button>
+                    @if (course.IsBestSeller)
+                    {
+                        <p class="best-seller">Best seller</p>
+                    }
+                    <div class="pic">
+                        <img src="/images/@course.PictureUrl" alt="laptop" />
+                    </div>
+                    <a class="card-link" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">
                         <div class="info">
                             <div class="title">@course.Title</div>
                             <p>By @course.Author</p>
-                            @if(course.DiscountPrice != "")
+                            @if (course.DiscountPrice != "")
                             {
                                 <label id="discount">$@course.DiscountPrice</label>
                                 <label id="price"> $@course.Price</label>
@@ -35,8 +35,8 @@
                                 <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent% (@course.LikesInNumbers K)</span></div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             }
 
         </div>

@@ -12,7 +12,6 @@ namespace SilliconASPWebApp.Controllers
         private readonly IConfiguration _configuration = configuration;
         private readonly string _url = "https://localhost:7295/api/Category";
 
-
         [Route("/Category")]
         public IActionResult Index()
         {
