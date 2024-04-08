@@ -1,43 +1,47 @@
-﻿@model IEnumerable<CourseDto>
+﻿@model CoursesIndexViewModel
 
 <section class="courses">
 
     <div class="container">
 
         <div class="course-cards">
-            @foreach (var course in Model)
+            @if(Model.Courses != null && Model.Categories != null)
             {
-                <div class="card">
-                    <button  class="bookmark" asp-action="Join" asp-controller="Courses"><i class="fa-regular fa-bookmark"></i></button>
-                    @if (course.IsBestSeller)
-                    {
-                        <p class="best-seller">Best seller</p>
-                    }
-                    <div class="pic">
-                        <img src="/images/@course.PictureUrl" alt="laptop" />
-                    </div>
-                    <a class="card-link" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">
-                        <div class="info">
-                            <div class="title">@course.Title</div>
-                            <p>By @course.Author</p>
-                            @if (course.DiscountPrice != "")
-                            {
-                                <label id="discount">$@course.DiscountPrice</label>
-                                <label id="price"> $@course.Price</label>
-                            }
-                            else
-                            {
-                                <label>$@course.Price</label>
-                            }
-                            <div class="line"></div>
-                            <div class="time-rates">
-                                <div><i class="fa-regular fa-clock"></i> <span>@course.Hours hours</span></div>
-                                <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent% (@course.LikesInNumbers K)</span></div>
-                            </div>
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="card">
+                        <a class="bookmark" asp-action="Join" asp-controller="Courses" asp-rout-id="@course.Id"><i class="fa-regular fa-bookmark"></i></a>
+                        @if (course.IsBestSeller)
+                        {
+                            <p class="best-seller">Best seller</p>
+                        }
+                        <div class="pic">
+                            <img src="/images/@course.PictureUrl" alt="laptop" />
                         </div>
-                    </a>
-                </div>
+                        <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">
+                            <div class="info">
+                                <div class="title">@course.Title</div>
+                                <p>By @course.Author</p>
+                                @if (course.DiscountPrice != "")
+                                {
+                                    <label id="discount">$@course.DiscountPrice</label>
+                                    <label id="price"> $@course.Price</label>
+                                }
+                                else
+                                {
+                                    <label>$@course.Price</label>
+                                }
+                                <div class="line"></div>
+                                <div class="time-rates">
+                                    <div><i class="fa-regular fa-clock"></i> <span>@course.Hours hours</span></div>
+                                    <div><i class="fa-light fa-thumbs-up"></i> <span>@course.LikesInProcent% (@course.LikesInNumbers K)</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
             }
+          
 
         </div>
 

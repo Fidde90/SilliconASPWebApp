@@ -28,13 +28,6 @@ namespace SilliconASPWebApp.Controllers
                 Courses = await _courseService.GetCoursesAsync()
             };
 
-            //var url = "https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
-            //var response = await _client.GetAsync(url);
-            //var json = await response.Content.ReadAsStringAsync();
-            //var data = JsonConvert.DeserializeObject<CourseResult>(json);
-
-
-
             return View(viewModel);
         }
 
@@ -42,7 +35,6 @@ namespace SilliconASPWebApp.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var url = $"https://localhost:7295/api/courses/{id}?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
-
 
             var response = await _client.GetAsync(url);
             var json = await response.Content.ReadAsStringAsync();

@@ -1,7 +1,9 @@
 ﻿using Infrastructure.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net;
 
 namespace Infrastructure.Services
 {
@@ -11,16 +13,20 @@ namespace Infrastructure.Services
         private readonly IConfiguration _configuration = configuration;
         private readonly string _url = "https://localhost:7295/api/Courses";
 
+        [HttpGet]
         public async Task<IEnumerable<CourseDto>> GetCoursesAsync()
         {
             try
             {
-                var response = await _client.GetAsync($"{_url}?key={_configuration["ApiKey:Secret"]}");
+                var response = await _client.GetAsync($"{_url}");
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<IEnumerable<CourseDto>>(json);
-                    return data!;
+                    var data = JsonConvert.DeserializeObject<CourseResult>(json);
+                    if (data!.Courses != null && data.Succeeded)
+                    {
+                        return data.Courses;
+                    }
                 }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }

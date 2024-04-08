@@ -1641,6 +1641,8 @@ footer .container .display-none {
 .courses .container .course-cards .card .bookmark i {
   font-size: 15px;
   color: var(--color-gray-900);
+  margin-left: 12px;
+  margin-top: 10px;
 }
 .courses .container .course-cards .card .bookmark:hover {
   background-color: var(--color-gray-900);
