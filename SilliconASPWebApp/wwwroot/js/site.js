@@ -106,7 +106,6 @@ function Hide_Show(showClass, hideClass) {
 function DropDown() {
 
     try {
-        let dropDown = document.querySelector('.dropdown')
         let selected = document.querySelector('.selected')
         let menu = document.querySelector('.menu')
 
@@ -133,12 +132,19 @@ function DropDown() {
 
 
 function Search_Course(){
-    //här är du
+    try {
+        const input = document.querySelector('#searchQuery')
+        input.addEventListener('keyup', function () {
+            Filter_Courses()
+        })
+    }
+    catch (error) { console.log(error.message) }
 }
 
 function Filter_Courses() {
     const category = document.querySelector('.dropdown .selected').getAttribute('data-value') || 'all'
-    const URL = `/courses/index?category=${encodeURIComponent(category)}`
+    const searchValue = document.querySelector('#searchQuery').value
+    const URL = `/courses/index?category=${encodeURIComponent(category)}&searchValue=${encodeURIComponent(searchValue)}`
 
     try {
 

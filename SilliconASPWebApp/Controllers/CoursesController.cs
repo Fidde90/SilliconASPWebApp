@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SilliconASPWebApp.Models.Components;
 using SilliconASPWebApp.ViewModels.Views;
+using System.Buffers;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
@@ -79,21 +80,16 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> AllCourses()
         {
-            var url = $"https://localhost:7295/api/courses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
-
-            var response = await _client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var json = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<IEnumerable<CourseCardModel>>(json);
-
-                if (data!.Any())
-                    return View(data);
+                var result = await _courseService.GetCoursesAsync();
+                if (result != null)
+                    return View(result);
 
                 TempData["Message"] = "no courses";
                 return View();
-
             }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             TempData["Message"] = "faild";
             return View();
         }

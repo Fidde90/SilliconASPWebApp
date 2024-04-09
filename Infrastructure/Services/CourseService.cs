@@ -19,7 +19,7 @@ namespace Infrastructure.Services
         {
             try
             {
-                var response = await _client.GetAsync($"{_url}?category={Uri.UnescapeDataString(category)}?searchValue={Uri.UnescapeDataString(searchValue)}");
+                var response = await _client.GetAsync($"{_url}?category={Uri.UnescapeDataString(category)}&searchValue={Uri.UnescapeDataString(searchValue)}");
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
