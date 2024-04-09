@@ -22,7 +22,7 @@
         .header-nav {
             margin-top: 2rem;
             display: flex;
-            flex-direction:column;
+            flex-direction: column;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
@@ -51,13 +51,47 @@
                     width: 100%;
                     min-width: 330px;
                     height: 48px;
+                    position: relative;
+                    cursor: pointer;
 
-                    .selected {
-                        color: var(--color-gray-500);
+                    .menu {
+
+                        .selected {
+                            color: var(--color-gray-500);
+                        }
+
+                        i {
+                            position: absolute;
+                            color: var(--color-gray-400);
+                            right: 15px;
+                            top: 15px;
+                        }
                     }
 
                     .select-options {
+                        position: absolute;
+                        width: 327px;
+                        top: 44px;
+                        left: 0px;
                         display: none;
+                        background-color: var(--color-gray-900);
+                        color: var(--color-gray-000);
+                        border: 1px solid var(--color-gray-400);
+                        border-radius: 7px !important;
+                        z-index: 50;
+                    }
+
+                    .option {
+                        height: 35px;
+                        align-content: center;
+                        font-weight: 600;
+                        font-size: 15px;
+                        padding: 5px;
+                        border: 1px solid var(--color-gray-600);
+
+                        &:hover {
+                            background-color: var(--color-gray-500);
+                        }
                     }
                 }
 
@@ -65,11 +99,11 @@
                     position: relative;
                     min-width: 330px;
 
-
                     i {
                         position: absolute;
                         right: 15px;
                         top: 16px;
+                        color:var(--color-gray-400);
                     }
 
                     input {

@@ -1,4 +1,14 @@
-﻿let btnClicked = document.querySelector('.btn-mobile')
+﻿document.addEventListener('DOMContentLoaded', function () {
+    DropDown()
+    Search_Course()
+    DarkLightMode_Switch()
+})
+
+
+//---------------------------------------------------------------------------------------
+
+//mobile menu
+let btnClicked = document.querySelector('.btn-mobile')
 let m_menu = document.querySelector('#mobile-menu')
 let active = false;
 
@@ -35,41 +45,50 @@ const checkScreenSize = () => {
 
 window.addEventListener('resize', checkScreenSize);
 checkScreenSize();
+
 //---------------------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', function () {
+//change to darkmode
+
+function DarkLightMode_Switch() {
     let switchButton = document.querySelector('#switch-mode')
     switchButton.addEventListener('change', function () {
-        let theme = this.checked ? "dark" : "light"
+        try {
 
-        fetch(`/sitesettings/changetheme?theme=${theme}`)
-            .then(res => {
-                if (res.ok)
-                    window.location.reload()
-                else
-                    console.log("tjena")
-            })
+            let theme = this.checked ? "dark" : "light"
+
+            fetch(`/sitesettings/changetheme?theme=${theme}`)
+                .then(res => {
+                    if (res.ok)
+                        window.location.reload()
+                    else
+                        console.log("tjena")
+                })
+        }
+        catch (error) { console.log(e.message) }
     })
-})
+}
+
 //---------------------------------------------------------------------------------------
 
+//update course function in admin page
 const modifyBtn = document.getElementById('modifyBtn')
 const updateBtn = document.getElementById('update-btn')
 let form = document.getElementById('update-form')
 let show = false
 
-
 form.classList.add('hidden')
+
 modifyBtn.addEventListener('click', function (event) {
     event.preventDefault(event);
-    HideShow('show-form','hidden')
+    Hide_Show('show-form', 'hidden')
 })
 
 updateBtn.addEventListener('click', () => {
-    HideShow('show-form','hidden')
+    Hide_Show('show-form', 'hidden')
 })
 
-function HideShow(showClass, hideClass) {
+function Hide_Show(showClass, hideClass) {
 
     show = !show
     if (show === true) {
@@ -81,3 +100,56 @@ function HideShow(showClass, hideClass) {
     }
 }
 //---------------------------------------------------------------------------------------
+
+//dropdown in courses
+
+function DropDown() {
+
+    try {
+        let dropDown = document.querySelector('.dropdown')
+        let selected = document.querySelector('.selected')
+        let menu = document.querySelector('.menu')
+
+        let selectOptions = document.querySelector('.select-options')
+
+        menu.addEventListener('click', function () {
+            selectOptions.style.display = (selectOptions.style.display === 'block') ? 'none' : 'block'
+        })
+
+        let options = selectOptions.querySelectorAll('.option')
+        options.forEach(function (option) {
+            option.addEventListener('click', function () {
+                selected.innerHTML = this.textContent
+                selectOptions.style.display = 'none'
+                let category = this.getAttribute('data-value')
+                selected.setAttribute('data-value', category)
+                Filter_Courses()
+            })
+        })
+
+    }
+    catch (error) { console.log(error.message) }
+}
+
+
+function Search_Course(){
+    //här är du
+}
+
+function Filter_Courses() {
+    const category = document.querySelector('.dropdown .selected').getAttribute('data-value') || 'all'
+    const URL = `/courses/index?category=${encodeURIComponent(category)}`
+
+    try {
+
+        fetch(URL)
+            .then(res => res.text())
+            .then(data => {
+                const parser = new DOMParser()
+                const dom = parser.parseFromString(data, 'text/html')
+                document.querySelector('.course-cards').innerHTML = dom.querySelector('.course-cards').innerHTML
+            })
+
+    }
+    catch (error) { console.log(error.message) }
+}

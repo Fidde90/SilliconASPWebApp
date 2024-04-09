@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System.Buffers;
 using System.Diagnostics;
 using System.Net;
 
@@ -14,11 +15,11 @@ namespace Infrastructure.Services
         private readonly string _url = "https://localhost:7295/api/Courses";
 
         [HttpGet]
-        public async Task<IEnumerable<CourseDto>> GetCoursesAsync()
+        public async Task<IEnumerable<CourseDto>> GetCoursesAsync(string category = "", string searchValue = "")
         {
             try
             {
-                var response = await _client.GetAsync($"{_url}");
+                var response = await _client.GetAsync($"{_url}?category={Uri.UnescapeDataString(category)}?searchValue={Uri.UnescapeDataString(searchValue)}");
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();

@@ -1574,12 +1574,40 @@ footer .container .display-none {
   width: 100%;
   min-width: 330px;
   height: 48px;
+  position: relative;
+  cursor: pointer;
 }
-.courses-menu .container .header-nav form .dropdown .selected {
+.courses-menu .container .header-nav form .dropdown .menu .selected {
   color: var(--color-gray-500);
 }
+.courses-menu .container .header-nav form .dropdown .menu i {
+  position: absolute;
+  color: var(--color-gray-400);
+  right: 15px;
+  top: 15px;
+}
 .courses-menu .container .header-nav form .dropdown .select-options {
+  position: absolute;
+  width: 327px;
+  top: 44px;
+  left: 0px;
   display: none;
+  background-color: var(--color-gray-900);
+  color: var(--color-gray-000);
+  border: 1px solid var(--color-gray-400);
+  border-radius: 7px !important;
+  z-index: 50;
+}
+.courses-menu .container .header-nav form .dropdown .option {
+  height: 35px;
+  align-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid var(--color-gray-600);
+}
+.courses-menu .container .header-nav form .dropdown .option:hover {
+  background-color: var(--color-gray-500);
 }
 .courses-menu .container .header-nav form .input-group {
   position: relative;
@@ -1589,6 +1617,7 @@ footer .container .display-none {
   position: absolute;
   right: 15px;
   top: 16px;
+  color: var(--color-gray-400);
 }
 .courses-menu .container .header-nav form .input-group input {
   border: 2px solid var(--color-gray-400);
@@ -1641,7 +1670,7 @@ footer .container .display-none {
 .courses .container .course-cards .card .bookmark i {
   font-size: 15px;
   color: var(--color-gray-900);
-  margin-left: 12px;
+  margin-left: 11px;
   margin-top: 10px;
 }
 .courses .container .course-cards .card .bookmark:hover {

@@ -11,7 +11,7 @@ using System.Text;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class CoursesController(IConfiguration configuration,CourseService courseService, CategoryService categoryService, HttpClient httpClient) : Controller
+    public class CoursesController(IConfiguration configuration, CourseService courseService, CategoryService categoryService, HttpClient httpClient) : Controller
     {
         private readonly IConfiguration _configuration = configuration;
         private readonly string _url = "https://localhost:7295/api/courses"; //släng in i appsettings sen
@@ -20,12 +20,12 @@ namespace SilliconASPWebApp.Controllers
         private readonly CourseService _courseService = courseService;
 
         #region user courses actions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string category = "", string searchValue = "")
         {
             var viewModel = new CoursesIndexViewModel
             {
                 Categories = await _categoryService.GetCategoriesAsync(),
-                Courses = await _courseService.GetCoursesAsync()
+                Courses = await _courseService.GetCoursesAsync(category, searchValue)
             };
 
             return View(viewModel);
