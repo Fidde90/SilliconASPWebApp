@@ -18,6 +18,5 @@ namespace Infrastructure.Factories
             }
             return null!;
         }
-
     }
 }

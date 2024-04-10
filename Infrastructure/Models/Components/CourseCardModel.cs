@@ -22,6 +22,8 @@
 
         public string Hours { get; set; } = null!;
 
+        public string? Category { get; set; }
+
         public string? BackgroundImg { get; set; }
 
         public void GetBackgorundImg()

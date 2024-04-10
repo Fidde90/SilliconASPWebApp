@@ -46,7 +46,8 @@ namespace Infrastructure.Factories
                     LikesInNumbers = model.LikesInNumbers,
                     LikesInProcent = model.LikesInProcent,
                     DiscountPrice = model.DiscountPrice,
-                    LastUpdated = DateTime.Now
+                    LastUpdated = DateTime.Now,
+                    Category = model.Category!
                 };
 
                 return newDto;
@@ -70,6 +71,7 @@ namespace Infrastructure.Factories
                     LikesInNumbers = dto.LikesInNumbers,
                     LikesInProcent = dto.LikesInProcent,
                     DiscountPrice = dto.DiscountPrice,
+                    Category = dto.Category 
                 };
 
                 return newCardModel;
@@ -93,6 +95,7 @@ namespace Infrastructure.Factories
                     LikesInNumbers = dto.LikesInNumbers,
                     LikesInProcent = dto.LikesInProcent,
                     DiscountPrice = dto.DiscountPrice,
+                    Category = dto.Category
                 };
 
                 return newCardModel;
@@ -116,6 +119,7 @@ namespace Infrastructure.Factories
                     LikesInNumbers = model.LikesInNumbers,
                     LikesInProcent = model.LikesInProcent,
                     DiscountPrice = model.DiscountPrice,
+                    Category = model.Category!
 
                 };
 

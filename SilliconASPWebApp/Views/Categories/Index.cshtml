@@ -14,6 +14,10 @@
         {
             <div>Category already exists</div>
         }
+        else if (TempData["Message"]?.ToString() == "bad data")
+        {
+            <div>Enter a valid category</div>
+        }
 
         <form novalidate method="post" asp-action="CreateCategory" asp-controller="Categories">
             <div id="form-categoryName" class="input-group">

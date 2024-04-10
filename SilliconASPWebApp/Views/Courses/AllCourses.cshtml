@@ -49,7 +49,15 @@
                         <div class="info">
                             <div class="title">@course.Title</div>
                             <p>By @course.Author</p>
-                            <label>$@course.Price</label>
+                            @if (course.DiscountPrice != "")
+                            {
+                                <label id="discount">$@course.DiscountPrice</label>
+                                <label id="price"> $@course.Price</label>
+                            }
+                            else
+                            {
+                                <label>$@course.Price</label>
+                            }
                             <div class="line"></div>
                             <div class="time-rates">
                                 <div><i class="fa-regular fa-clock"></i> <span>@course.Hours hours</span></div>

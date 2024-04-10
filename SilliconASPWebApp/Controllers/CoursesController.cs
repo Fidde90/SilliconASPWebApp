@@ -116,12 +116,8 @@ namespace SilliconASPWebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var newDto = CourseMapping.ToUpdateCourseDto(dto);
-
-                    var json = JsonConvert.SerializeObject(newDto);
-                    using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var response = await _client.PutAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
-                    if (response.IsSuccessStatusCode)
+                  var result = await _courseService.UpdateCourseAsync(dto);
+                    if(result != null)
                     {
                         TempData["message"] = "Updated";
                         return RedirectToAction("UpdateCourse", "Courses");

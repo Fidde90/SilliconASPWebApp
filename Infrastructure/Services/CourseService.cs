@@ -1,10 +1,11 @@
 ﻿using Infrastructure.Dtos;
+using Infrastructure.Factories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System.Buffers;
+using SilliconASPWebApp.Models.Components;
 using System.Diagnostics;
-using System.Net;
+using System.Text;
 
 namespace Infrastructure.Services
 {
@@ -29,6 +30,23 @@ namespace Infrastructure.Services
                         return data.Courses;
                     }
                 }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
+        }
+
+        public async Task<UpdateCourseDto> UpdateCourseAsync(CourseCardModel dto)
+        {
+            try
+            {
+                var newDto = CourseMapping.ToUpdateCourseDto(dto);
+                var json = JsonConvert.SerializeObject(newDto);
+                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _client.PutAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return newDto;
+                }               
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;

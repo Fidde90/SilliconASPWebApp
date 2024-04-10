@@ -37,7 +37,15 @@
                             <div class="info">
                                 <div class="title">@Model.Title</div>
                                 <p>By @Model.Author</p>
-                                <label>$@Model.Price</label>
+                                @if (!string.IsNullOrEmpty(Model.DiscountPrice) || !string.IsNullOrWhiteSpace(Model.DiscountPrice))
+                                {
+                                    <label id="discount">$@Model.DiscountPrice</label>
+                                    <label id="price"> $@Model.Price</label>
+                                }
+                                else
+                                {
+                                    <label>$@Model.Price</label>
+                                }
                                 <div class="line"></div>
                                 <div class="time-rates">
                                     <div><i class="fa-regular fa-clock"></i> <span>@Model.Hours hours</span></div>
@@ -60,7 +68,15 @@
                             <div class="info">
                                 <div class="title">@Model.Title</div>
                                 <p>By @Model.Author</p>
-                                <label>$@Model.Price</label>
+                                @if (!string.IsNullOrEmpty(Model.DiscountPrice) || !string.IsNullOrWhiteSpace(Model.DiscountPrice))
+                                {
+                                    <label id="discount">$@Model.DiscountPrice</label>
+                                    <label id="price"> $@Model.Price</label>
+                                }
+                                else
+                                {
+                                    <label>$@Model.Price</label>
+                                }
                                 <div class="line"></div>
                                 <div class="time-rates">
                                     <div><i class="fa-regular fa-clock"></i> <span>@Model.Hours hours</span></div>
@@ -75,7 +91,14 @@
                     <div>No course found</div>
                 }
             </div>
-         
+
+            <div>
+                @if (TempData["message"]?.ToString() == "Update")
+                {
+                    <div class="susccess-message">Updated!</div>
+                }
+            </div>
+
             <div id="update-form" class="input-group">
                 <form method="post" novalidate asp-controller="Courses" asp-action="UpdateCourse">
                     <label asp-for="Title">Title *</label>
@@ -105,11 +128,13 @@
                     <label asp-for="PictureUrl">PictureUrl *</label>
                     <input asp-for="PictureUrl" />
 
+                    <label asp-for="Category">Category</label>
+                    <input asp-for="Category" />
+
                     <button id="update-btn" class="btn-theme" type="submit">Update</button>
                 </form>
             </div>
         </div>
-
 
     </div>
 </section>
