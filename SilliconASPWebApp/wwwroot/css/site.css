@@ -1811,8 +1811,6 @@ footer .container .display-none {
   grid-area: buttons;
 }
 .courses .container .pagination .arrow {
-  text-align: center;
-  text-decoration: none;
   margin-top: 8px;
 }
 .courses .container .pagination .number {
