@@ -14,6 +14,11 @@
 <aside class="profile-menu">
     <div class="name-email-img">
         <img src="@Model.Image" />
+
+        <form enctype="multipart/form-data" method="post" asp-action="UploadImg" asp-controller="Account">
+            <input id="fileUploarder" type="file" name="file" hidden />
+            <label class="btn-circle" for="fileUploarder"><i class="fa-regular fa-refresh"></i></label>
+        </form>
         <h5>@Model.Name</h5>
         <p>@Model.Email</p>
     </div>

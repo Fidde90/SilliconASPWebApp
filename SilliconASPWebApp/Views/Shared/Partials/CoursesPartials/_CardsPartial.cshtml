@@ -1,6 +1,5 @@
 ﻿@model CoursesIndexViewModel
 @{
-    int j = 0;
     int currentPage = Model!.Pagination!.CurrentPage;
     int pageSize = Model!.Pagination.PageSize;
     int totalPages = Model.Pagination.TotalPages;
@@ -52,16 +51,10 @@
 
         @if (Model?.Pagination != null && totalPages > 1)
         {
-
             <div class="pagination">
+                <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = ( currentPage > 1 ? currentPage - 1 : 1 ), pageSize = pageSize })"><i class="fa-solid fa-chevron-left"></i></a>
                 @for (int i = 1; i <= totalPages; i++)
                 {
-                    if (j == 0)
-                    {
-                        <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = ( currentPage > 1 ? currentPage - 1 : 1 ), pageSize = pageSize })"><i class="fa-solid fa-chevron-left"></i></a>
-                        j = -1;
-                    }
-
                     if (i == currentPage)
                     {
                         <span class="number active">@i</span>
@@ -70,12 +63,8 @@
                     {
                         <a class="number" href="@Url.Action("Index", new { category = category , pageNumber = i, pageSize = pageSize })">@i</a>
                     }
-
-                    if (i == totalPages)
-                    {
-                        <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = ( currentPage < totalPages ? currentPage + 1 : totalPages) , pageSize = pageSize })"><i class="fa-solid fa-chevron-right"></i></a>
-                    }
                 }
+                <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = (currentPage < totalPages ? currentPage + 1 : totalPages) , pageSize = pageSize })"><i class="fa-solid fa-chevron-right"></i></a>
             </div>
         }
     </div>

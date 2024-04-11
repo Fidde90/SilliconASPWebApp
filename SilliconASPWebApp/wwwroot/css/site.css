@@ -1475,6 +1475,17 @@ footer .container .display-none {
 .profile-menu .name-email-img {
   text-align: center;
 }
+.profile-menu .name-email-img .btn-circle {
+  width: 25px;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.profile-menu .name-email-img img {
+  width: 120px;
+  border-radius: 50%;
+}
 .profile-menu .name-email-img h5 {
   color: var(--color-900);
 }

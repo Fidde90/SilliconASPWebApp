@@ -148,6 +148,12 @@ namespace SilliconASPWebApp.Controllers
             return View(viewModel);
         }
         #endregion
+
+        [HttpPost]
+        public async Task<IActionResult> UploadImg(IFormFile file)
+        {
+            return RedirectToAction("Details", "Account");
+        }
     }
 }
 
