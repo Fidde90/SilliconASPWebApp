@@ -1,11 +1,9 @@
 ﻿using Infrastructure.Dtos;
-using Infrastructure.Factories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SilliconASPWebApp.Models.Components;
 using SilliconASPWebApp.ViewModels.Views;
-using System.Buffers;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
@@ -21,15 +19,29 @@ namespace SilliconASPWebApp.Controllers
         private readonly CourseService _courseService = courseService;
 
         #region user courses actions
-        public async Task<IActionResult> Index(string category = "", string searchValue = "")
+        public async Task<IActionResult> Index(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 2)
         {
-            var viewModel = new CoursesIndexViewModel
-            {
-                Categories = await _categoryService.GetCategoriesAsync(),
-                Courses = await _courseService.GetCoursesAsync(category, searchValue)
-            };
+            var courseResult = await _courseService.GetCoursesAsync(category, searchValue, pageNumber, pageSize);
 
-            return View(viewModel);
+            if(courseResult != null)
+            {
+                var viewModel = new CoursesIndexViewModel
+                {
+                    Categories = await _categoryService.GetCategoriesAsync(),
+                    Courses = courseResult.Courses,
+                    Pagination = new PaginationDto
+                    {
+                        PageSize = pageSize,
+                        CurrentPage = pageNumber,
+                        TotalPages = courseResult.TotalPages,
+                        TotalItems = courseResult.TotalItems,
+                        Category = courseResult.Category
+                    }
+                };
+
+                return View(viewModel);
+            }
+                return View();
         }
 
         [HttpGet]
@@ -84,7 +96,7 @@ namespace SilliconASPWebApp.Controllers
             {
                 var result = await _courseService.GetCoursesAsync();
                 if (result != null)
-                    return View(result);
+                    return View(result.Courses);
 
                 TempData["Message"] = "no courses";
                 return View();
@@ -116,8 +128,8 @@ namespace SilliconASPWebApp.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                  var result = await _courseService.UpdateCourseAsync(dto);
-                    if(result != null)
+                    var result = await _courseService.UpdateCourseAsync(dto);
+                    if (result != null)
                     {
                         TempData["message"] = "Updated";
                         return RedirectToAction("UpdateCourse", "Courses");

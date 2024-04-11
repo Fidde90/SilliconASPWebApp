@@ -19,14 +19,15 @@
                     <div class="select-options">
                         <div class="option" data-value="all">All categories</div>
 
-                        @if(Model.Categories != null)
+                        @if(Model?.Categories != null)
                         {
                             foreach(var category in Model.Categories)
                             {
                                 <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
-                               
+
                             }
                         }
+      
                     </div>
                     
                 </div>

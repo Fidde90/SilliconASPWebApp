@@ -1803,14 +1803,19 @@ footer .container .display-none {
     box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
   }
 }
-.courses .container .buttons {
+.courses .container .pagination {
   display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 30px;
   grid-area: buttons;
 }
-.courses .container .buttons button {
+.courses .container .pagination .arrow {
+  text-align: center;
+  text-decoration: none;
+  margin-top: 8px;
+}
+.courses .container .pagination .number {
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -1818,14 +1823,17 @@ footer .container .display-none {
   font-weight: 600;
   background-color: var(--color-gray-100);
   color: var(--color-gray-900);
-}
-.courses .container .buttons button:active {
-  background-color: var(--color-theme);
+  align-content: center;
+  text-align: center;
+  text-decoration: none;
 }
 @media (min-width: 1200px) {
-  .courses .container .buttons button:hover {
+  .courses .container .pagination .number:hover {
     background-color: var(--color-theme);
   }
+}
+.courses .container .pagination .active {
+  background-color: var(--color-theme);
 }
 
 .work-with-us {

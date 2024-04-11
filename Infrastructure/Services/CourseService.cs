@@ -16,19 +16,37 @@ namespace Infrastructure.Services
         private readonly string _url = "https://localhost:7295/api/Courses";
 
         [HttpGet]
-        public async Task<IEnumerable<CourseDto>> GetCoursesAsync(string category = "", string searchValue = "")
+        public async Task<CourseResult> GetCoursesAsync(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 10)
         {
             try
             {
-                var response = await _client.GetAsync($"{_url}?category={Uri.UnescapeDataString(category)}&searchValue={Uri.UnescapeDataString(searchValue)}");
+                var response = await _client.GetAsync($"{_url}?category={Uri.UnescapeDataString(category)}&searchValue={Uri.UnescapeDataString(searchValue)}&" +
+                    $"pageNumber={Uri.UnescapeDataString(pageNumber.ToString())}&pageSize={Uri.UnescapeDataString(pageSize.ToString())}");
+
                 if (response.IsSuccessStatusCode)
                 {
                     var json = await response.Content.ReadAsStringAsync();
                     var data = JsonConvert.DeserializeObject<CourseResult>(json);
                     if (data!.Courses != null && data.Succeeded)
-                    {
-                        return data.Courses;
-                    }
+                        return data;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
+        }
+
+        public async Task<CourseResult> GetCoursesAsync()
+        {
+            try
+            {
+                var response = await _client.GetAsync($"{_url}?key={_configuration["ApiKey:Secret"]}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CourseResult>(json);
+                    if (data!.Courses != null && data.Succeeded)
+                        return data;
                 }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
@@ -46,7 +64,7 @@ namespace Infrastructure.Services
                 if (response.IsSuccessStatusCode)
                 {
                     return newDto;
-                }               
+                }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;

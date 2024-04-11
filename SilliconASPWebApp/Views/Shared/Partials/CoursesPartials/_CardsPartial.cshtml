@@ -1,11 +1,18 @@
 ﻿@model CoursesIndexViewModel
+@{
+    int j = 0;
+    int currentPage = Model!.Pagination!.CurrentPage;
+    int pageSize = Model!.Pagination.PageSize;
+    int totalPages = Model.Pagination.TotalPages;
+    string? category = Model.Pagination.Category;
+}
 
 <section class="courses">
 
     <div class="container">
 
         <div class="course-cards">
-            @if(Model.Courses != null && Model.Categories != null)
+            @if (Model?.Courses != null && Model?.Categories != null)
             {
                 @foreach (var course in Model.Courses)
                 {
@@ -41,16 +48,35 @@
                     </div>
                 }
             }
-          
         </div>
 
-        <div class="buttons">
-            <button class="arrow left"><i class="fa-solid fa-chevron-left"></i></button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button class="arrow right"><i class="fa-solid fa-chevron-right"></i></button>
-        </div>
+        @if (Model?.Pagination != null && totalPages > 1)
+        {
+
+            <div class="pagination">
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    if (j == 0)
+                    {
+                        <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = ( currentPage > 1 ? currentPage - 1 : 1 ), pageSize = pageSize })"><i class="fa-solid fa-chevron-left"></i></a>
+                        j = -1;
+                    }
+
+                    if (i == currentPage)
+                    {
+                        <span class="number active">@i</span>
+                    }
+                    else
+                    {
+                        <a class="number" href="@Url.Action("Index", new { category = category , pageNumber = i, pageSize = pageSize })">@i</a>
+                    }
+
+                    if (i == totalPages)
+                    {
+                        <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = ( currentPage < totalPages ? currentPage + 1 : totalPages) , pageSize = pageSize })"><i class="fa-solid fa-chevron-right"></i></a>
+                    }
+                }
+            </div>
+        }
     </div>
 </section>

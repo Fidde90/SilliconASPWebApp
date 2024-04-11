@@ -1,8 +1,11 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    DropDown()
-    Search_Course()
+
     DarkLightMode_Switch()
+    Search_Course()
+    DropDown()
+
 })
+
 
 
 //---------------------------------------------------------------------------------------
@@ -10,7 +13,7 @@
 //mobile menu
 let btnClicked = document.querySelector('.btn-mobile')
 let m_menu = document.querySelector('#mobile-menu')
-let active = false;
+let active = false
 
 btnClicked.addEventListener('click', () => {
     active = !active
@@ -108,7 +111,6 @@ function DropDown() {
     try {
         let selected = document.querySelector('.selected')
         let menu = document.querySelector('.menu')
-
         let selectOptions = document.querySelector('.select-options')
 
         menu.addEventListener('click', function () {
@@ -131,7 +133,7 @@ function DropDown() {
 }
 
 
-function Search_Course(){
+function Search_Course() {
     try {
         const input = document.querySelector('#searchQuery')
         input.addEventListener('keyup', function () {
@@ -142,7 +144,8 @@ function Search_Course(){
 }
 
 function Filter_Courses() {
-    const category = document.querySelector('.dropdown .selected').getAttribute('data-value') || 'all'
+    const category = document.querySelector('.selected').getAttribute('data-value') || 'all'
+    console.log(category)
     const searchValue = document.querySelector('#searchQuery').value
     const URL = `/courses/index?category=${encodeURIComponent(category)}&searchValue=${encodeURIComponent(searchValue)}`
 
@@ -154,8 +157,10 @@ function Filter_Courses() {
                 const parser = new DOMParser()
                 const dom = parser.parseFromString(data, 'text/html')
                 document.querySelector('.course-cards').innerHTML = dom.querySelector('.course-cards').innerHTML
-            })
 
+                const pagination = dom.querySelector('.pagination') ? dom.querySelector('.pagination').innerHTML : ''
+                document.querySelector('.pagination').innerHTML = pagination
+            })
     }
     catch (error) { console.log(error.message) }
 }

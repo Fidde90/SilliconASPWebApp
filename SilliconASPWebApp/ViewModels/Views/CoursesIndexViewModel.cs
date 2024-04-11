@@ -7,6 +7,7 @@ namespace SilliconASPWebApp.ViewModels.Views
         public IEnumerable<CategoryDto>? Categories;
 
         public IEnumerable<CourseDto>? Courses;
+        public PaginationDto? Pagination {  get; set; }
     }
 }
  
