@@ -10,11 +10,12 @@ using SilliconASPWebApp.ViewModels.Views;
 namespace SilliconASPWebApp.Controllers
 {
     [Authorize] // ser till att du måste vara inloggad för att komma åt dessa sidor.
-    public class AccountController(UserManager<AppUserEntity> usermanager, AddressService addressService, UserService userService) : Controller
+    public class AccountController(AccountService accountService,UserManager<AppUserEntity> usermanager, AddressService addressService, UserService userService) : Controller
     {
         private readonly UserManager<AppUserEntity> _usermanager = usermanager;
         private readonly AddressService _addressService = addressService;
         private readonly UserService _userService = userService;
+        private readonly AccountService _accountService = accountService;
 
         #region home/details
         [Route("/account")]
@@ -152,6 +153,14 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadImg(IFormFile file)
         {
+            var result = await _accountService.UploadProfileImgAsync(User, file);
+            if(result == true)
+            {
+                TempData["Message"] = "true";
+                return RedirectToAction("Details", "Account");
+            }
+
+            TempData["Message"] = "false";
             return RedirectToAction("Details", "Account");
         }
     }

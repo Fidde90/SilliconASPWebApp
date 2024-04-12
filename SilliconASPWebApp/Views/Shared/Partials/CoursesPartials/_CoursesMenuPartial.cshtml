@@ -7,37 +7,27 @@
         </p>
         <div class="header-nav">
             <h1>Courses</h1>
-
             <form id="form">
-                <div class="dropdown">
-                
+                <div class="dropdown">               
                     <div class="menu">
                         <div class="selected">All categories</div>
                         <i class="fa-solid fa-caret-down"></i>
-                    </div>
-                    
+                    </div>             
                     <div class="select-options">
                         <div class="option" data-value="all">All categories</div>
-
                         @if(Model?.Categories != null)
                         {
                             foreach(var category in Model.Categories)
                             {
                                 <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
-
                             }
-                        }
-      
-                    </div>
-                    
+                        }    
+                    </div>                
                 </div>
-
                 <div class="input-group">
                     <input id="searchQuery" name="searchQuery" placeholder="Serach courses"/>
                     <i class="fa-solid fa-magnifying-glass"></i>
-
                 </div>
-
             </form>
         </div>
     </div>

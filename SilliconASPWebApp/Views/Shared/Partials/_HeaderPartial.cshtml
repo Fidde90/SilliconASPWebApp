@@ -1,8 +1,7 @@
-﻿@inject SignInManager<AppUserEntity> _signInManager
-@{
+﻿@{
+    var user = await UserManager.GetUserAsync(User);
     bool isRoot = Context.Request.Path.Value!.Equals("/");
-    bool active = _signInManager.IsSignedIn(User);
-
+    bool active = SignInManager.IsSignedIn(User);
     var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
     var isDark = (themeMode == "dark") ? true : false;
 }
@@ -37,7 +36,7 @@
     @if (active)
     {
         <div class="account-buttons">
-            <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="" /></a>
+            <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="~/uploads/@user?.ProfilePicUrl" /></a>
         </div>
     }
     else
@@ -57,7 +56,7 @@
         <a class="menu-link" href="#features">Features</a>
         <a class="menu-link" href="#contact.html">Contact</a>
         <a class="btn-theme" asp-controller="Auth" asp-action="SignOut"><i class="fa-regular fa-right-to-bracket"></i><span>Sign Out</span></a>
-        <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="/images/John-doe.svg" /></a>
+        <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="~/uploads/@user?.ProfilePicUrl" /></a>
     }
     else
     {

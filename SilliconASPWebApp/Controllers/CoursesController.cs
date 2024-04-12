@@ -19,6 +19,8 @@ namespace SilliconASPWebApp.Controllers
         private readonly CourseService _courseService = courseService;
 
         #region user courses actions
+
+        [HttpGet]
         public async Task<IActionResult> Index(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 2)
         {
             var courseResult = await _courseService.GetCoursesAsync(category, searchValue, pageNumber, pageSize);

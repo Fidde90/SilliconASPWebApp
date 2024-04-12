@@ -531,6 +531,8 @@ header .container .account-buttons {
 }
 header .container .profile-pic {
   width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 header .container .btn-mobile {
   grid-area: mobile;
@@ -557,6 +559,11 @@ header .mobile-menu {
   background-color: var(--color-gray-200);
   padding: 40px;
   margin-top: 20px;
+}
+header .mobile-menu .profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 footer {
@@ -1474,16 +1481,26 @@ footer .container .display-none {
 }
 .profile-menu .name-email-img {
   text-align: center;
+  position: relative;
 }
 .profile-menu .name-email-img .btn-circle {
-  width: 25px;
+  width: 27px;
   border-radius: 50%;
-  background-color: white;
+  background-color: #ffffff;
   color: black;
   border: 1px solid black;
+  cursor: pointer;
+  position: absolute;
+  top: 110px;
+  left: 90px;
+}
+.profile-menu .name-email-img .btn-circle:hover {
+  background-color: black;
+  color: #ffffff;
 }
 .profile-menu .name-email-img img {
-  width: 120px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
 }
 .profile-menu .name-email-img h5 {

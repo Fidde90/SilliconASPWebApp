@@ -16,8 +16,6 @@ namespace SilliconASPWebApp.ViewModels.Views
 
         public string ErrorMessage { get; set; } = string.Empty;
 
-        //public bool IsExternalAccount { get; set; }
-
         public void GetUserDetailsData(AppUserEntity user)
         {
             if(user != null)

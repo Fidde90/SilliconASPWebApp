@@ -3,9 +3,8 @@
     DarkLightMode_Switch()
     Search_Course()
     DropDown()
-
+    UploadProfileImg()
 })
-
 
 
 //---------------------------------------------------------------------------------------
@@ -74,7 +73,7 @@ function DarkLightMode_Switch() {
 
 //---------------------------------------------------------------------------------------
 
-//update course function in admin page
+//update course function in admin page- show/hide inputfields
 const modifyBtn = document.getElementById('modifyBtn')
 const updateBtn = document.getElementById('update-btn')
 let form = document.getElementById('update-form')
@@ -145,7 +144,6 @@ function Search_Course() {
 
 function Filter_Courses() {
     const category = document.querySelector('.selected').getAttribute('data-value') || 'all'
-    console.log(category)
     const searchValue = document.querySelector('#searchQuery').value
     const URL = `/courses/index?category=${encodeURIComponent(category)}&searchValue=${encodeURIComponent(searchValue)}`
 
@@ -161,6 +159,23 @@ function Filter_Courses() {
                 const pagination = dom.querySelector('.pagination') ? dom.querySelector('.pagination').innerHTML : ''
                 document.querySelector('.pagination').innerHTML = pagination
             })
+    }
+    catch (error) { console.log(error.message) }
+}
+//-------------------------------------------------------------------------------------------------------------------------------------
+
+function UploadProfileImg() {
+
+    try {
+
+        let fileUploader = document.querySelector('#fileUploarder')
+
+        if (fileUploader != undefined) {
+            fileUploader.addEventListener('change', function () {
+                if (this.files.length > 0)
+                    this.form.submit();
+            })
+        }
     }
     catch (error) { console.log(error.message) }
 }
