@@ -20,7 +20,7 @@ namespace SilliconASPWebApp.Controllers
 
         #region user courses actions
 
-        [HttpGet]
+
         public async Task<IActionResult> Index(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 2)
         {
             var courseResult = await _courseService.GetCoursesAsync(category, searchValue, pageNumber, pageSize);
