@@ -1,8 +1,6 @@
 using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Helpers.MIddlewares;
-using Infrastructure.Repositories;
-using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SilliconASPWebApp.Configurations;
@@ -44,7 +42,6 @@ builder.Services.AddAuthentication().AddGoogle(g =>
 
 builder.Services.RegisterRepositories(builder.Configuration);
 builder.Services.RegisterServices(builder.Configuration);
-
 
 var app = builder.Build();
 

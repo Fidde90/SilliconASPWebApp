@@ -1,5 +1,4 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
-    console.log("laddar")
     DarkLightMode_Switch()
     Search_Course()
     DropDown()
@@ -113,7 +112,6 @@ function DropDown() {
         let selectOptions = document.querySelector('.select-options')
 
         menu.addEventListener('click', function () {
-            console.log("1")
             selectOptions.style.display = (selectOptions.style.display === 'block') ? 'none' : 'block'
         })
 
@@ -121,7 +119,6 @@ function DropDown() {
         options.forEach(function (option) {
           
             option.addEventListener('click', function () {
-                console.log("2")
                 selected.innerHTML = this.textContent
                 selectOptions.style.display = 'none'
                 let category = this.getAttribute('data-value')

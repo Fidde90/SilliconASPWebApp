@@ -13,7 +13,7 @@
         <nav>
             <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")">Overview</a>
             <a class="menu-link" href="#features">Features</a>
-            <a class="menu-link">Contact</a>
+            <a class="menu-link" asp-action="Index" asp-controller="Contact">Contact</a>
             <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
 
             @if (active && User.IsInRole("Admin"))

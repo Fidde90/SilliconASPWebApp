@@ -42,59 +42,6 @@
                     flex-direction: row;
                 }
 
-                .dropdown {
-                    border: 2px solid var(--color-gray-400);
-                    border-radius: 7px !important;
-                    background-color: var(--color-background);
-                    color: var(--color-gray-900);
-                    padding: 10px 15px;
-                    width: 100%;
-                    min-width: 330px;
-                    height: 48px;
-                    position: relative;
-                    cursor: pointer;
-
-                    .menu {
-
-                        .selected {
-                            color: var(--color-gray-500);
-                        }
-
-                        i {
-                            position: absolute;
-                            color: var(--color-gray-400);
-                            right: 15px;
-                            top: 15px;
-                        }
-                    }
-
-                    .select-options {
-                        position: absolute;
-                        width: 327px;
-                        top: 44px;
-                        left: 0px;
-                        display: none;
-                        background-color: var(--color-gray-900);
-                        color: var(--color-gray-000);
-                        border: 1px solid var(--color-gray-400);
-                        border-radius: 7px !important;
-                        z-index: 50;
-                    }
-
-                    .option {
-                        height: 35px;
-                        align-content: center;
-                        font-weight: 600;
-                        font-size: 15px;
-                        padding: 5px;
-                        border: 1px solid var(--color-gray-600);
-
-                        &:hover {
-                            background-color: var(--color-gray-500);
-                        }
-                    }
-                }
-
                 .input-group {
                     position: relative;
                     min-width: 330px;

@@ -13,6 +13,7 @@ namespace SilliconASPWebApp.Configurations
             services.AddScoped<AddressService>();
             services.AddScoped<CategoryService>();
             services.AddScoped<CourseService>();
+            services.AddScoped<ContactService>();
         }
     }
 }
