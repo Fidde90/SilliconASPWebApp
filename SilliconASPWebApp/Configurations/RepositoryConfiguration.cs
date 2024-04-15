@@ -9,6 +9,7 @@ namespace SilliconASPWebApp.Configurations
         {
             services.AddScoped<UserRepository>();
             services.AddScoped<AddressRepository>();
+            services.AddScoped<SavedCoursesRepository>();
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Infrastructure.Contexts
         }
         public DbSet<AddressEntity> Addresses { get; set; }
 
+        public DbSet<SavedCoursesEntity> SavedCourses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

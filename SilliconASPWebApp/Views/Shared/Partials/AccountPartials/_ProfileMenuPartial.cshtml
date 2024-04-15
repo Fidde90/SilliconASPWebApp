@@ -1,6 +1,7 @@
 ﻿@model ProfileMenuModel
 @{
-    List<string> actions = new() { "Details", "Security", "Courses", "SignOut" };
+    List<string> actions = new() { "Details", "Security", "SavedCourses", "SignOut" };
+    var user = await UserManager.GetUserAsync(User);
 
     string CheckURL(int index)
     {
@@ -13,14 +14,14 @@
 
 <aside class="profile-menu">
     <div class="name-email-img">
-        <img src="~/uploads/@Model.Image" />
+        <img src="~/uploads/@user?.ProfilePicUrl" />
 
         <form enctype="multipart/form-data" method="post" asp-action="UploadImg" asp-controller="Account">
             <input id="fileUploarder" type="file" name="file" hidden />
             <label class="btn-circle" for="fileUploarder"><i class="fa-regular fa-refresh"></i></label>
         </form>
-        <h5>@Model.Name</h5>
-        <p>@Model.Email</p>
+        <h5>@user!.FirstName @user.LastName</h5>
+        <p>@user.Email</p>
     </div>
 
     <nav>

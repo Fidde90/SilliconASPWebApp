@@ -20,7 +20,7 @@ namespace Infrastructure.Services
         {
             try
             {
-                var response = await _client.GetAsync($"{_url}?category={Uri.UnescapeDataString(category)}&searchValue={Uri.UnescapeDataString(searchValue)}&" +
+                var response = await _client.GetAsync($"{_url}?key={_configuration["ApiKey:Secret"]}&category={Uri.UnescapeDataString(category)}&searchValue={Uri.UnescapeDataString(searchValue)}&" +
                     $"pageNumber={Uri.UnescapeDataString(pageNumber.ToString())}&pageSize={Uri.UnescapeDataString(pageSize.ToString())}");
 
                 if (response.IsSuccessStatusCode)

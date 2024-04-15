@@ -1,25 +1,50 @@
-﻿using SilliconASPWebApp.Models.Components;
+﻿using Infrastructure.Dtos;
+using Infrastructure.Entities;
+using Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using SilliconASPWebApp.Models.Sections;
+using System.Security.Claims;
 
 namespace SilliconASPWebApp.ViewModels.Views
 {
     public class SavedCoursesViewModel
     {
-        public ProfileMenuModel ProfileMenuModel { get; set; } = new (){
-                Image = "images/John-doe.svg",
-                Name = "John Doe",
-                Email ="john.doe@hotmail.com"   
-        };
+        //private readonly UserManager<AppUserEntity> _userManager;
+        //private readonly SavedCoursesService _SavedCourseService;
 
-        public CourseCardModel CourseCard = new()
+
+        //public SavedCoursesViewModel(UserManager<AppUserEntity> userManager, SavedCoursesService savedCourseService)
+        //{
+        //    _userManager = userManager;
+        //    _SavedCourseService = savedCourseService;
+        //}
+        public SavedCoursesViewModel()
         {
-            //Image = new() { Src = "/images/course-jmetter.svg", AltText = "blablabla" },
-            //Title = "något",
-            //Author = "någon",
-            //Price = "38",
-            //Hours = "150h",
-            //LikesInProcent = "50%",
-            //LikesInNumbers ="2k",   
-        };
+            
+        }
+
+        public ProfileMenuModel profileMenu {  get; set; } = new ProfileMenuModel(); 
+
+        public CourseResult CourseResult { get; set; } = new CourseResult();
+
+        public List<CourseDto> Courses { get; set; } = new List<CourseDto>();
+
+
+        //public async Task<List<CourseDto>> FilterCourses(IEnumerable<CourseDto> courses, ClaimsPrincipal user)
+        //{
+
+        //    var currentUser = await _userManager.GetUserAsync(user);
+        //    if (currentUser != null)
+        //    {
+   
+
+        //        var listToReturn = await _SavedCourseService.GetAllSavedCourses(currentUser.Id, courses.ToList());
+
+        //        return listToReturn.ToList();
+        //    }
+
+        //    return null!;
+
+        //}
     }
 }

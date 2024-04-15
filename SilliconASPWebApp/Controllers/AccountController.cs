@@ -1,21 +1,31 @@
-﻿using Infrastructure.Entities;
+﻿using Infrastructure.Contexts;
+using Infrastructure.Dtos;
+using Infrastructure.Entities;
 using Infrastructure.Factories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
+
 
 namespace SilliconASPWebApp.Controllers
 {
     [Authorize] // ser till att du måste vara inloggad för att komma åt dessa sidor.
-    public class AccountController(AccountService accountService,UserManager<AppUserEntity> usermanager, AddressService addressService, UserService userService) : Controller
+    public class AccountController(SavedCoursesService savedCoursesService, DataContext dataContext, IConfiguration configuration, HttpClient httpClient, AccountService accountService, UserManager<AppUserEntity> usermanager, AddressService addressService, UserService userService) : Controller
     {
-        private readonly UserManager<AppUserEntity> _usermanager = usermanager;
+
+        private readonly DataContext _dataContext = dataContext;
+
+        private readonly UserManager<AppUserEntity> _userManager = usermanager;
+        private readonly SavedCoursesService _savedCoursesService = savedCoursesService;
         private readonly AddressService _addressService = addressService;
         private readonly UserService _userService = userService;
         private readonly AccountService _accountService = accountService;
+        private readonly HttpClient _client = httpClient;
+        private readonly IConfiguration _configuration = configuration;
 
         #region home/details
         [Route("/account")]
@@ -24,7 +34,7 @@ namespace SilliconASPWebApp.Controllers
         {
             AccountDetailsViewModel viewModel = new();
 
-            var user = await _usermanager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User);
 
             if (user != null)
                 viewModel.GetUserDetailsData(user!);
@@ -46,12 +56,12 @@ namespace SilliconASPWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(nameof(Details), viewModel);
 
-            var user = await _usermanager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User);
             var loggedInUser = MappingFactory.MapNewUserValues(user!, model);
 
             if (loggedInUser != null)
             {
-                var updateUser = await _usermanager.UpdateAsync(loggedInUser);
+                var updateUser = await _userManager.UpdateAsync(loggedInUser);
                 viewModel.GetUserDetailsData(loggedInUser!);
 
                 if (user!.AddressId != null)
@@ -71,13 +81,13 @@ namespace SilliconASPWebApp.Controllers
 
             if (!ModelState.IsValid)
             {
-                var user = await _usermanager.GetUserAsync(User);
+                var user = await _userManager.GetUserAsync(User);
                 viewModel.GetUserDetailsData(user!);
                 viewModel.GetUserAddressData(user!.Address!);
                 return View(nameof(Details), viewModel);
             }
-    
-            var loggedInUser = await _usermanager.GetUserAsync(User);
+
+            var loggedInUser = await _userManager.GetUserAsync(User);
 
             var newAddress = MappingFactory.NewAddressMapping(model);
             var updatedAddress = await _addressService.UpdateAddress(newAddress);
@@ -110,11 +120,11 @@ namespace SilliconASPWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(nameof(Security), viewModel);
 
-            var loggedInUser = await _usermanager.GetUserAsync(User);
+            var loggedInUser = await _userManager.GetUserAsync(User);
 
             if (loggedInUser != null)
             {
-                var updateUser = await _usermanager.ChangePasswordAsync(loggedInUser!, model.Password, model.NewPassword);
+                var updateUser = await _userManager.ChangePasswordAsync(loggedInUser!, model.Password, model.NewPassword);
             }
 
             viewModel.ChangePasswordErrorMessage = "Passwords did not match.";
@@ -129,11 +139,11 @@ namespace SilliconASPWebApp.Controllers
             if (!ModelState.IsValid)
                 return View(nameof(Security), viewModel);
 
-            var activeUser = await _usermanager.GetUserAsync(User);
+            var activeUser = await _userManager.GetUserAsync(User);
 
             if (activeUser != null)
             {
-                var deleteUser = await _usermanager.DeleteAsync(activeUser);
+                var deleteUser = await _userManager.DeleteAsync(activeUser);
             }
 
             viewModel.DeleteAccountErrorMessage = "Confirm the checkbox.";
@@ -142,11 +152,66 @@ namespace SilliconASPWebApp.Controllers
         #endregion
 
         #region saved courses
+
         [Route("/savedcourses")]
         [HttpGet]
-        public IActionResult Courses(SavedCoursesViewModel viewModel)
+        public async Task<IActionResult> SavedCourses(SavedCoursesViewModel viewModel)
         {
+            string _url = $"https://localhost:7295/allcourses";
+            var user = await _userManager.GetUserAsync(User);
+
+            var response = await _client.GetAsync($"{_url}?key={_configuration["ApiKey:Secret"]}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseDto>>(json);
+                if (data!.Count() > 0)
+                {
+                    //var list = viewModel.FilterCourses(data!, User);
+
+                    if (user != null)
+                    {
+
+                        var listToReturn = await _savedCoursesService.GetAllSavedCourses(user.Id, data!.ToList());
+
+
+                        viewModel.Courses = listToReturn.ToList();
+                        return View(viewModel);
+
+                    }
+
+                }
+
+            }
+
             return View(viewModel);
+        }
+        public async Task<IActionResult> SaveCourse(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+       
+
+            if (user != null)
+            {
+
+
+                var newSave = new SavedCoursesEntity
+                {
+                    CourseId = id,
+                    UserId = user.Id
+                };
+
+                var result = await _savedCoursesService.SaveCourseAsync(newSave);
+
+                if (result == true)
+                {
+
+                    return RedirectToAction("Index", "Courses");
+                }
+            }
+
+            return RedirectToAction("Index", "Courses");
         }
         #endregion
 
@@ -154,7 +219,7 @@ namespace SilliconASPWebApp.Controllers
         public async Task<IActionResult> UploadImg(IFormFile file)
         {
             var result = await _accountService.UploadProfileImgAsync(User, file);
-            if(result == true)
+            if (result == true)
             {
                 TempData["Message"] = "true";
                 return RedirectToAction("Details", "Account");

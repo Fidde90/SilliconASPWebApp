@@ -1,22 +1,26 @@
-﻿@model CoursesIndexViewModel
+﻿@model SavedCoursesViewModel
 @{
-    int currentPage = Model!.Pagination!.CurrentPage;
-    int pageSize = Model!.Pagination.PageSize;
-    int totalPages = Model.Pagination.TotalPages;
-    string? category = Model.Pagination.Category;
+    var user = await UserManager.GetUserAsync(User);
 }
 
-<section class="courses">
-
+<section class="saved-courses">
     <div class="container">
 
-        <div class="course-cards">
-            @if (Model?.Courses != null && Model?.Categories != null)
-            {
-                @foreach (var course in Model.Courses)
+        @await Html.PartialAsync("~/Views/Shared/Partials/AccountPartials/_ProfileMenuPartial.cshtml", Model.profileMenu)
+
+        <div class="courses">
+
+            <div class="title-delete">
+                <h2>Saved items</h2>
+                <button><i class="fa-regular fa-trash"></i>Delete all</button>
+            </div>
+
+            <div class="course-cards">
+        @*         <div>@user.Courses.Count</div> *@
+                @foreach (var course in Model!.Courses)
                 {
                     <div class="card">
-                        <a class="bookmark" asp-action="SaveCourse" asp-controller="Account" asp-route-id="@course.Id" ><i class="fa-regular fa-bookmark"></i></a>
+                        <a class="bookmark" asp-action="SaveCourse" asp-controller="Account" asp-rout-id="@course.Id"><i class="fa-regular fa-bookmark"></i></a>
                         @if (course.IsBestSeller)
                         {
                             <p class="best-seller">Best seller</p>
@@ -46,26 +50,10 @@
                         </a>
                     </div>
                 }
-            }
-        </div>
 
-        @if (Model?.Pagination != null && totalPages > 1)
-        {
-            <div class="pagination">
-                <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = ( currentPage > 1 ? currentPage - 1 : 1 ), pageSize = pageSize })"><i class="fa-solid fa-chevron-left"></i></a>
-                @for (int i = 1; i <= totalPages; i++)
-                {
-                    if (i == currentPage)
-                    {
-                        <span class="number active">@i</span>
-                    }
-                    else
-                    {
-                        <a class="number" href="@Url.Action("Index", new { category = category , pageNumber = i, pageSize = pageSize })">@i</a>
-                    }
-                }
-                <a class="arrow" href="@Url.Action("Index", new { category = category, pageNumber = (currentPage < totalPages ? currentPage + 1 : totalPages) , pageSize = pageSize })"><i class="fa-solid fa-chevron-right"></i></a>
             </div>
-        }
+
+        </div>
     </div>
+
 </section>

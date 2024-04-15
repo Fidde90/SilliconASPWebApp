@@ -14,6 +14,7 @@ namespace SilliconASPWebApp.Configurations
             services.AddScoped<CategoryService>();
             services.AddScoped<CourseService>();
             services.AddScoped<ContactService>();
+            services.AddScoped<SavedCoursesService>();
         }
     }
 }

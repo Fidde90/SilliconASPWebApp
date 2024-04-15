@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Infrastructure.Dtos;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Entities
 {
@@ -15,10 +16,10 @@ namespace Infrastructure.Entities
 
         public int? AddressId { get; set; }
 
-        public AddressEntity? Address { get; set; }
+        public virtual AddressEntity? Address { get; set; }
 
         [ProtectedPersonalData]
-        public string? ProfilePicUrl { get; set; } = "/uploads/doomguy.jpg";
+        public string? ProfilePicUrl { get; set; } = "~/uploads/doomguy.jpg";
 
         public bool IsExternal { get; set; } = false;
     }
