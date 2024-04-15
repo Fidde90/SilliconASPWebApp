@@ -17,11 +17,13 @@ namespace Infrastructure.Models.Forms
 
         [Display(Name = "Service", Order = 2)]
         [MinLength(2, ErrorMessage = "Invalid first name")]
-        public string? Service { get; set; }
+        public string Service { get; set; } = null!;
 
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Message", Prompt = "Enter your message...", Order = 3)]
         [Required(ErrorMessage = "Message is required")]
         [MinLength(10, ErrorMessage = "The message must contain at least 10 letters")]
+        [MaxLength(1000)]
         public string Message { get; set; } = null!;
     }
 }

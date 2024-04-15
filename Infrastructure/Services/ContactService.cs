@@ -1,9 +1,7 @@
 ﻿using Infrastructure.Dtos;
 using Infrastructure.Models.Forms;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using System;
 using System.Diagnostics;
 using System.Text;
 
@@ -19,15 +17,13 @@ namespace Infrastructure.Services
         {
             try
             {
-
-                var newMessage = new ContactMessageDto
+                var newMessage = new ContactDto
                 {
                     FullName = form.FullName,
                     Email = form.Email,
                     Service = form.Service!,
                     Message = form.Message
                 };
-
 
                 if (newMessage != null)
                 {

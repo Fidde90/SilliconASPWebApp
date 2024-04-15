@@ -106,6 +106,7 @@
             border-radius: 10px;
             padding: 50px;
             margin-bottom: 90px;
+            position: relative;
 
             @include lg {
                 position: absolute;
@@ -123,23 +124,40 @@
                 margin-bottom: 30px;
             }
 
-            .contact-form {
+            .error-message {
+                position: absolute;
+                top: 95px;
+                width: 50%;
+                z-index: 10;
+            }
 
-                .dropdown {
-                    margin-bottom: 20px;
+            .susccess-message {
+                position: absolute;
+                top: 95px;
+                width: 50%;
+                z-index: 10;
+            }
 
-                    .select-options {
-                        width: 100%;
-                    }
-
-                    .selected {
-                        color: var(--color-gray-500);
-                    }
+            @include lg {
+                .error-message {
+                    top: 93px;
+                    width: 90%;
+                    right: 20px;
                 }
 
-                #cars {
+                .susccess-message {
+                    top: 93px;
+                    right: 30px;
+                    width: 90%;
+                }
+            }
+
+            .contact-form {
+
+
+                #services {
                     width: 100%;
-                    background-color:var(--color-background);
+                    background-color: var(--color-background);
                     padding: 10px 15px;
                     border: 1px solid var(--color-gray-400);
                     border-radius: 7px !important;
@@ -156,7 +174,7 @@
                 }
 
                 .text-area {
-
+                    margin-top: 15px;
 
                     textarea {
                         margin-top: 5px;

@@ -2813,6 +2813,7 @@ footer .container .display-none {
   border-radius: 10px;
   padding: 50px;
   margin-bottom: 90px;
+  position: relative;
 }
 @media (min-width: 992px) {
   .contact-us .container .card-form {
@@ -2831,16 +2832,31 @@ footer .container .display-none {
 .contact-us .container .card-form h2 {
   margin-bottom: 30px;
 }
-.contact-us .container .card-form .contact-form .dropdown {
-  margin-bottom: 20px;
+.contact-us .container .card-form .error-message {
+  position: absolute;
+  top: 95px;
+  width: 50%;
+  z-index: 10;
 }
-.contact-us .container .card-form .contact-form .dropdown .select-options {
-  width: 100%;
+.contact-us .container .card-form .susccess-message {
+  position: absolute;
+  top: 95px;
+  width: 50%;
+  z-index: 10;
 }
-.contact-us .container .card-form .contact-form .dropdown .selected {
-  color: var(--color-gray-500);
+@media (min-width: 992px) {
+  .contact-us .container .card-form .error-message {
+    top: 93px;
+    width: 90%;
+    right: 20px;
+  }
+  .contact-us .container .card-form .susccess-message {
+    top: 93px;
+    right: 30px;
+    width: 90%;
+  }
 }
-.contact-us .container .card-form .contact-form #cars {
+.contact-us .container .card-form .contact-form #services {
   width: 100%;
   background-color: var(--color-background);
   padding: 10px 15px;
@@ -2855,6 +2871,9 @@ footer .container .display-none {
   margin-bottom: 5px;
   margin-right: 20px;
   width: 100%;
+}
+.contact-us .container .card-form .contact-form .text-area {
+  margin-top: 15px;
 }
 .contact-us .container .card-form .contact-form .text-area textarea {
   margin-top: 5px;
@@ -3125,7 +3144,7 @@ footer .container .display-none {
 .susccess-message {
   position: absolute;
   top: -50px;
-  color: white;
+  color: black;
   font-size: 16px;
   margin-bottom: 20px;
   width: 250px;

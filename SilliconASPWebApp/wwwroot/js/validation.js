@@ -65,7 +65,7 @@ let forms = document.querySelectorAll('form');
 forms.forEach(form => {
 
     let inputs = form.querySelectorAll('input');
-
+  
     inputs.forEach(input => {
 
         if (input.dataset.val === "true") {
@@ -96,5 +96,5 @@ forms.forEach(form => {
             }
         }
     })
-   
+
 });

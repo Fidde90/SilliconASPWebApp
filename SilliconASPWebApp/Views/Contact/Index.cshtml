@@ -1,6 +1,6 @@
 ﻿@model ContactViewModel
 @{
-
+    ViewData["Title"] = "Contact";
 }
 
 <section class="contact-us">
@@ -34,6 +34,15 @@
             </div>
         </div>
         <div class="card-form">
+
+            @if (TempData?["Message"]?.ToString() == "faild")
+            {
+                <div class="error-message">Enter a valid message, minimum length of 10 characters.</div>
+            }
+            else if (TempData?["Message"]?.ToString() == "sent")
+            {
+                <div class="susccess-message"> Thank you for getting in touch, we will respond as soon as we can.</div>
+            }
             <h2>Get in contact with us</h2>
 
             <form method="post" novalidate class="contact-form" asp-action="CreateMessage" asp-controller="Contact">
@@ -52,25 +61,24 @@
 
                 <label class="label">Service <span>(optional)</span></label>
 
-                <select id="cars" asp-for="Form.Service">
+                <select id="services" asp-for="Form.Service">
                     <option disabled selected>Choose the service you are interested in</option>
-                    @if(Model.Services != null)
+                    @if (Model.Services != null)
                     {
-                        foreach(var service in Model.Services)
+                        foreach (var service in Model.Services)
                         {
                             <option value="@service">@service</option>
                         }
-                 
                     }
                 </select>
-      
+
                 <div id="message" class="text-area">
                     <label asp-for="Form.Message"></label>
                     <span asp-validation-for="Form.Message"></span>
                     <textarea asp-for="Form.Message"></textarea>
                 </div>
 
-                <button type="submit" class="btn-theme-s" >Send contact request</button>
+                <button type="submit" class="btn-theme-s">Send contact request</button>
             </form>
         </div>
     </div>
@@ -79,3 +87,4 @@
             referrerpolicy="no-referrer-when-downgrade">
     </iframe>
 </section>
+@await Html.PartialAsync("_ValidationScriptPartial")

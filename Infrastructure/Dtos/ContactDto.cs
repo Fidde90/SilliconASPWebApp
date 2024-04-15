@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Dtos
 {
-    public  class ContactMessageDto
+    public  class ContactDto
     {
         public string FullName { get; set; } = null!;
 
