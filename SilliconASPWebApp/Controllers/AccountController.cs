@@ -1,4 +1,5 @@
-﻿using Infrastructure.Contexts;
+﻿using Azure;
+using Infrastructure.Contexts;
 using Infrastructure.Dtos;
 using Infrastructure.Entities;
 using Infrastructure.Factories;
@@ -154,48 +155,29 @@ namespace SilliconASPWebApp.Controllers
         #region saved courses
 
         [Route("/savedcourses")]
-        [HttpGet]
         public async Task<IActionResult> SavedCourses(SavedCoursesViewModel viewModel)
         {
-            string _url = $"https://localhost:7295/allcourses";
             var user = await _userManager.GetUserAsync(User);
 
-            var response = await _client.GetAsync($"{_url}?key={_configuration["ApiKey:Secret"]}");
-
-            if (response.IsSuccessStatusCode)
+            if (user != null)
             {
-                var json = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<IEnumerable<CourseDto>>(json);
-                if (data!.Count() > 0)
+                var courseIds = await _savedCoursesService.GetSavedCoursesIdsAsync(user.Id);
+                var courses = await _savedCoursesService.PostIdsGetCoursesAsync(courseIds);
+
+                if(courses != null && courses.Count > 0)
                 {
-                    //var list = viewModel.FilterCourses(data!, User);
-
-                    if (user != null)
-                    {
-
-                        var listToReturn = await _savedCoursesService.GetAllSavedCourses(user.Id, data!.ToList());
-
-
-                        viewModel.Courses = listToReturn.ToList();
-                        return View(viewModel);
-
-                    }
-
+                    viewModel.Courses = courses;         
                 }
-
+                return View(viewModel);
             }
-
             return View(viewModel);
         }
         public async Task<IActionResult> SaveCourse(int id)
         {
             var user = await _userManager.GetUserAsync(User);
-       
 
             if (user != null)
             {
-
-
                 var newSave = new SavedCoursesEntity
                 {
                     CourseId = id,

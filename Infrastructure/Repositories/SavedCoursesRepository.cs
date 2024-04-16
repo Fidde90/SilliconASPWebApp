@@ -13,21 +13,5 @@ namespace Infrastructure.Repositories
         {
             _dataContext = context;
         }
-
-        //public async Task<List<CourseDto>> GetSavedCourses(string userId, int courseId)
-        //{
-        //    List<CourseDto> list = new List<CourseDto>();
-
-
-        //    var query = await _dataContext.SavedCourses.ToListAsync().AsQueryable(); //inkluderar categorierna och gör den frågbar
-
-        //    for (int i = 0; i < _dataContext.SavedCourses.ToList().Count - 1; i++)
-        //    {
-        //        query = query.Where(x => x.UserId == userId);
-        //    }
-
-        //    var courses = await query.ToListAsync();
-        //    return list;
-        //}
     }
 }
