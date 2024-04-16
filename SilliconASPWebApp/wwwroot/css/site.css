@@ -500,6 +500,27 @@ a:hover {
 .course-cards .card a {
   text-decoration: none;
 }
+.course-cards .card .hover-message {
+  display: none;
+  z-index: 10;
+  position: absolute;
+  color: white;
+  font-size: 15px;
+  background-color: black;
+  padding: 7px 15px;
+  border-radius: 5px;
+  right: -25px;
+  top: -50px;
+}
+.course-cards .card .triangle {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  background-color: black;
+  top: -27px;
+  right: 7px;
+  transform: rotate(45deg);
+}
 .course-cards .card .bookmark {
   position: absolute;
   left: 20px;
@@ -509,11 +530,12 @@ a:hover {
   width: 35px;
   height: 35px;
   background-color: var(--color-gray-000);
+  cursor: pointer;
 }
 .course-cards .card .bookmark i {
   font-size: 15px;
   color: var(--color-gray-900);
-  margin-left: 11px;
+  margin-left: 12px;
   margin-top: 10px;
 }
 .course-cards .card .bookmark:hover {
@@ -521,6 +543,12 @@ a:hover {
 }
 .course-cards .card .bookmark:hover i {
   color: var(--color-gray-000);
+}
+.course-cards .card .bookmark:hover .hover-message {
+  display: block;
+}
+.course-cards .card .bookmark:hover .triangle {
+  display: block;
 }
 .course-cards .card .best-seller {
   position: absolute;
@@ -542,8 +570,8 @@ a:hover {
     flex-direction: column;
   }
   .course-cards .card .bookmark {
-    left: 350px;
-    top: 18px;
+    left: 370px;
+    top: 15px;
   }
 }
 .course-cards .card .pic {
@@ -1629,7 +1657,7 @@ footer .container .display-none {
   margin-top: 30px;
   margin-bottom: 20px;
 }
-.saved-courses .container .courses .title-delete button {
+.saved-courses .container .courses .title-delete .delete-btn {
   border-radius: 6px;
   text-align: center;
   font-size: 14px;
@@ -1638,12 +1666,14 @@ footer .container .display-none {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  border-color: rgba(239, 68, 68, 0.3490196078);
+  border: 1px solid var(--color-danger);
   background-color: transparent;
   color: var(--color-danger);
   font-weight: 600;
+  text-decoration: none;
+  position: relative;
 }
-.saved-courses .container .courses .title-delete button:hover {
+.saved-courses .container .courses .title-delete .delete-btn:hover {
   background-color: var(--color-danger);
   color: white;
   box-shadow: 0px 3px 6.4px 1px rgba(230, 83, 83, 0.3490196078);
@@ -1663,6 +1693,9 @@ footer .container .display-none {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
+}
+.saved-courses .container .courses .course-cards .bookmark:hover {
+  background-color: var(--color-danger);
 }
 
 .profile-menu {

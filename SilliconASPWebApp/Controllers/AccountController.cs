@@ -1,15 +1,13 @@
-﻿using Azure;
-using Infrastructure.Contexts;
-using Infrastructure.Dtos;
+﻿using Infrastructure.Contexts;
 using Infrastructure.Entities;
 using Infrastructure.Factories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using SilliconASPWebApp.Models.Forms;
 using SilliconASPWebApp.ViewModels.Views;
+using System.Diagnostics;
 
 
 namespace SilliconASPWebApp.Controllers
@@ -153,7 +151,6 @@ namespace SilliconASPWebApp.Controllers
         #endregion
 
         #region saved courses
-
         [Route("/savedcourses")]
         public async Task<IActionResult> SavedCourses(SavedCoursesViewModel viewModel)
         {
@@ -194,6 +191,45 @@ namespace SilliconASPWebApp.Controllers
             }
 
             return RedirectToAction("Index", "Courses");
+        }
+        public async Task<IActionResult> ResignCourse(int id)
+        {
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if(user != null)
+                {
+                    var result = await _savedCoursesService.RemoveCourse(id, user.Id);
+
+                    if(result == true)
+                    {
+                        //lägg till något kul
+                    }
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+
+            return RedirectToAction("SavedCourses", "Account");
+        }
+
+        public async Task<IActionResult> DeleteAll()
+        {
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user != null)
+                {
+                    var result = await _savedCoursesService.RemoveAllSavedCourses(user.Id);
+
+                    if (result == true)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+
+            return RedirectToAction("SavedCourses", "Account");
         }
         #endregion
 

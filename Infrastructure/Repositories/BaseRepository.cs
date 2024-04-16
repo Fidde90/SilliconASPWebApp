@@ -61,6 +61,40 @@ namespace Infrastructure.Repositories
             return null!;
         }
 
+        public virtual async Task<bool> DeleteFromDb(Expression<Func<TEntity, bool>> predicate)
+        {
+            try
+            {
+                var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
+
+                if (entity != null)
+                {
+                    _context.Remove(entity);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return false;
+        }
+
+        public virtual async Task<bool> DeleteAllFromDb(Expression<Func<TEntity, bool>> predicate)
+        {
+            try
+            {
+                var entities = _context.Set<TEntity>().Where(predicate).ToList();
+
+                if (entities != null)
+                {
+                    _context.RemoveRange(entities);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return false;
+        }
+
         public virtual async Task<bool> Exists(Expression<Func<TEntity, bool>> predicate)
         {
             try

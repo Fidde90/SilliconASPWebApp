@@ -19,7 +19,7 @@ namespace Infrastructure.Entities
         public virtual AddressEntity? Address { get; set; }
 
         [ProtectedPersonalData]
-        public string? ProfilePicUrl { get; set; } = "~/uploads/doomguy.jpg";
+        public string? ProfilePicUrl { get; set; } = "doomguy.jpg";
 
         public bool IsExternal { get; set; } = false;
     }

@@ -12,7 +12,7 @@
 
             <div class="title-delete">
                 <h2>Saved items</h2>
-                <button><i class="fa-regular fa-trash"></i>Delete all</button>
+                <a class="delete-btn" asp-action="DeleteAll" asp-controller="Account"><i class="fa-regular fa-trash"></i>Delete all</a>
             </div>
 
             <div class="course-cards">
@@ -20,7 +20,13 @@
                 @foreach (var course in Model!.Courses)
                 {
                     <div class="card">
-                        <a class="bookmark" asp-action="SaveCourse" asp-controller="Account" asp-rout-id="@course.Id"><i class="fa-regular fa-bookmark"></i></a>
+
+                        <a class="bookmark" asp-action="ResignCourse" asp-controller="Account" asp-route-id="@course.Id">
+                            <div class="hover-message">Remove</div>
+                            <div class="triangle"></div>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
+
                         @if (course.IsBestSeller)
                         {
                             <p class="best-seller">Best seller</p>

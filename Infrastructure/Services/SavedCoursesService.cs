@@ -1,12 +1,8 @@
 ﻿using Infrastructure.Dtos;
 using Infrastructure.Entities;
 using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore.Storage.Json;
 using Newtonsoft.Json;
-using SilliconASPWebApp.Models.Components;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Text;
 
 namespace Infrastructure.Services
@@ -41,17 +37,16 @@ namespace Infrastructure.Services
         public async Task<List<int>> GetSavedCoursesIdsAsync(string userId)
         {
             List<SavedCoursesEntity> dbList = new List<SavedCoursesEntity>();
-            List<int> idList = new List<int>();
-
+         
             try
             {
-                foreach (var item in await _savedCoursesRepository.GetAllFromDB())
-                {
-                    dbList.Add(item);
-                }
-
+                foreach (var course in await _savedCoursesRepository.GetAllFromDB())            
+                    dbList.Add(course);
+             
                 if (dbList.Count > 0)
                 {
+                    List<int> idList = new List<int>();
+
                     for (int i = 0; i < dbList.Count; i++)
                     {
                         if (dbList[i].UserId == userId)
@@ -59,7 +54,6 @@ namespace Infrastructure.Services
                             idList.Add(dbList[i].CourseId);
                         }
                     }
-
                     return idList;
                 }
             }
@@ -80,6 +74,36 @@ namespace Infrastructure.Services
                 return data!;
             }
             return null!;
+        }
+
+        public async Task<bool> RemoveCourse(int id, string userId)
+        {
+            try
+            {
+                if(await _savedCoursesRepository.Exists(x => x.UserId == userId && x.CourseId == id))
+                {
+                    var result = await _savedCoursesRepository.DeleteFromDb(x => x.UserId == userId && x.CourseId == id);
+                    if (result == true)
+                        return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine("Error: {0}", e); }
+            return false;
+        }
+
+        public async Task<bool> RemoveAllSavedCourses(string userId)
+        {
+            try
+            {
+                if (await _savedCoursesRepository.Exists(x => x.UserId == userId))
+                {
+                    var result = await _savedCoursesRepository.DeleteAllFromDb(x => x.UserId == userId);
+                    if (result == true)
+                        return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine("Error: {0}", e); }
+            return false;
         }
     }
 }

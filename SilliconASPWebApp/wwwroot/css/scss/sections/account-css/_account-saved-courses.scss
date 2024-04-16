@@ -6,7 +6,7 @@
 
         @include lg {
             flex-wrap: nowrap;
-            gap:50px;
+            gap: 50px;
         }
 
         .courses {
@@ -18,12 +18,11 @@
                 align-items: center;
                 flex-wrap: wrap;
                 min-width: 100%;
-                margin-bottom:30px;
+                margin-bottom: 30px;
 
                 @include lg {
                     flex-direction: row;
                     justify-content: space-between;
-                 
                 }
 
                 h2 {
@@ -31,12 +30,14 @@
                     margin-bottom: 20px;
                 }
 
-                button {
+                .delete-btn {
                     @include button;
-                    border-color: #EF444459;
+                    border: 1px solid var(--color-danger);
                     background-color: transparent;
                     color: var(--color-danger);
                     font-weight: 600;
+                    text-decoration: none;
+                    position: relative;
 
                     &:hover {
                         background-color: var(--color-danger);
@@ -52,12 +53,20 @@
                 gap: 40px;
 
                 @include md {
-                    grid-template-columns: 1fr ;
+                    grid-template-columns: 1fr;
                 }
 
                 @include xxl {
-                    grid-template-columns: 1fr 1fr ;
+                    grid-template-columns: 1fr 1fr;
                     gap: 40px;
+                }
+
+                .bookmark {
+
+
+                    &:hover {
+                        background-color: var(--color-danger);
+                    }
                 }
             }
         }
