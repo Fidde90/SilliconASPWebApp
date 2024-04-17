@@ -535,7 +535,7 @@ a:hover {
 .course-cards .card .bookmark i {
   font-size: 15px;
   color: var(--color-gray-900);
-  margin-left: 12px;
+  margin-left: 11px;
   margin-top: 10px;
 }
 .course-cards .card .bookmark:hover {
@@ -1056,6 +1056,7 @@ footer .container .display-none {
   display: flex;
   flex-direction: column;
   gap: 50px;
+  padding-bottom: 50px;
 }
 .manage-your-work .container img {
   width: 100%;
@@ -1566,12 +1567,12 @@ footer .container .display-none {
 
 .security .container {
   display: flex;
-  gap: 150px;
   flex-wrap: wrap;
 }
 @media (min-width: 992px) {
   .security .container {
     flex-wrap: nowrap;
+    gap: 150px;
   }
 }
 .security .container .security-form {
@@ -1867,6 +1868,17 @@ footer .container .display-none {
 }
 .courses .container .pagination .active {
   background-color: var(--color-theme);
+}
+.courses .container .card .hover-message {
+  right: -13px;
+}
+.courses .container .card .bookmark:hover {
+  background-color: var(--color-success);
+}
+@media (min-width: 992px) {
+  .courses .container .card .bookmark {
+    left: 360px;
+  }
 }
 
 .work-with-us {

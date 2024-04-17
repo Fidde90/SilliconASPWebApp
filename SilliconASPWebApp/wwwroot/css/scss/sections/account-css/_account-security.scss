@@ -2,11 +2,11 @@
 
     .container {
         display: flex;
-        gap: 150px;
         flex-wrap: wrap;
 
         @include lg {
             flex-wrap: nowrap;
+            gap: 150px;
         }
 
         .security-form {
@@ -21,8 +21,8 @@
                     }
                 }
 
-                label{
-                    font-weight:bold;
+                label {
+                    font-weight: bold;
                 }
 
                 .error-msg {

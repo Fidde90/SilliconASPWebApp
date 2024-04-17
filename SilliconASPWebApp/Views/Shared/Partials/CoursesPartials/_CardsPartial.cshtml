@@ -16,10 +16,11 @@
                 @foreach (var course in Model.Courses)
                 {
                     <div class="card">
-                        <a class="bookmark" asp-action="SaveCourse" asp-controller="Account" asp-route-id="@course.Id" >
+                        <a class="bookmark" asp-action="SaveCourse" asp-controller="Account" asp-route-id="@course.Id">
                             <div class="hover-message">Join</div>
                             <div class="triangle"></div>
-                            <i class="fa-regular fa-bookmark"></i></a>
+                            <i class="fa-regular fa-bookmark"></i>
+                        </a>
                         @if (course.IsBestSeller)
                         {
                             <p class="best-seller">Best seller</p>

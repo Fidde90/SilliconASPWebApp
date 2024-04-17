@@ -5,16 +5,10 @@ using System.Diagnostics;
 
 namespace Infrastructure.Services
 {
-    public class UserService
+    public class UserService(UserManager<AppUserEntity> userManager, UserRepository UserRepository)
     {
-        private readonly UserManager<AppUserEntity> _userManager;
-        private readonly UserRepository _UserRepository;
-
-        public UserService(UserManager<AppUserEntity> userManager, UserRepository UserRepository)
-        {
-            _userManager = userManager;
-            _UserRepository = UserRepository;
-        }
+        private readonly UserManager<AppUserEntity> _userManager = userManager;
+        private readonly UserRepository _UserRepository = UserRepository;
 
         public async Task<AppUserEntity> CreateUserAsync(AppUserEntity newUser, string password)
         {

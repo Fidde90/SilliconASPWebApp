@@ -10,7 +10,7 @@
             grid-area: buttons;
 
             .arrow {
-                margin-top:8px;
+                margin-top: 8px;
             }
 
             .number {
@@ -34,6 +34,27 @@
 
             .active {
                 background-color: var(--color-theme);
+            }
+        }
+
+        .card {
+
+            .hover-message {
+                right: -13px;
+            }
+        }
+
+        .card {
+
+            .bookmark {
+
+                &:hover {
+                    background-color: var(--color-success);
+                }
+
+                @include lg {
+                    left: 360px;
+                }
             }
         }
     }

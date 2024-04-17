@@ -46,7 +46,6 @@
                     }
                 }
             }
-
             .course-cards {
                 display: grid;
                 grid-template-columns: 1fr;
@@ -62,7 +61,6 @@
                 }
 
                 .bookmark {
-
 
                     &:hover {
                         background-color: var(--color-danger);

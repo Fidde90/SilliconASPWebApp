@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Dtos;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SilliconASPWebApp.Models.Components;
@@ -10,6 +11,7 @@ using System.Text;
 
 namespace SilliconASPWebApp.Controllers
 {
+    [Authorize]
     public class CoursesController(IConfiguration configuration, CourseService courseService, CategoryService categoryService, HttpClient httpClient) : Controller
     {
         private readonly IConfiguration _configuration = configuration;
@@ -19,9 +21,7 @@ namespace SilliconASPWebApp.Controllers
         private readonly CourseService _courseService = courseService;
 
         #region user courses actions
-
-
-        public async Task<IActionResult> Index(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 2)
+        public async Task<IActionResult> Index(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 5)
         {
             var courseResult = await _courseService.GetCoursesAsync(category, searchValue, pageNumber, pageSize);
 

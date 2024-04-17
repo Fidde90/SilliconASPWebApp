@@ -9,10 +9,9 @@ using System.Security.Claims;
 
 namespace Infrastructure.Services
 {
-    public class AccountService(UserManager<AppUserEntity> userManager, IConfiguration configuration, DataContext dataContext, UserRepository userRepository)
+    public class AccountService(UserManager<AppUserEntity> userManager, IConfiguration configuration, DataContext dataContext)
     {
         private readonly UserManager<AppUserEntity> _userManager = userManager;
-        private readonly UserRepository _userRepository = userRepository;
         private readonly DataContext _dataContext = dataContext;
         private readonly IConfiguration _configuration = configuration;
 

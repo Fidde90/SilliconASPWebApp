@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Dtos;
 using Infrastructure.Entities;
+using Infrastructure.Factories;
 using Infrastructure.Repositories;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -7,25 +8,22 @@ using System.Text;
 
 namespace Infrastructure.Services
 {
-    public class SavedCoursesService
+    public class SavedCoursesService(HttpClient httpClient, SavedCoursesRepository savedCoursesRepository)
     {
-        private readonly SavedCoursesRepository _savedCoursesRepository;
-        private readonly HttpClient _httpClient;
-        public SavedCoursesService(HttpClient httpClient, SavedCoursesRepository savedCoursesRepository)
-        {
-            _savedCoursesRepository = savedCoursesRepository;
-            _httpClient = httpClient;
-        }
+        private readonly SavedCoursesRepository _savedCoursesRepository = savedCoursesRepository;
+        private readonly HttpClient _httpClient = httpClient;
 
-        public async Task<bool> SaveCourseAsync(SavedCoursesEntity entity)
+        public async Task<bool> SaveCourseAsync(int courseId, string userId)
         {
             try
             {
-                if (entity != null)
+                var newSave = SavedCoursesMapper.ToSavedCoursesEntity(courseId, userId);
+
+                if (newSave != null)
                 {
-                    if (!await _savedCoursesRepository.Exists(x => x.UserId == entity.UserId && x.CourseId == entity.CourseId))
+                    if (!await _savedCoursesRepository.Exists(x => x.UserId == newSave.UserId && x.CourseId == newSave.CourseId))
                     {
-                        var result = await _savedCoursesRepository.AddToDB(entity);
+                        var result = await _savedCoursesRepository.AddToDB(newSave);
                         return true;
                     }
                 }

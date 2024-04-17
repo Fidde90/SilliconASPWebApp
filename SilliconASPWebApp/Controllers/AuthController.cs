@@ -5,16 +5,17 @@ using SilliconASPWebApp.ViewModels.Views;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using System.Diagnostics;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager) : Controller
+    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager, AdminService adminService) : Controller
     {
         private readonly UserService _userService = userService;
         private readonly AuthService _authService = authService;
         private readonly SignInManager<AppUserEntity> _signInManager = signInManager;
         private readonly UserManager<AppUserEntity> _userManager = userManager;
-
+        private readonly AdminService _adminService = adminService;
         #region Individual Account
 
         #region sign up 
@@ -31,12 +32,16 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var createdUser = await _userService.CreateUserAsync(MappingFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
-                if (createdUser != null)
-                    return RedirectToAction("SignIn", "Auth");
+                if (ModelState.IsValid)
+                {
+                    var createdUser = await _userService.CreateUserAsync(MappingFactory.UserMapper(viewModel.Form), viewModel.Form.Password);
+                    if (createdUser != null)
+                        return RedirectToAction("SignIn", "Auth");
+                }
             }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             viewModel.ErrorMessage = "A user with the same email already exsitis";
             return View(viewModel);
         }
@@ -60,21 +65,17 @@ namespace SilliconASPWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _authService.SignIn(new Models.Forms.SignInFormModel { Email = viewModel.Email, Password = viewModel.Password, Remeber = false });
-                if (result)
+                try
                 {
-                    var user = await _userService.GetByEmailAsync(viewModel.Email);
-                    var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
-
-                    if (isAdmin)
+                    var result = await _authService.SignIn(new Models.Forms.SignInFormModel { Email = viewModel.Email, Password = viewModel.Password, Remeber = false });
+                    if (result)
                     {
-                        string url = "https://localhost:7295/token?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+                        var user = await _userService.GetByEmailAsync(viewModel.Email);
+                        var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
 
-                        using var client = new HttpClient();
-                        var response = await client.PostAsync(url, null);
-                        if (response.IsSuccessStatusCode)
+                        if (isAdmin)
                         {
-                            var token = await response.Content.ReadAsStringAsync();
+                            var token = await _adminService.GetToken();
                             var cookieOptions = new CookieOptions
                             {
                                 HttpOnly = true,
@@ -82,15 +83,16 @@ namespace SilliconASPWebApp.Controllers
                                 Expires = DateTime.Now.AddDays(1)
                             };
 
-                            Response.Cookies.Append("AccessToken", token, cookieOptions);
+                            Response.Cookies.Append("AccessToken", token, cookieOptions);         
                         }
+
+                        if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                            return Redirect(returnUrl);
+
+                        return RedirectToAction("Details", "Account");
                     }
-
-                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                        return Redirect(returnUrl);
-
-                    return RedirectToAction("Details", "Account");
                 }
+                catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             }
             viewModel.ErrorMessage = "Incorrect email or password";
             return View("SignIn", viewModel);
@@ -173,7 +175,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GoogleCallback()
         {
-            var googleData = await _signInManager.GetExternalLoginInfoAsync(); 
+            var googleData = await _signInManager.GetExternalLoginInfoAsync();
             if (googleData != null)
             {
                 var FbUser = new AppUserEntity
@@ -183,19 +185,19 @@ namespace SilliconASPWebApp.Controllers
                     Email = googleData.Principal.FindFirstValue(ClaimTypes.Email)!,
                     UserName = googleData.Principal.FindFirstValue(ClaimTypes.Email)!,
                     IsExternal = true
-                }; 
+                };
 
-                var user = await _userService.GetByEmailAsync(FbUser); 
+                var user = await _userService.GetByEmailAsync(FbUser);
                 if (user == null)
                 {
-                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser); 
-                    if (registerNewUser) 
-                        user = await _userService.GetByEmailAsync(FbUser); 
+                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser);
+                    if (registerNewUser)
+                        user = await _userService.GetByEmailAsync(FbUser);
                 }
 
-                if (user != null) 
+                if (user != null)
                 {
-                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email) 
+                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email)
                     {
                         user.FirstName = FbUser.FirstName;
                         user.LastName = FbUser.LastName;

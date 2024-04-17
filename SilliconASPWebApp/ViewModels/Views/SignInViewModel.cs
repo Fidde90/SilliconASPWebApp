@@ -1,4 +1,5 @@
-﻿using SilliconASPWebApp.Models.Forms;
+﻿using SilliconASPWebApp.Helpers;
+using SilliconASPWebApp.Models.Forms;
 using System.ComponentModel.DataAnnotations;
 
 namespace SilliconASPWebApp.ViewModels.Views
@@ -18,7 +19,7 @@ namespace SilliconASPWebApp.ViewModels.Views
         public string Password { get; set; } = null!;
 
         [Display(Name = "Remember me", Order = 2)]
-        public bool? Remember { get; set; } = false;
+        public bool Remember { get; set; } = false;
 
         public string? ErrorMessage { get; set; }
 
