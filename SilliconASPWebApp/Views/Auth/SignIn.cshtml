@@ -1,6 +1,7 @@
 ﻿@model SignInViewModel
 @{
     ViewData["Title"] = "Sign in";
+    string errorMsg = TempData["StatusMessage"]?.ToString()!;
 }
 
 <section class="create-account">
@@ -9,7 +10,10 @@
             <h1>Welcome back</h1>
             <p>Don't have an account yet? <a asp- asp-controller="Auth" asp-action="SignUp">Sign up here.</a></p>
 
-            <div class="error-msg">@Model.ErrorMessage</div>
+            @if (!string.IsNullOrEmpty(errorMsg))
+            {
+                <div class="error-msg">@errorMsg</div>
+            }
 
             <form method="post" novalidate asp-controller="Auth" asp-action="SignIn" asp-route-ReturnUrl="@Model.ReturnUrl">
 

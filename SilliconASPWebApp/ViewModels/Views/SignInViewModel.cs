@@ -1,6 +1,4 @@
-﻿using SilliconASPWebApp.Helpers;
-using SilliconASPWebApp.Models.Forms;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SilliconASPWebApp.ViewModels.Views
 {

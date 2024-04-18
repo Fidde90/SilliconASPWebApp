@@ -46,7 +46,7 @@ namespace Infrastructure.Services
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return false;
         }
-        public async Task<AppUserEntity> UpdateUser(AppUserEntity newValues)
+        public async Task<AppUserEntity> UpdateUserAsync(AppUserEntity newValues)
         {
             try
             {

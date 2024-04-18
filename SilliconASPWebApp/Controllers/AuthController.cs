@@ -6,16 +6,19 @@ using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SilliconASPWebApp.Controllers
 {
-    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager, AdminService adminService) : Controller
+    public class AuthController(UserService userService, AuthService authService, SignInManager<AppUserEntity> signInManager, UserManager<AppUserEntity> userManager, AdminService adminService, ExternalAccountService externalAccountService) : Controller
     {
         private readonly UserService _userService = userService;
         private readonly AuthService _authService = authService;
         private readonly SignInManager<AppUserEntity> _signInManager = signInManager;
         private readonly UserManager<AppUserEntity> _userManager = userManager;
         private readonly AdminService _adminService = adminService;
+        private readonly ExternalAccountService _externalAccountService = externalAccountService;
+
         #region Individual Account
 
         #region sign up 
@@ -83,7 +86,7 @@ namespace SilliconASPWebApp.Controllers
                                 Expires = DateTime.Now.AddDays(1)
                             };
 
-                            Response.Cookies.Append("AccessToken", token, cookieOptions);         
+                            Response.Cookies.Append("AccessToken", token, cookieOptions);
                         }
 
                         if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
@@ -122,48 +125,27 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> FacebookCallback()
         {
-            var facebookData = await _signInManager.GetExternalLoginInfoAsync(); //hämtar data från facebook
+            var facebookData = await _signInManager.GetExternalLoginInfoAsync();
             if (facebookData != null)
             {
-                var FbUser = new AppUserEntity
-                {
-                    FirstName = facebookData.Principal.FindFirstValue(ClaimTypes.GivenName)!,
-                    LastName = facebookData.Principal.FindFirstValue(ClaimTypes.Surname)!,
-                    Email = facebookData.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    UserName = facebookData.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    IsExternal = true
-                }; // skapar ny användare med nya datan
+                var facebookUser = _externalAccountService.CreateExternalUserObject(facebookData);
+                var dbUser = await _userService.GetByEmailAsync(facebookUser);
 
-                var user = await _userService.GetByEmailAsync(FbUser); //hämtar upp användaren via email i databasen (om den finns)
-                if (user == null)//om inte
-                {
-                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser); // skapar den
-                    if (registerNewUser) // om den lyckades
-                        user = await _userService.GetByEmailAsync(FbUser); // nu sparar vi in den skapade/hämtade användaren i "user variabeln"
-                }
+                dbUser ??= await _externalAccountService.AddExternalUserToDataBaseAsync(facebookUser);
 
-                if (user != null) //antingen fanns användaren redan eller så har vi nu skapat den vid dehär laget. Så nu ska den inte vara null
+                if (dbUser != null)
                 {
-                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email)// om det finns skillnader i datan 
-                    {
-                        user.FirstName = FbUser.FirstName;
-                        user.LastName = FbUser.LastName;
-                        user.Email = FbUser.Email;
-
-                        await _userService.UpdateWithUserManagerAsync(user);
-                    }
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _externalAccountService.CompareExternalDataWithDatabase(facebookUser, dbUser);
+                    await _signInManager.SignInAsync(dbUser, isPersistent: false);
 
                     if (HttpContext.User != null)
                         return RedirectToAction("Details", "Account");
                 }
             }
 
-            ModelState.AddModelError("InvalidFacebookAuthentication", "danger|Faild to authenticate with Facebook.");
-            ViewData["StatusMessage"] = "danger|Faild to authenticate with Facebook.";
+            TempData["StatusMessage"] = "Faild to authenticate with Facebook.";
             return RedirectToAction("SignIn", "Auth");
         }
-
 
         [HttpGet]
         public IActionResult Google()
@@ -178,42 +160,22 @@ namespace SilliconASPWebApp.Controllers
             var googleData = await _signInManager.GetExternalLoginInfoAsync();
             if (googleData != null)
             {
-                var FbUser = new AppUserEntity
-                {
-                    FirstName = googleData.Principal.FindFirstValue(ClaimTypes.GivenName)!,
-                    LastName = googleData.Principal.FindFirstValue(ClaimTypes.Surname)! ?? "-",// att ange ett efternamn var inte ett krav när man skapade ett Google-konto. Men det är ett måste här, så sätter ett värde bara för att där ska finnas något. 
-                    Email = googleData.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    UserName = googleData.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    IsExternal = true
-                };
+                var googleUser = _externalAccountService.CreateExternalUserObject(googleData);
+                var dbUser = await _userService.GetByEmailAsync(googleUser);
 
-                var user = await _userService.GetByEmailAsync(FbUser);
-                if (user == null)
-                {
-                    var registerNewUser = await _userService.CreateUserNoPasswordAsync(FbUser);
-                    if (registerNewUser)
-                        user = await _userService.GetByEmailAsync(FbUser);
-                }
+                dbUser ??= await _externalAccountService.AddExternalUserToDataBaseAsync(googleUser);
 
-                if (user != null)
+                if (dbUser != null)
                 {
-                    if (user.FirstName != FbUser.FirstName || user.LastName != FbUser.LastName || user.Email != FbUser.Email)
-                    {
-                        user.FirstName = FbUser.FirstName;
-                        user.LastName = FbUser.LastName;
-                        user.Email = FbUser.Email;
-
-                        await _userService.UpdateWithUserManagerAsync(user);
-                    }
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _externalAccountService.CompareExternalDataWithDatabase(googleUser, dbUser);
+                    await _signInManager.SignInAsync(dbUser, isPersistent: false);
 
                     if (HttpContext.User != null)
                         return RedirectToAction("Details", "Account");
                 }
             }
 
-            ModelState.AddModelError("InvalidFacebookAuthentication", "danger|Faild to authenticate with Google.");
-            ViewData["StatusMessage"] = "danger|Faild to authenticate with Google.";
+            TempData["StatusMessage"] = "Faild to authenticate with Google.";
             return RedirectToAction("SignIn", "Auth");
         }
         #endregion

@@ -95,7 +95,7 @@ namespace SilliconASPWebApp.Controllers
             if (updatedAddress != null)
             {
                 loggedInUser!.AddressId = updatedAddress.Id;
-                var updateUser = await _userService.UpdateUser(loggedInUser);
+                var updateUser = await _userService.UpdateUserAsync(loggedInUser);
                 viewModel.GetUserAddressData(loggedInUser.Address!);
                 viewModel.GetUserDetailsData(updateUser!);
             }
