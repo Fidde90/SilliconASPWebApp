@@ -1,14 +1,18 @@
 ﻿@model CoursesIndexViewModel
 @{
-    int currentPage = Model!.Pagination!.CurrentPage;
-    int pageSize = Model!.Pagination.PageSize;
-    int totalPages = Model.Pagination.TotalPages;
-    string? category = Model.Pagination.Category;
+    int? currentPage = Model?.Pagination?.CurrentPage;
+    int? pageSize = Model?.Pagination?.PageSize;
+    int? totalPages = Model?.Pagination?.TotalPages;
+    string? category = Model?.Pagination?.Category;
 }
 
 <section class="courses">
-
     <div class="container">
+
+        @if (TempData["ErrorMessage"]?.ToString() == "error")
+        {
+            <div class="error-msg">No courses found, check api services</div>
+        }
 
         <div class="course-cards">
             @if (Model?.Courses != null && Model?.Categories != null)

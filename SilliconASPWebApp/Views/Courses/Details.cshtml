@@ -1,179 +1,184 @@
-﻿@model CourseCardModel
+﻿@model CourseDto
 
-<section class="hero-section" style="background-image:url(/images/@Model.BackgroundImg)">
-    <div class="container">
-        <div class="path">
-            <p><i class="fa-regular fa-house"></i> <a href="index.html"> <span>Home</span></a></p>
-            <p><i class="fa-solid fa-angles-right"></i> <a href="courses.html"><span>Courses</span></a></p>
-            <p>
-                <i class="fa-solid fa-angles-right"></i> <span>Fullstack Web Developer Course from Scratch</span>
-            </p>
-        </div>
-
-        <div class="tags">
-            @if (Model.IsBestSeller)
-            {
-                <p class="best-seller">Best seller</p>
-            }
-
-            <p class="category">Digital</p> //fixa ett boolvärde i databasen isDigital
-        </div>
-
-        <div class="title">
-            <h1>@Model.Title</h1>
-            <p>Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
-        </div>
-
-        <div class="ratings">
-            <p><img src="/images/rating.svg" alt="rating stars"> <span> ( 1.2 K reviews )</span></p>
-            <p><i class="fa-light fa-thumbs-up"></i> <span> @Model.LikesInNumbers K likes</span></p>
-            <p class="last"><i class="fa-regular fa-clock"></i> <span> @Model.Hours hours</span></p>
-        </div>
-
-        <div class="created-by">
-            <img src="/images/albert-flores.svg" alt="picture of a person">
-
-            <div class="names">
-                <p class="by">Created by</p>
-                <p>@Model.Author</p>
+@if (TempData["ErrorMessage"]?.ToString() == "error")
+{
+    <div class="error-msg">Course not found, check api services</div>
+}
+else
+{
+    <section class="hero-section" style="background-image:url(/images/@Model.BackgroundImg)">
+        <div class="container">
+            <div class="path">
+                <p><i class="fa-regular fa-house"></i> <a href="index.html"> <span>Home</span></a></p>
+                <p><i class="fa-solid fa-angles-right"></i> <a href="courses.html"><span>Courses</span></a></p>
+                <p>
+                    <i class="fa-solid fa-angles-right"></i> <span>Fullstack Web Developer Course from Scratch</span>
+                </p>
             </div>
-        </div>
-    </div>
-</section>
 
-<section class="course-descripton-info">
-    <div class="container">
-
-
-        <div class="course-description">
-            <h1>Course description</h1>
-            <p>
-                Suspendisse natoque sagittis, consequat turpis. Sed tristique tellus morbi magna. At vel senectus
-                accumsan, arcu mattis id tempor. Tellus sagittis, euismod porttitor sed tortor est id. Feugiat
-                velit velit, tortor ut. Ut libero cursus nibh lorem urna amet tristique leo. Viverra lorem arcu
-                nam nunc at ipsum quam. A proin id sagittis dignissim mauris condimentum ornare. Tempus mauris
-                sed dictum ultrices.
-            </p>
-        </div>
-
-        <div class="learn">
-            <h3>What you'll learn</h3>
-            <p><i class="fa-regular fa-circle-check"></i> Sed lectus donec amet eu turpis interdum.</p>
-            <p><i class="fa-regular fa-circle-check"></i> Nulla at consectetur vitae dignissim porttitor.</p>
-            <p><i class="fa-regular fa-circle-check"></i> Phasellus id vitae dui aliquet mi.</p>
-            <p>
-                <i class="fa-regular fa-circle-check"></i> Integer cursus vitae, odio feugiat iaculis aliquet
-                diam, et purus.
-            </p>
-            <p><i class="fa-regular fa-circle-check"></i> In aenean dolor diam tortor orci eu.</p>
-        </div>
-
-        <div class="includes-price">
-
-            <h4>This course includes:</h4>
-            <p><img src="/images/slideshow.svg"> @Model.Hours hours on-demand video</p>
-            <p><img src="/images/document.svg"> 18 articles</p>
-            <p><img src="/images/download.svg"> 25 downloadable resources</p>
-            <p><img src="/images/infinite.svg"> Full lifetime access</p>
-            <p><img src="/images/trophy.svg"> Certificate of completion</p>
-
-            <div class="price">
-                @if (!string.IsNullOrWhiteSpace(Model.DiscountPrice))
+            <div class="tags">
+                @if (Model.IsBestSeller)
                 {
-                    <h2>$@Model.DiscountPrice</h2>
-                    <h5>$@Model.Price</h5>
+                    <p class="best-seller">Best seller</p>
                 }
-                else
-                {
-                    <h2>$@Model.Price</h2>
-                }
-            </div>
-            <a></a><button class="btn-theme">Join course</button></a>
 
-        </div>
+                <p class="category">Digital</p> //fixa ett boolvärde i databasen isDigital
+            </div>
 
-    </div>
+            <div class="title">
+                <h1>@Model.Title</h1>
+                <p>Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
+            </div>
 
-</section>
+            <div class="ratings">
+                <p><img src="/images/rating.svg" alt="rating stars"> <span> ( 1.2 K reviews )</span></p>
+                <p><i class="fa-light fa-thumbs-up"></i> <span> @Model.LikesInNumbers K likes</span></p>
+                <p class="last"><i class="fa-regular fa-clock"></i> <span> @Model.Hours hours</span></p>
+            </div>
 
-<section class="program-details">
-    <div class="container">
-        <div class="courses">
-            <h1>Program details</h1>
-            <div class="line"></div>
-            <div class="course">
-                <div class="circle">1</div>
-                <div class="description">
-                    <h4>Introduction. Getting started</h4>
-                    <p>Nulla faucibus mauris pellentesque blandit faucibus non. Sit ut et at suspendisse gravida hendrerit tempus placerat.</p>
-                </div>
-            </div>
-            <div class="course">
-                <div class="circle">2</div>
-                <div class="description">
-                    <h4>The ultimate HTML developer: advanced HTML</h4>
-                    <p>Lobortis diam elit id nibh ultrices sed penatibus donec. Nibh iaculis eu sit cras ultricies. Nam eu eget etiam egestas donec scelerisque ut ac enim. Vitae ac nisl, enim nec accumsan vitae est.</p>
-                </div>
-            </div>
-            <div class="course">
-                <div class="circle">3</div>
-                <div class="description">
-                    <h4>CSS & CSS3: basic</h4>
-                    <p>Duis euismod enim, facilisis risus tellus pharetra lectus diam neque. Nec ultrices mi faucibus est. Magna ullamcorper potenti elementum ultricies auctor nec volutpat augue.</p>
-                </div>
-            </div>
-            <div class="course">
-                <div class="circle">4</div>
-                <div class="description">
-                    <h4>JavaScript basics for beginners</h4>
-                    <p>Morbi porttitor risus imperdiet a, nisl mattis. Amet, faucibus eget in platea vitae, velit, erat eget velit. At lacus ut proin erat.</p>
-                </div>
-            </div>
-            <div class="course">
-                <div class="circle">5</div>
-                <div class="description">
-                    <h4>Understanding APIs</h4>
-                    <p>Risus morbi euismod in congue scelerisque fusce pellentesque diam consequat. Nisi mauris nibh sed est morbi amet arcu urna. Malesuada feugiat quisque consectetur elementum diam vitae. Dictumst facilisis odio eu quis maecenas risus odio fames bibendum.</p>
-                </div>
-            </div>
-            <div class="course">
-                <div class="circle">6</div>
-                <div class="description">
-                    <h4>C# and .NET from beginner to advanced</h4>
-                    <p>Quis risus quisque diam diam. Volutpat neque eget eu faucibus sed urna fermentum risus. Est, mauris morbi nibh massa.</p>
+            <div class="created-by">
+                <img src="/images/albert-flores.svg" alt="picture of a person">
+
+                <div class="names">
+                    <p class="by">Created by</p>
+                    <p>@Model.Author</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="bottom-img">
-    <div class="container">
-        <div class="info-box">
-            <div class="person-img">
-                <img src="/images/albert-flores-big-img.png" alt="person" />
+    <section class="course-descripton-info">
+        <div class="container">
+            <div class="course-description">
+                <h1>Course description</h1>
+                <p>
+                    Suspendisse natoque sagittis, consequat turpis. Sed tristique tellus morbi magna. At vel senectus
+                    accumsan, arcu mattis id tempor. Tellus sagittis, euismod porttitor sed tortor est id. Feugiat
+                    velit velit, tortor ut. Ut libero cursus nibh lorem urna amet tristique leo. Viverra lorem arcu
+                    nam nunc at ipsum quam. A proin id sagittis dignissim mauris condimentum ornare. Tempus mauris
+                    sed dictum ultrices.
+                </p>
             </div>
 
-            <div class="info">
-                <h5>Learn from the best</h5>
-                <h1>Albert Flores</h1>
-                <p>Dolor ipsum amet cursus quisque porta adipiscing. Lorem convallis malesuada sed maecenas. Ac dui at vitae mauris cursus in nullam porta sem. Quis pellentesque elementum ac bibendum. Nunc aliquam in tortor facilisis. Vulputate eget risus, metus phasellus. Pellentesque faucibus amet, eleifend diam quam condimentum convallis ultricies placerat. Duis habitasse placerat amet, odio pellentesque rhoncus, feugiat at. Eget pellentesque tristique felis magna fringilla.</p>
+            <div class="learn">
+                <h3>What you'll learn</h3>
+                <p><i class="fa-regular fa-circle-check"></i> Sed lectus donec amet eu turpis interdum.</p>
+                <p><i class="fa-regular fa-circle-check"></i> Nulla at consectetur vitae dignissim porttitor.</p>
+                <p><i class="fa-regular fa-circle-check"></i> Phasellus id vitae dui aliquet mi.</p>
+                <p>
+                    <i class="fa-regular fa-circle-check"></i> Integer cursus vitae, odio feugiat iaculis aliquet
+                    diam, et purus.
+                </p>
+                <p><i class="fa-regular fa-circle-check"></i> In aenean dolor diam tortor orci eu.</p>
+            </div>
 
-                <div class="buttons">
-                    <a href="#"><button class="youtube-btn"><i class="fa-brands fa-youtube"></i>240k subscribers</button></a>
-                    <a href="#"><button class="facebook-btn"><i class="fa-brands fa-square-facebook"></i>180k followers</button></a>
+            <div class="includes-price">
+
+                <h4>This course includes:</h4>
+                <p><img src="/images/slideshow.svg"> @Model.Hours hours on-demand video</p>
+                <p><img src="/images/document.svg"> 18 articles</p>
+                <p><img src="/images/download.svg"> 25 downloadable resources</p>
+                <p><img src="/images/infinite.svg"> Full lifetime access</p>
+                <p><img src="/images/trophy.svg"> Certificate of completion</p>
+
+                <div class="price">
+                    @if (!string.IsNullOrWhiteSpace(Model.DiscountPrice))
+                    {
+                        <h2>$@Model.DiscountPrice</h2>
+                        <h5>$@Model.Price</h5>
+                    }
+                    else
+                    {
+                        <h2>$@Model.Price</h2>
+                    }
+                </div>
+                <a class="btn-theme">Join course</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="program-details">
+        <div class="container">
+            <div class="courses">
+                <h1>Program details</h1>
+                <div class="line"></div>
+                <div class="course">
+                    <div class="circle">1</div>
+                    <div class="description">
+                        <h4>Introduction. Getting started</h4>
+                        <p>Nulla faucibus mauris pellentesque blandit faucibus non. Sit ut et at suspendisse gravida hendrerit tempus placerat.</p>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="circle">2</div>
+                    <div class="description">
+                        <h4>The ultimate HTML developer: advanced HTML</h4>
+                        <p>Lobortis diam elit id nibh ultrices sed penatibus donec. Nibh iaculis eu sit cras ultricies. Nam eu eget etiam egestas donec scelerisque ut ac enim. Vitae ac nisl, enim nec accumsan vitae est.</p>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="circle">3</div>
+                    <div class="description">
+                        <h4>CSS & CSS3: basic</h4>
+                        <p>Duis euismod enim, facilisis risus tellus pharetra lectus diam neque. Nec ultrices mi faucibus est. Magna ullamcorper potenti elementum ultricies auctor nec volutpat augue.</p>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="circle">4</div>
+                    <div class="description">
+                        <h4>JavaScript basics for beginners</h4>
+                        <p>Morbi porttitor risus imperdiet a, nisl mattis. Amet, faucibus eget in platea vitae, velit, erat eget velit. At lacus ut proin erat.</p>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="circle">5</div>
+                    <div class="description">
+                        <h4>Understanding APIs</h4>
+                        <p>Risus morbi euismod in congue scelerisque fusce pellentesque diam consequat. Nisi mauris nibh sed est morbi amet arcu urna. Malesuada feugiat quisque consectetur elementum diam vitae. Dictumst facilisis odio eu quis maecenas risus odio fames bibendum.</p>
+                    </div>
+                </div>
+                <div class="course">
+                    <div class="circle">6</div>
+                    <div class="description">
+                        <h4>C# and .NET from beginner to advanced</h4>
+                        <p>Quis risus quisque diam diam. Volutpat neque eget eu faucibus sed urna fermentum risus. Est, mauris morbi nibh massa.</p>
+                    </div>
                 </div>
             </div>
-
-            <img class="line1" src="/images/Pattern line1.png" alt="pattern-line" />
-            <img class="line2" src="/images/Pattern line2.png" alt="pattern-line" />
-            <img class="line3" src="/images/Pattern line3.png" alt="pattern-line" />
-            <img class="line4" src="/images/Pattern line4.png" alt="pattern-line" />
-            <img class="line5" src="/images/Pattern line5.png" alt="pattern-line" />
-            <img class="line6" src="/images/Pattern line6.png" alt="pattern-line" />
-            <img class="line7" src="/images/Pattern line7.png" alt="pattern-line" />
-            <img class="line8" src="/images/Pattern line8.png" alt="pattern-line" />
-            <img class="line9" src="/images/Pattern line9.png" alt="pattern-line" />
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="bottom-img">
+        <div class="container">
+            <div class="info-box">
+                <div class="person-img">
+                    <img src="/images/albert-flores-big-img.png" alt="person" />
+                </div>
+
+                <div class="info">
+                    <h5>Learn from the best</h5>
+                    <h1>Albert Flores</h1>
+                    <p>Dolor ipsum amet cursus quisque porta adipiscing. Lorem convallis malesuada sed maecenas. Ac dui at vitae mauris cursus in nullam porta sem. Quis pellentesque elementum ac bibendum. Nunc aliquam in tortor facilisis. Vulputate eget risus, metus phasellus. Pellentesque faucibus amet, eleifend diam quam condimentum convallis ultricies placerat. Duis habitasse placerat amet, odio pellentesque rhoncus, feugiat at. Eget pellentesque tristique felis magna fringilla.</p>
+
+                    <div class="buttons">
+                        <a href="#"><button class="youtube-btn"><i class="fa-brands fa-youtube"></i>240k subscribers</button></a>
+                        <a href="#"><button class="facebook-btn"><i class="fa-brands fa-square-facebook"></i>180k followers</button></a>
+                    </div>
+                </div>
+
+                <img class="line1" src="/images/Pattern line1.png" alt="pattern-line" />
+                <img class="line2" src="/images/Pattern line2.png" alt="pattern-line" />
+                <img class="line3" src="/images/Pattern line3.png" alt="pattern-line" />
+                <img class="line4" src="/images/Pattern line4.png" alt="pattern-line" />
+                <img class="line5" src="/images/Pattern line5.png" alt="pattern-line" />
+                <img class="line6" src="/images/Pattern line6.png" alt="pattern-line" />
+                <img class="line7" src="/images/Pattern line7.png" alt="pattern-line" />
+                <img class="line8" src="/images/Pattern line8.png" alt="pattern-line" />
+                <img class="line9" src="/images/Pattern line9.png" alt="pattern-line" />
+            </div>
+        </div>
+    </section>
+}

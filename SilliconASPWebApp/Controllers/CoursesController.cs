@@ -15,7 +15,6 @@ namespace SilliconASPWebApp.Controllers
     public class CoursesController(IConfiguration configuration, CourseService courseService, CategoryService categoryService, HttpClient httpClient) : Controller
     {
         private readonly IConfiguration _configuration = configuration;
-        private readonly string _url = "https://localhost:7295/api/courses"; //släng in i appsettings sen
         private readonly CategoryService _categoryService = categoryService;
         private readonly HttpClient _client = httpClient;
         private readonly CourseService _courseService = courseService;
@@ -23,40 +22,49 @@ namespace SilliconASPWebApp.Controllers
         #region user courses actions
         public async Task<IActionResult> Index(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 5)
         {
-            var courseResult = await _courseService.GetCoursesAsync(category, searchValue, pageNumber, pageSize);
-
-            if(courseResult != null)
+            try
             {
-                var viewModel = new CoursesIndexViewModel
+                var courseResult = await _courseService.GetCoursesAsync(category, searchValue, pageNumber, pageSize);
+                if (courseResult != null)
                 {
-                    Categories = await _categoryService.GetCategoriesAsync(),
-                    Courses = courseResult.Courses,
-                    Pagination = new PaginationDto
+                    var viewModel = new CoursesIndexViewModel
                     {
-                        PageSize = pageSize,
-                        CurrentPage = pageNumber,
-                        TotalPages = courseResult.TotalPages,
-                        TotalItems = courseResult.TotalItems,
-                        Category = courseResult.Category
-                    }
-                };
+                        Categories = await _categoryService.GetCategoriesAsync(),
+                        Courses = courseResult.Courses,
+                        Pagination = new PaginationDto
+                        {
+                            PageSize = pageSize,
+                            CurrentPage = pageNumber,
+                            TotalPages = courseResult.TotalPages,
+                            TotalItems = courseResult.TotalItems,
+                            Category = courseResult.Category
+                        }
+                    };
 
-                return View(viewModel);
+                    return View(viewModel);
+                }
             }
-                return View();
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            TempData["ErrorMessage"] = "error";
+            return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var url = $"https://localhost:7295/api/courses/{id}?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
 
-            var response = await _client.GetAsync(url);
-            var json = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<CourseCardModel>(json);
-            data!.GetBackgorundImg();
-
-            return View(data);
+            try
+            {
+                var course = await _courseService.GetOneCourseAsync(id);
+                if (course != null)
+                {
+                    course!.GetBackgorundImg();
+                    return View(course);
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            TempData["ErrorMessage"] = "error";
+            return View();
         }
         #endregion
 

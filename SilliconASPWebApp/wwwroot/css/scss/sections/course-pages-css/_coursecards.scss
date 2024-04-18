@@ -2,6 +2,14 @@
 
     .container {
 
+        .error-msg {
+            color: var(--color-danger);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 30px;
+            font-weight:bold;
+        }
+
         .pagination {
             display: flex;
             justify-content: center;

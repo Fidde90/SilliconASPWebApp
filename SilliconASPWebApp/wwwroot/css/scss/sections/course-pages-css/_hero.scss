@@ -1,4 +1,12 @@
-﻿.hero-section {
+﻿.error-msg {
+    padding:20px;
+    color: var(--color-danger);  
+    margin-top: 100px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.hero-section {
     background-repeat: no-repeat;
     background-color: #131022b3;
     background-size: cover;

@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.ViewModels.Views;
 using Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace SilliconASPWebApp.Controllers
 {
@@ -71,7 +69,7 @@ namespace SilliconASPWebApp.Controllers
                 try
                 {
                     var result = await _authService.SignIn(new Models.Forms.SignInFormModel { Email = viewModel.Email, Password = viewModel.Password, Remeber = false });
-                    if (result)
+                    if (result == true)
                     {
                         var user = await _userService.GetByEmailAsync(viewModel.Email);
                         var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
@@ -107,8 +105,12 @@ namespace SilliconASPWebApp.Controllers
         #region sign out
         public new async Task<IActionResult> SignOut()
         {
-            Response.Cookies.Delete("AccessToken");
-            await _signInManager.SignOutAsync();
+            try
+            {
+                Response.Cookies.Delete("AccessToken");
+                await _signInManager.SignOutAsync();
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return RedirectToAction("SignIn", "Auth");
         }
         #endregion
@@ -125,24 +127,27 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> FacebookCallback()
         {
-            var facebookData = await _signInManager.GetExternalLoginInfoAsync();
-            if (facebookData != null)
+            try
             {
-                var facebookUser = _externalAccountService.CreateExternalUserObject(facebookData);
-                var dbUser = await _userService.GetByEmailAsync(facebookUser);
-
-                dbUser ??= await _externalAccountService.AddExternalUserToDataBaseAsync(facebookUser);
-
-                if (dbUser != null)
+                var facebookData = await _signInManager.GetExternalLoginInfoAsync();
+                if (facebookData != null)
                 {
-                    await _externalAccountService.CompareExternalDataWithDatabase(facebookUser, dbUser);
-                    await _signInManager.SignInAsync(dbUser, isPersistent: false);
+                    var facebookUser = _externalAccountService.CreateExternalUserObject(facebookData);
+                    var dbUser = await _userService.GetByEmailAsync(facebookUser);
 
-                    if (HttpContext.User != null)
-                        return RedirectToAction("Details", "Account");
+                    dbUser ??= await _externalAccountService.AddExternalUserToDataBaseAsync(facebookUser);
+
+                    if (dbUser != null)
+                    {
+                        await _externalAccountService.CompareExternalDataWithDatabase(facebookUser, dbUser);
+                        await _signInManager.SignInAsync(dbUser, isPersistent: false);
+
+                        if (HttpContext.User != null)
+                            return RedirectToAction("Details", "Account");
+                    }
                 }
             }
-
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             TempData["StatusMessage"] = "Faild to authenticate with Facebook.";
             return RedirectToAction("SignIn", "Auth");
         }
@@ -157,24 +162,27 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GoogleCallback()
         {
-            var googleData = await _signInManager.GetExternalLoginInfoAsync();
-            if (googleData != null)
+            try
             {
-                var googleUser = _externalAccountService.CreateExternalUserObject(googleData);
-                var dbUser = await _userService.GetByEmailAsync(googleUser);
-
-                dbUser ??= await _externalAccountService.AddExternalUserToDataBaseAsync(googleUser);
-
-                if (dbUser != null)
+                var googleData = await _signInManager.GetExternalLoginInfoAsync();
+                if (googleData != null)
                 {
-                    await _externalAccountService.CompareExternalDataWithDatabase(googleUser, dbUser);
-                    await _signInManager.SignInAsync(dbUser, isPersistent: false);
+                    var googleUser = _externalAccountService.CreateExternalUserObject(googleData);
+                    var dbUser = await _userService.GetByEmailAsync(googleUser);
 
-                    if (HttpContext.User != null)
-                        return RedirectToAction("Details", "Account");
+                    dbUser ??= await _externalAccountService.AddExternalUserToDataBaseAsync(googleUser);
+
+                    if (dbUser != null)
+                    {
+                        await _externalAccountService.CompareExternalDataWithDatabase(googleUser, dbUser);
+                        await _signInManager.SignInAsync(dbUser, isPersistent: false);
+
+                        if (HttpContext.User != null)
+                            return RedirectToAction("Details", "Account");
+                    }
                 }
             }
-
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             TempData["StatusMessage"] = "Faild to authenticate with Google.";
             return RedirectToAction("SignIn", "Auth");
         }

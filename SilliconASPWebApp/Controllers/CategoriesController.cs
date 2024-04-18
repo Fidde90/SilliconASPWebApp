@@ -10,10 +10,7 @@ namespace SilliconASPWebApp.Controllers
         private readonly CategoryService _categoryService = categoryService;
 
         [Route("/Category")]
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryFormModel model)

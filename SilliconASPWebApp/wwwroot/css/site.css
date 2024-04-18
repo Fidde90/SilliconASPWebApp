@@ -1844,6 +1844,13 @@ footer .container .display-none {
   color: var(--color-gray-500);
 }
 
+.courses .container .error-msg {
+  color: var(--color-danger);
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
 .courses .container .pagination {
   display: flex;
   justify-content: center;
@@ -1944,6 +1951,15 @@ footer .container .display-none {
     color: var(--color-gray-900);
     font-size: 40px !important;
   }
+}
+
+.error-msg {
+  padding: 20px;
+  color: var(--color-danger);
+  margin-top: 100px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .hero-section {

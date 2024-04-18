@@ -22,6 +22,15 @@
 
         public string? PictureUrl { get; set; }
 
+        public string? BackgroundImg { get; set; }
+
         public string Category { get; set; } = null!;
+        public void GetBackgorundImg()
+        {
+            if (string.IsNullOrWhiteSpace(PictureUrl))
+                return;
+
+            BackgroundImg = PictureUrl;
+        }
     }
 }

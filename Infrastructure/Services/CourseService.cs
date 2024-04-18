@@ -13,7 +13,7 @@ namespace Infrastructure.Services
     {
         private readonly HttpClient _client = client;
         private readonly IConfiguration _configuration = configuration;
-        private readonly string _url = "https://localhost:7295/api/Courses";
+        private readonly string _url = "https://localhost:7295/api/Courses/";
 
         [HttpGet]
         public async Task<CourseResult> GetCoursesAsync(string category = "", string searchValue = "", int pageNumber = 1, int pageSize = 10)
@@ -46,6 +46,24 @@ namespace Infrastructure.Services
                     var json = await response.Content.ReadAsStringAsync();
                     var data = JsonConvert.DeserializeObject<CourseResult>(json);
                     if (data!.Courses != null && data.Succeeded)
+                        return data;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return null!;
+        }
+
+        [HttpGet]
+        public async Task<CourseDto> GetOneCourseAsync(int id)
+        {
+            try
+            {
+                var response = await _client.GetAsync($"{_url}{id}?key={_configuration["ApiKey:Secret"]}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<CourseDto>(json);
+                    if (data != null)
                         return data;
                 }
             }
