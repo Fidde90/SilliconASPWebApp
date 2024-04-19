@@ -36,7 +36,7 @@
                             <div class="info">
                                 <div class="title">@course.Title</div>
                                 <p>By @course.Author</p>
-                                @if (course.DiscountPrice != "")
+                                @if (!string.IsNullOrEmpty(course.DiscountPrice) || !string.IsNullOrWhiteSpace(course.DiscountPrice))
                                 {
                                     <label id="discount">$@course.DiscountPrice</label>
                                     <label id="price"> $@course.Price</label>

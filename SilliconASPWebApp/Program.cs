@@ -43,6 +43,8 @@ builder.Services.AddAuthentication().AddGoogle(g =>
 builder.Services.RegisterRepositories(builder.Configuration);
 builder.Services.RegisterServices(builder.Configuration);
 
+
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -58,6 +60,8 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
+
+
 
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error","?statusCode{0}");

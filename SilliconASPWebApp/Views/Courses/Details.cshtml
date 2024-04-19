@@ -6,7 +6,7 @@
 }
 else
 {
-    <section class="hero-section" style="background-image:url(/images/@Model.BackgroundImg)">
+    <section class="hero-section" style="background-image:url(/images/@Model.PictureUrl)">
         <div class="container">
             <div class="path">
                 <p><i class="fa-regular fa-house"></i> <a href="index.html"> <span>Home</span></a></p>
@@ -22,7 +22,10 @@ else
                     <p class="best-seller">Best seller</p>
                 }
 
-                <p class="category">Digital</p> //fixa ett boolvärde i databasen isDigital
+                @if(Model.IsDigital == true)
+                {
+                    <p class="digital">Digital</p>
+                }
             </div>
 
             <div class="title">

@@ -561,6 +561,16 @@ a:hover {
   font-size: 16px;
   font-weight: 600;
 }
+.course-cards .card .digital {
+  color: black;
+  color: white;
+  padding: 0px 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: white;
+  z-index: 10;
+}
 @media (min-width: 992px) {
   .course-cards .card {
     max-width: 420px;
@@ -1997,9 +2007,9 @@ footer .container .display-none {
   font-size: 18px;
   font-weight: 600;
 }
-.hero-section .container .tags .category {
+.hero-section .container .tags .digital {
   background-color: white;
-  color: var(--color-gray-900);
+  color: black;
   padding: 2px 15px;
   border-radius: 8px;
   font-size: 18px;
@@ -2573,32 +2583,71 @@ footer .container .display-none {
   z-index: -1;
 }
 
-#update-course .container {
+#manage-course .container {
   margin-top: 80px;
   overflow: hidden;
+  position: relative;
 }
-#update-course .container #menu-buttons {
+#manage-course .container .susccess-message {
+  position: absolute;
+  color: white;
+  left: 50px;
+  top: 120px;
+}
+@media (min-width: 992px) {
+  #manage-course .container .susccess-message {
+    left: 920px;
+    top: 100px;
+  }
+}
+#manage-course .container .alert-warning {
+  position: absolute;
+  color: white;
+  left: 50px;
+  top: 120px;
+  background-color: var(--color-warning);
+}
+@media (min-width: 992px) {
+  #manage-course .container .alert-warning {
+    left: 920px;
+    top: 100px;
+  }
+}
+#manage-course .container .alert-danger {
+  position: absolute;
+  color: white;
+  left: 50px;
+  top: 120px;
+  background-color: var(--color-danger);
+}
+@media (min-width: 992px) {
+  #manage-course .container .alert-danger {
+    left: 920px;
+    top: 100px;
+  }
+}
+#manage-course .container #menu-buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 5rem;
   gap: 20px;
 }
-#update-course .container #menu-buttons a {
+#manage-course .container #menu-buttons a {
   background-color: #8a5ddb;
 }
-#update-course .container .action-buttons a {
+#manage-course .container .action-buttons a {
   margin-right: 20px;
 }
-#update-course .container .content {
+#manage-course .container .content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-#update-course .container .content .cards .large-card {
+#manage-course .container .content .cards .large-card {
   text-decoration: none;
 }
-#update-course .container .content .cards .large-card .card {
+#manage-course .container .content .cards .large-card .card {
   max-width: 370px;
   width: 100%;
   height: 470px;
@@ -2611,7 +2660,7 @@ footer .container .display-none {
   position: relative;
   box-shadow: 0px 4px 13px -2px black;
 }
-#update-course .container .content .cards .large-card .card .best-seller {
+#manage-course .container .content .cards .large-card .card .best-seller {
   position: absolute;
   left: 20px;
   top: 20px;
@@ -2622,67 +2671,67 @@ footer .container .display-none {
   font-size: 16px;
   font-weight: 600;
 }
-#update-course .container .content .cards .large-card .card .card-symbol {
+#manage-course .container .content .cards .large-card .card .card-symbol {
   position: absolute;
   right: 10px;
   top: 15px;
   border: none;
   box-shadow: none;
 }
-#update-course .container .content .cards .large-card .card .pic {
+#manage-course .container .content .cards .large-card .card .pic {
   width: 100%;
   height: 240px;
 }
-#update-course .container .content .cards .large-card .card .pic img {
+#manage-course .container .content .cards .large-card .card .pic img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-bottom-left-radius: 0;
   border-top-right-radius: 7px;
 }
-#update-course .container .content .cards .large-card .card .info {
+#manage-course .container .content .cards .large-card .card .info {
   width: 100%;
   padding: 25px;
 }
-#update-course .container .content .cards .large-card .card .info .title {
+#manage-course .container .content .cards .large-card .card .info .title {
   font-size: 20px;
   font-weight: bold;
   color: var(--color-gray-900);
 }
-#update-course .container .content .cards .large-card .card .info p {
+#manage-course .container .content .cards .large-card .card .info p {
   margin-top: 10px;
   margin-bottom: 5px;
   font-size: 14px;
   color: var(--color-gray-600);
   font-weight: 600;
 }
-#update-course .container .content .cards .large-card .card .info label {
+#manage-course .container .content .cards .large-card .card .info label {
   color: var(--color-theme);
   font-weight: bold;
   font-size: 18px;
 }
-#update-course .container .content .cards .large-card .card .info label span {
+#manage-course .container .content .cards .large-card .card .info label span {
   color: var(--color-gray-500);
   text-decoration: line-through;
   margin-left: 5px;
 }
-#update-course .container .content .cards .large-card .card .info #discount {
+#manage-course .container .content .cards .large-card .card .info #discount {
   color: var(--color-danger);
 }
-#update-course .container .content .cards .large-card .card .info #price {
+#manage-course .container .content .cards .large-card .card .info #price {
   color: var(--color-gray-400);
   text-decoration: line-through;
 }
-#update-course .container .content .cards .large-card .card .info .red {
+#manage-course .container .content .cards .large-card .card .info .red {
   color: red;
 }
-#update-course .container .content .cards .large-card .card .info .line {
+#manage-course .container .content .cards .large-card .card .info .line {
   height: 1px;
   width: 100%;
   background-color: var(--color-gray-400);
   margin-top: 15px;
 }
-#update-course .container .content .cards .large-card .card .info .time-rates {
+#manage-course .container .content .cards .large-card .card .info .time-rates {
   display: block;
   margin-top: 20px;
   display: flex;
@@ -2690,13 +2739,13 @@ footer .container .display-none {
   color: var(--color-gray-500);
   font-weight: 600;
 }
-#update-course .container .content .cards .large-card .card:hover {
+#manage-course .container .content .cards .large-card .card:hover {
   box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
 }
-#update-course .container .content .cards .small-card {
+#manage-course .container .content .cards .small-card {
   text-decoration: none;
 }
-#update-course .container .content .cards .small-card .card {
+#manage-course .container .content .cards .small-card .card {
   display: flex;
   flex-direction: row;
   position: relative;
@@ -2710,14 +2759,14 @@ footer .container .display-none {
   margin-top: 40px;
   box-shadow: 0px 4px 13px -2px black;
 }
-#update-course .container .content .cards .small-card .card .card-symbol {
+#manage-course .container .content .cards .small-card .card .card-symbol {
   position: absolute;
   right: 10px;
   bottom: 10px;
   border-radius: 50%;
   box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
 }
-#update-course .container .content .cards .small-card .card .best-seller {
+#manage-course .container .content .cards .small-card .card .best-seller {
   position: absolute;
   left: 20px;
   top: 20px;
@@ -2728,81 +2777,81 @@ footer .container .display-none {
   font-size: 16px;
   font-weight: 600;
 }
-#update-course .container .content .cards .small-card .card .pic {
+#manage-course .container .content .cards .small-card .card .pic {
   width: 180px;
   height: 100%;
 }
-#update-course .container .content .cards .small-card .card .pic img {
+#manage-course .container .content .cards .small-card .card .pic img {
   width: 100%;
   height: 100%;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   object-fit: cover;
 }
-#update-course .container .content .cards .small-card .card .info {
+#manage-course .container .content .cards .small-card .card .info {
   padding: 10px;
   width: 200px;
 }
-#update-course .container .content .cards .small-card .card .info .title {
+#manage-course .container .content .cards .small-card .card .info .title {
   font-size: 15px;
   font-weight: 700;
   color: var(--color-gray-900);
 }
-#update-course .container .content .cards .small-card .card .info p {
+#manage-course .container .content .cards .small-card .card .info p {
   margin-top: 10px;
   margin-bottom: 5px;
   font-size: 14px;
   color: var(--color-gray-600);
   font-weight: 600;
 }
-#update-course .container .content .cards .small-card .card .info label {
+#manage-course .container .content .cards .small-card .card .info label {
   color: var(--color-theme);
   font-weight: bold;
   font-size: 18px;
 }
-#update-course .container .content .cards .small-card .card .info label span {
+#manage-course .container .content .cards .small-card .card .info label span {
   color: var(--color-gray-500);
   text-decoration: line-through;
   margin-left: 5px;
 }
-#update-course .container .content .cards .small-card .card .info #discount {
+#manage-course .container .content .cards .small-card .card .info #discount {
   color: var(--color-danger);
 }
-#update-course .container .content .cards .small-card .card .info #price {
+#manage-course .container .content .cards .small-card .card .info #price {
   color: var(--color-gray-400);
   text-decoration: line-through;
 }
-#update-course .container .content .cards .small-card .card .info .red {
+#manage-course .container .content .cards .small-card .card .info .red {
   color: red;
 }
-#update-course .container .content .cards .small-card .card .info .time-rates {
+#manage-course .container .content .cards .small-card .card .info .time-rates {
   display: none;
 }
-#update-course .container .content .cards .small-card .card:hover {
+#manage-course .container .content .cards .small-card .card:hover {
   box-shadow: 0px 4px 13px -2px rgb(160, 159, 159);
 }
-#update-course .container .input-group {
+#manage-course .container .input-group {
   max-width: 400px;
 }
-#update-course .container .input-group button {
+#manage-course .container .input-group button {
   width: 100%;
   margin-top: 10px;
 }
-#update-course .container .hidden {
+#manage-course .container .hidden {
   transform: translateX(510%);
   transition: 0.5s;
 }
-#update-course .container .show-form {
+#manage-course .container .show-form {
   transform: translateX(0);
   transition: 0.25s;
 }
-#update-course .container #delete-btn {
+#manage-course .container #delete-btn {
   color: black;
   font-weight: bold;
   background-color: var(--color-danger);
   display: inline-block;
 }
-#update-course .container #modifyBtn {
+#manage-course .container #modifyBtn {
   display: inline-block;
   color: black;
   font-weight: bold;
@@ -3226,6 +3275,32 @@ footer .container .display-none {
 }
 
 .susccess-message {
+  position: absolute;
+  top: -50px;
+  color: black;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 250px;
+  text-align: center;
+  background-color: #90d6a5;
+  border-radius: 10px !important;
+  padding: 5px 0px;
+}
+
+.alert-warning {
+  position: absolute;
+  top: -50px;
+  color: black;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 250px;
+  text-align: center;
+  background-color: #90d6a5;
+  border-radius: 10px !important;
+  padding: 5px 0px;
+}
+
+.alert-danger {
   position: absolute;
   top: -50px;
   color: black;

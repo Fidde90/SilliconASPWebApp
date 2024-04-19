@@ -36,7 +36,7 @@
         <div class="course-cards">
             @foreach (var course in Model)
             {
-                <a class="card-link" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@course.Id">
+                <a class="card-link" asp-controller="Courses" asp-action="ManageCourse" asp-route-id="@course.Id">
                     <div class="card">
                         <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
                         @if (course.IsBestSeller)

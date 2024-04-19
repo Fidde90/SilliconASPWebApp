@@ -1,9 +1,9 @@
-﻿@model CourseCardModel
+﻿@model UpdateCourseDto
 @{
 
 }
 
-<section id="update-course">
+<section id="manage-course">
     <div class="container">
 
         <nav id="menu-buttons">
@@ -18,13 +18,23 @@
             <a asp-controller="Courses" id="modifyBtn" class="btn-theme">Modify course</a>
         </div>
 
+        @if (TempData["message"]?.ToString() == "Updated")
+        {
+            <div class="susccess-message">Updated!</div>
+        }
+        else if (TempData["message"]?.ToString() == "bad data")
+        {
+            <div class="alert-danger">Enter valid information</div>
+        }
+
+
         <div class="content">
 
             <div class="cards">
 
                 @if (Model != null)
                 {
-                    <a class="large-card" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@Model.Id">
+                    <a class="large-card" asp-route-id="@Model.Id">
                         <div class="card">
                             <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
                             @if (@Model.IsBestSeller)
@@ -55,7 +65,7 @@
                         </div>
                     </a>
 
-                    <a class="small-card" asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@Model.Id">
+                    <a class="small-card" asp-controller="Courses" asp-action="ManageCourse" asp-route-id="@Model.Id">
                         <div class="card">
                             <img class="card-symbol" src="/images/course-symbol.svg" alt="course symbol">
                             @if (@Model.IsBestSeller)
@@ -92,15 +102,10 @@
                 }
             </div>
 
-            <div>
-                @if (TempData["message"]?.ToString() == "Update")
-                {
-                    <div class="susccess-message">Updated!</div>
-                }
-            </div>
+           
 
             <div id="update-form" class="input-group">
-                <form method="post" novalidate asp-controller="Courses" asp-action="UpdateCourse">
+                <form method="post" novalidate asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@Model!.Id">
                     <label asp-for="Title">Title *</label>
                     <input asp-for="Title" />
 
@@ -115,6 +120,9 @@
 
                     <label asp-for="IsBestSeller">Is Best Seller? (True or False)</label>
                     <input asp-for="IsBestSeller" />
+
+                    <label asp-for="IsDigital">Is digital?</label>
+                    <input asp-for="IsDigital" />
 
                     <label asp-for="LikesInNumbers">LikesInNumbers</label>
                     <input asp-for="LikesInNumbers" />

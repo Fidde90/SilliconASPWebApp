@@ -16,6 +16,8 @@
 
         public bool IsBestSeller { get; set; } = false;
 
+        public bool IsDigital { get; set; } = false;
+
         public string? LikesInNumbers { get; set; }
 
         public string? LikesInProcent { get; set; }

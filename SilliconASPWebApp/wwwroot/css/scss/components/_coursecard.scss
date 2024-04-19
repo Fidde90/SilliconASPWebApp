@@ -60,7 +60,7 @@
             width: 35px;
             height: 35px;
             background-color: var(--color-gray-000);
-            cursor:pointer;
+            cursor: pointer;
 
             i {
                 font-size: 15px;
@@ -76,12 +76,12 @@
                     color: var(--color-gray-000);
                 }
 
-                .hover-message{
-                    display:block;
+                .hover-message {
+                    display: block;
                 }
 
-                .triangle{
-                    display:block;
+                .triangle {
+                    display: block;
                 }
             }
         }
@@ -96,6 +96,17 @@
             border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
+        }
+
+        .digital {
+            color: black;
+            color: white;
+            padding: 0px 10px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: white;
+            z-index:10;
         }
 
         @include lg {
