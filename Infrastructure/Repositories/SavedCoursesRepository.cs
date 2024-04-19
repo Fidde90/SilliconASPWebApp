@@ -1,8 +1,5 @@
 ﻿using Infrastructure.Contexts;
-using Infrastructure.Dtos;
 using Infrastructure.Entities;
-using Infrastructure.Factories;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
 {

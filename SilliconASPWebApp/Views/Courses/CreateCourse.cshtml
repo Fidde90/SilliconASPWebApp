@@ -1,4 +1,5 @@
 ﻿@model CourseDto
+@inject CategoryService cService
 @{
     ViewData["Title"] = "New course";
     string message = "";
@@ -6,6 +7,8 @@
     {
         message = TempData["message"]!.ToString()!;
     }
+
+    var categories = await cService.GetCategoriesAsync();
 }
 
 <section id="create-course">
@@ -50,12 +53,16 @@
                 <label asp-for="DiscountPrice">DiscountPrice</label>
                 <input asp-for="DiscountPrice" />
 
-                <label asp-for="IsBestSeller">Is Best Seller? (True or False)</label>
-                <input asp-for="IsBestSeller" />
-
-
-                <label asp-for="IsDigital">Is digital? (True or False)</label>
-                <input asp-for="IsDigital" />
+                <div class="checkboxes">
+                    <div class="box">
+                        <label asp-for="IsBestSeller">Is Best Seller?</label>
+                        <input asp-for="IsBestSeller" />
+                    </div>
+                    <div class ="box">
+                        <label asp-for="IsDigital">Is digital?</label>
+                        <input asp-for="IsDigital" />
+                    </div>
+                </div>
 
                 <label asp-for="LikesInNumbers">LikesInNumbers</label>
                 <input asp-for="LikesInNumbers" />
@@ -66,11 +73,21 @@
                 <label asp-for="Hours">Hours</label>
                 <input asp-for="Hours" />
 
-                <label asp-for="PictureUrl">PictureUrl *</label>
+                <label asp-for="PictureUrl">PictureUrl * (example.jpg)</label>
                 <input asp-for="PictureUrl" />
 
-                <label asp-for="Category">Category *</label>
-                <input asp-for="Category" />
+                <div class="select-container">
+                    <label asp-for="Category">Category *</label>
+                    <select asp-for="Category">
+                        @if (categories != null)
+                        {
+                            foreach (var category in categories)
+                            {
+                                <option>@category.CategoryName</option>
+                            }
+                        }
+                    </select>
+                </div>
 
                 <button class="btn-theme" type="submit">Create</button>
             </form>

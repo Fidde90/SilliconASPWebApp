@@ -11,19 +11,23 @@ namespace Infrastructure.Services
 
         public AppUserEntity CreateExternalUserObject(ExternalLoginInfo externalData)
         {
-            if (externalData != null)
+            try
             {
-                var externalUser = new AppUserEntity
+                if (externalData != null)
                 {
-                    FirstName = externalData.Principal.FindFirstValue(ClaimTypes.GivenName)!,
-                    LastName = externalData.Principal.FindFirstValue(ClaimTypes.Surname)!,
-                    Email = externalData.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    UserName = externalData.Principal.FindFirstValue(ClaimTypes.Email)!,
-                    IsExternal = true
-                };
+                    var externalUser = new AppUserEntity
+                    {
+                        FirstName = externalData.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                        LastName = externalData.Principal.FindFirstValue(ClaimTypes.Surname)!,
+                        Email = externalData.Principal.FindFirstValue(ClaimTypes.Email)!,
+                        UserName = externalData.Principal.FindFirstValue(ClaimTypes.Email)!,
+                        IsExternal = true
+                    };
 
-                return externalUser;
+                    return externalUser;
+                }
             }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;
         }
 

@@ -13,7 +13,7 @@ namespace Infrastructure.Services
         private readonly IConfiguration _configuration = configuration;
         private readonly string _url = $"https://localhost:7295/api/Contact";
 
-        public async Task<bool> SeandMessageAsync(ContactFormModel form)
+        public async Task<bool> SendMessageAsync(ContactFormModel form)
         {
             try
             {

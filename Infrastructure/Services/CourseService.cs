@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Infrastructure.Services
 {
-    public class CourseService(HttpClient client, IConfiguration configuration)
+    public class CourseService(HttpClient client, IConfiguration configuration)  
     {
         private readonly HttpClient _client = client;
         private readonly IConfiguration _configuration = configuration;

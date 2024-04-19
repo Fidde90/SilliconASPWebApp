@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SilliconASPWebApp.ViewModels.Views;
 using System.Diagnostics;
-using System.Net.Http.Headers;
 
 namespace SilliconASPWebApp.Controllers
 {

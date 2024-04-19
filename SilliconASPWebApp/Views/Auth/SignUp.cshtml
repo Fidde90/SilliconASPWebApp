@@ -9,9 +9,9 @@
             <h1>Create account</h1>
             <p>Already have an account? <a asp- asp-controller="Auth" asp-action="SignIn">Sign in here.</a></p>
 
-            @if(Model.ErrorMessage != string.Empty)
+            @if(ViewData["ErrorMsg"]?.ToString() == "error")
             {
-                <div class="error-msg">@Model.ErrorMessage</div>
+                <div class="error">A user with the same email already exsitis</div>
             }
             <form method="post" novalidate asp-controller="Auth" asp-action="SignUp">
                 <div class="name">

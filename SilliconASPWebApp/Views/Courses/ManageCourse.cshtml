@@ -1,6 +1,7 @@
 ﻿@model UpdateCourseDto
+@inject CategoryService cService
 @{
-
+    var categories = await cService.GetCategoriesAsync();
 }
 
 <section id="manage-course">
@@ -136,8 +137,18 @@
                     <label asp-for="PictureUrl">PictureUrl *</label>
                     <input asp-for="PictureUrl" />
 
-                    <label asp-for="Category">Category</label>
-                    <input asp-for="Category" />
+                    <div class="select-container">
+                        <label asp-for="Category">Category *</label>
+                        <select asp-for="Category">
+                            @if (categories != null)
+                            {
+                                foreach (var category in categories)
+                                {
+                                    <option>@category.CategoryName</option>
+                                }
+                            }
+                        </select>
+                    </div>
 
                     <button id="update-btn" class="btn-theme" type="submit">Update</button>
                 </form>

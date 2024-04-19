@@ -4,14 +4,10 @@ using System.Diagnostics;
 
 namespace Infrastructure.Services
 {
-    public class AddressService
+    public class AddressService(AddressRepository addressRepository)
     {
-        private readonly AddressRepository _addressRepository;
-        public AddressService(AddressRepository addressRepository)
-        {
-            _addressRepository = addressRepository;
-        }
-
+        private readonly AddressRepository _addressRepository = addressRepository;
+        
         public async Task<AddressEntity> CreateAddress(AddressEntity newAddress)
         {
             try

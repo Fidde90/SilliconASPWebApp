@@ -39,12 +39,8 @@ builder.Services.AddAuthentication().AddGoogle(g =>
     g.ClientId = "115908931583-62p0vbcglk7qqd419eisvnfhqf723rel.apps.googleusercontent.com";
     g.ClientSecret = "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";
 });
-
 builder.Services.RegisterRepositories(builder.Configuration);
 builder.Services.RegisterServices(builder.Configuration);
-
-
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -60,8 +56,6 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
-
-
 
 app.UseHsts();
 app.UseStatusCodePagesWithReExecute("/error","?statusCode{0}");

@@ -22,7 +22,7 @@ namespace SilliconASPWebApp.Controllers
             {
                 try
                 {
-                    var result = await _contactService.SeandMessageAsync(viewModel.Form);
+                    var result = await _contactService.SendMessageAsync(viewModel.Form);
 
                     if (result == true)
                     {

@@ -1378,6 +1378,17 @@ footer .container .display-none {
   align-items: center;
   justify-content: center;
 }
+.create-account .container .error {
+  width: 100%;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  background-color: #fc6262;
+  border-radius: 10px !important;
+  padding: 5px 0px;
+}
 .create-account .container .content {
   max-width: 700px;
   width: 100%;
@@ -2296,6 +2307,29 @@ footer .container .display-none {
   width: 100%;
   margin-top: 10px;
   background-color: #8a5ddb;
+}
+#create-course .container .checkboxes {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+#create-course .container .checkboxes .box input {
+  height: 17px;
+}
+#create-course .container .select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+#create-course .container .select-container select {
+  padding: 10px 10px;
+  border-radius: 7px;
+  font-weight: 500;
+  border-color: var(--color-gray-400);
+}
+#create-course .container .select-container select option {
+  font-weight: 500;
 }
 
 #all-courses {

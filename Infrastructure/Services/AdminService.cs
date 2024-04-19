@@ -1,6 +1,4 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Http;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Infrastructure.Services
 {

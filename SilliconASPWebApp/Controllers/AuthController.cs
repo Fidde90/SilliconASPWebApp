@@ -33,6 +33,7 @@ namespace SilliconASPWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel viewModel)
         {
+            ViewData["ErrorMsg"] = "";
             try
             {
                 if (ModelState.IsValid)
@@ -43,7 +44,7 @@ namespace SilliconASPWebApp.Controllers
                 }
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
-            viewModel.ErrorMessage = "A user with the same email already exsitis";
+            ViewData["ErrorMsg"] = "error";
             return View(viewModel);
         }
         #endregion

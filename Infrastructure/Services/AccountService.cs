@@ -1,6 +1,5 @@
 ﻿using Infrastructure.Contexts;
 using Infrastructure.Entities;
-using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

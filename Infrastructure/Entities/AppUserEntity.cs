@@ -1,5 +1,4 @@
-﻿using Infrastructure.Dtos;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Entities
 {

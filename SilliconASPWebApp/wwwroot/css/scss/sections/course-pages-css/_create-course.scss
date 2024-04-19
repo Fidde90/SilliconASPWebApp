@@ -36,13 +36,49 @@
 
             input {
                 background-color: var(--color-white);
-                color:var(--color-black);
+                color: var(--color-black);
             }
 
             button {
                 width: 100%;
                 margin-top: 10px;
                 background-color: #8a5ddb;
+            }
+        }
+
+        .checkboxes {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+  
+
+
+            .box {
+
+
+                input {
+                    height: 17px;
+     
+                }
+            }
+        }
+
+
+        .select-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 50px;
+
+            select {
+                padding: 10px 10px;
+                border-radius: 7px;
+                font-weight: 500;
+                border-color: var(--color-gray-400);
+
+                option {
+                    font-weight: 500;
+                }
             }
         }
     }

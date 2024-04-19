@@ -61,16 +61,20 @@ namespace Infrastructure.Services
 
         public async Task<List<CourseDto>> PostIdsGetCoursesAsync(List<int> ids)
         {
-            var url = $"https://localhost:7295/savedcourses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
-            var json = JsonConvert.SerializeObject(ids);
-            using var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(url, content);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseData = await response.Content.ReadAsStringAsync();
-                var data = JsonConvert.DeserializeObject<List<CourseDto>>(responseData);
-                return data!;
+                var url = $"https://localhost:7295/savedcourses?key=NGYyMmY5ZTgtNjI4ZS00NjdmLTgxNmEtMTI2YjdjNjk4ZDA1";
+                var json = JsonConvert.SerializeObject(ids);
+                using var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseData = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<List<CourseDto>>(responseData);
+                    return data!;
+                }
             }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }      
             return null!;
         }
 
