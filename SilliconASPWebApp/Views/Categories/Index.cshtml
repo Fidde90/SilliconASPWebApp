@@ -1,6 +1,8 @@
 ﻿@model CategoryFormModel
+@inject CategoryService cService
 @{
     ViewData["Title"] = "Category";
+    var categories = await cService.GetCategoriesAsync();
 }
 
 <section id="category">
@@ -29,6 +31,22 @@
             <button type="submit" class="btn-theme">Add category</button>
         </form>
 
+        <form novalidate method="post" asp-action="DeleteCategory" asp-controller="Categories">
+            <div class="select-container">
+                <label>Category *</label>
+                <select name="categoryId">
+                    @if (categories != null)
+                    {
+                        foreach (var category in categories)
+                        {
+                            <option value="@category.Id" >@category.CategoryName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <button type="submit" class="btn-theme deleteBtn">Delete category</button>
+        </form>
     </div>
 </section>
 @await Html.PartialAsync("_ValidationScriptPartial")

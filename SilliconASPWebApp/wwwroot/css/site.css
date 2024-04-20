@@ -3067,8 +3067,34 @@ footer .container .display-none {
 #category {
   margin-top: 60px;
 }
+#category .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  align-items: center;
+}
 #category .container form {
-  max-width: 40%;
+  max-width: 80%;
+}
+#category .container .select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+#category .container .select-container select {
+  padding: 11px 10px;
+  border-radius: 7px;
+  font-weight: 500;
+  border-color: var(--color-gray-400);
+  background-color: var(--color-background);
+  color: var(--color-gray-999);
+}
+#category .container .select-container select option {
+  font-weight: 500;
+}
+#category .container .deleteBtn {
+  background-color: var(--color-danger);
 }
 
 #subscribers {

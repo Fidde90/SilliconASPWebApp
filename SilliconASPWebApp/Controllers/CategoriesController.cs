@@ -35,5 +35,26 @@ namespace SilliconASPWebApp.Controllers
             TempData["Message"] = "bad data";
             return RedirectToAction("Index", "Categories");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteCategory(int categoryId)
+        {
+            if (categoryId >= 0)
+            {
+                try
+                {
+                    var result = await _categoryService.DeleteCategoryAsync(categoryId);
+
+                    if (result == true)
+                    {
+                        TempData["Message"] = "deleted";
+                        return RedirectToAction("Index", "Categories");
+                    }
+                }
+                catch (Exception e) { Debug.WriteLine($"Error: {e}"); }
+            }
+            TempData["Message"] = "error";
+            return RedirectToAction("Index", "Categories");
+        }
     }
 }

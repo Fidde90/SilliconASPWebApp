@@ -18,12 +18,10 @@ namespace Infrastructure.Services
         {
             try
             {
-                var category = CategoryMapper.ToCreateCategoryDto(model);
-                using var client = new HttpClient();
-
+                var category = CategoryMapper.ToCreateCategoryDto(model);             
                 var json = JsonConvert.SerializeObject(category);
                 using var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
+                var response = await _client.PostAsync($"{_url}?key={_configuration["ApiKey:Secret"]}", content);
                 if (response.IsSuccessStatusCode)
                 {                  
                     return "created";
@@ -47,6 +45,20 @@ namespace Infrastructure.Services
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return null!;
+        }
+
+        public async Task<bool> DeleteCategoryAsync(int categoryId)
+        {
+            try
+            {
+                var response = await _client.DeleteAsync($"{_url}/{categoryId}?key={_configuration["ApiKey:Secret"]}");
+                if (response.IsSuccessStatusCode)
+                {                  
+                    return true;
+                }
+            }
+            catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
+            return false;
         }
     }
 }
