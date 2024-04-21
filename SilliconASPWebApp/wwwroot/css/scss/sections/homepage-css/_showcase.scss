@@ -17,12 +17,12 @@
 
             .showcase-title {
                 h1 {
-                    @include d6;
-        
+                    @include d5;
+                    width: 100%;
                 }
 
                 p {
-                    width: 95%;
+                    max-width: 95%;
                     margin-bottom: 30px;
                 }
 
@@ -31,7 +31,8 @@
                 }
 
                 @include lg {
-                    width: 90%;
+                    @include d6;
+                    max-width: 90%;
 
                     h1 {
                         @include d4;

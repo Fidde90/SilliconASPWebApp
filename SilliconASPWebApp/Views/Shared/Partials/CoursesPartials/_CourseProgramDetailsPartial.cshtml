@@ -1,0 +1,23 @@
+﻿@{
+    List<ProgramCourseBoxModel> programList = Model;
+}
+<section class="program-details">
+    <div class="container">
+        <div class="courses">
+            <h1>Program details</h1>
+            <div class="line"></div>
+            @for (int i = 0; i < programList.Count; i++)
+            {
+                <div class="course">
+                    <div class="circle">@(i + 1)</div>
+                    <div class="description">
+                        <h4>
+                            @programList[i].Title
+                        </h4>
+                        <p>@programList[i].Text</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

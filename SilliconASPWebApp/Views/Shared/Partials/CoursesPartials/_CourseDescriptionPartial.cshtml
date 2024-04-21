@@ -1,0 +1,48 @@
+﻿<section class="course-descripton-info">
+    <div class="container">
+        <div class="course-description">
+            <h1>Course description</h1>
+            <p>
+                Suspendisse natoque sagittis, consequat turpis. Sed tristique tellus morbi magna. At vel senectus
+                accumsan, arcu mattis id tempor. Tellus sagittis, euismod porttitor sed tortor est id. Feugiat
+                velit velit, tortor ut. Ut libero cursus nibh lorem urna amet tristique leo. Viverra lorem arcu
+                nam nunc at ipsum quam. A proin id sagittis dignissim mauris condimentum ornare. Tempus mauris
+                sed dictum ultrices.
+            </p>
+        </div>
+
+        <div class="learn">
+            <h3>What you'll learn</h3>
+            <p><i class="fa-regular fa-circle-check"></i> Sed lectus donec amet eu turpis interdum.</p>
+            <p><i class="fa-regular fa-circle-check"></i> Nulla at consectetur vitae dignissim porttitor.</p>
+            <p><i class="fa-regular fa-circle-check"></i> Phasellus id vitae dui aliquet mi.</p>
+            <p>
+                <i class="fa-regular fa-circle-check"></i> Integer cursus vitae, odio feugiat iaculis aliquet
+                diam, et purus.
+            </p>
+            <p><i class="fa-regular fa-circle-check"></i> In aenean dolor diam tortor orci eu.</p>
+        </div>
+
+        <div class="includes-price">
+            <h4>This course includes:</h4>
+            <p><img src="/images/slideshow.svg"> @Model.Hours hours on-demand video</p>
+            <p><img src="/images/document.svg"> 18 articles</p>
+            <p><img src="/images/download.svg"> 25 downloadable resources</p>
+            <p><img src="/images/infinite.svg"> Full lifetime access</p>
+            <p><img src="/images/trophy.svg"> Certificate of completion</p>
+
+            <div class="price">
+                @if (!string.IsNullOrWhiteSpace(Model.DiscountPrice))
+                {
+                    <h2>$@Model.DiscountPrice</h2>
+                    <h5>$@Model.Price</h5>
+                }
+                else
+                {
+                    <h2>$@Model.Price</h2>
+                }
+            </div>
+            <a class="btn-theme" asp-action="SaveCourse" asp-controller="Account" asp-route-id="@Model.Id">Join course</a>
+        </div>
+    </div>
+</section>

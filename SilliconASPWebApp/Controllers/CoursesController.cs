@@ -47,11 +47,15 @@ namespace SilliconASPWebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            CourseDetailsViewModel viewModel = new CourseDetailsViewModel();
             try
             {
                 var course = await _courseService.GetOneCourseAsync(id);
                 if (course != null)
-                    return View(course);
+                {
+                    viewModel.Course = course;
+                    return View(viewModel);
+                }            
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             TempData["ErrorMessage"] = "error";

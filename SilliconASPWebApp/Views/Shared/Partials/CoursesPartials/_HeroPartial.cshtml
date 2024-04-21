@@ -1,0 +1,43 @@
+﻿<section class="hero-section" style="background-image:url(/images/@Model.PictureUrl)">
+    <div class="container">
+        <div class="path">
+            <p><i class="fa-regular fa-house"></i><a asp-action="Index" asp-controller="Home"><span>Home</span></a></p>
+            <p><i class="fa-solid fa-angles-right"></i><a asp-action="Index" asp-controller="Courses"><span>Courses</span></a></p>
+            <p>
+                <i class="fa-solid fa-angles-right"></i> <span>@Model.Title</span>
+            </p>
+        </div>
+
+        <div class="tags">
+            @if (Model.IsBestSeller)
+            {
+                <p class="best-seller">Best seller</p>
+            }
+
+            @if (Model.IsDigital == true)
+            {
+                <p class="digital">Digital</p>
+            }
+        </div>
+
+        <div class="title">
+            <h1>@Model.Title</h1>
+            <p>Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
+        </div>
+
+        <div class="ratings">
+            <p><img src="/images/rating.svg" alt="rating stars"> <span> ( 1.2 K reviews )</span></p>
+            <p><i class="fa-light fa-thumbs-up"></i> <span> @Model.LikesInNumbers K likes</span></p>
+            <p class="last"><i class="fa-regular fa-clock"></i> <span> @Model.Hours hours</span></p>
+        </div>
+
+        <div class="created-by">
+            <img src="/images/albert-flores.svg" alt="picture of a person">
+
+            <div class="names">
+                <p class="by">Created by</p>
+                <p>@Model.Author</p>
+            </div>
+        </div>
+    </div>
+</section>

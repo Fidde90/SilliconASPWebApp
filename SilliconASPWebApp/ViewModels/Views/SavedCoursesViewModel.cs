@@ -1,9 +1,5 @@
 ﻿using Infrastructure.Dtos;
-using Infrastructure.Entities;
-using Infrastructure.Services;
-using Microsoft.AspNetCore.Identity;
 using SilliconASPWebApp.Models.Sections;
-using System.Security.Claims;
 
 namespace SilliconASPWebApp.ViewModels.Views
 {

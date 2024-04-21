@@ -8,6 +8,6 @@ namespace SilliconASPWebApp.Models.Sections.HomeSections
 
         public string? Text { get; set; } = null!;
 
-        public List<FeaturesBox> FeaturesBoxes { get; set; } = null!;
+        public List<FeaturesBoxModel> FeaturesBoxes { get; set; } = null!;
     }
 }

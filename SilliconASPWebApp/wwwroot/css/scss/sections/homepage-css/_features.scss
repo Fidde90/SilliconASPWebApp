@@ -7,17 +7,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
 
-    .section-title {
-        text-align: center;
-        width: 650px;
-        margin-bottom: 30px;
+        .section-title {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
     }
 
     .boxes {
-        align-items: center;
-
         .box-content {
             padding: 40px 0px;
             text-align: center;

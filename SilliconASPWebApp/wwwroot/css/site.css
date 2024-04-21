@@ -828,10 +828,11 @@ footer .container .display-none {
   font-family: "Manrope", sans-serif;
   font-weight: 800;
   color: var(--color-gray-900);
-  font-size: 42px !important;
+  font-size: 48px !important;
+  width: 100%;
 }
 .showcase .container .content .showcase-title p {
-  width: 95%;
+  max-width: 95%;
   margin-bottom: 30px;
 }
 .showcase .container .content .showcase-title a {
@@ -839,7 +840,14 @@ footer .container .display-none {
 }
 @media (min-width: 992px) {
   .showcase .container .content .showcase-title {
-    width: 90%;
+    line-height: 160%;
+    font-weight: 400;
+    color: var(--color-gray-700);
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 42px !important;
+    max-width: 90%;
   }
   .showcase .container .content .showcase-title h1 {
     line-height: 160%;
@@ -905,13 +913,10 @@ footer .container .display-none {
   flex-direction: column;
   align-items: center;
 }
-.features .section-title {
+.features .container .section-title {
   text-align: center;
-  width: 650px;
+  width: 100%;
   margin-bottom: 30px;
-}
-.features .boxes {
-  align-items: center;
 }
 .features .boxes .box-content {
   padding: 40px 0px;

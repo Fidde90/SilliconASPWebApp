@@ -1,70 +1,25 @@
-﻿@{
-}
+﻿@model WorkToolsModel 
+@{
 
+}
 <div class="top-work-tools">
     <div class="container">
         <div class="section-title">
-            <h1>Integrate top work tools</h1>
+            <h1>@Model.Title</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat mollis egestas. Nam
-                luctus facilisis ultrices. Pellentesque volutpat ligula est. Mattis fermentum, at nec lacus.
+                @Model.Paragraph
             </p>
         </div>
-
         <div class="cards">
-            <a href="#">
-                <div class="card">
-                    <img src="\images\googlelogo.svg" alt="google logo" />
-                    <p>Lorem magnis pretium sed curabitur nunc facilisi nunc cursus sagittis.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\kameralogo.svg" alt="Zoom logo" />
-                    <p>In eget a mauris quis. Tortor dui tempus quis integer est sit natoque placerat dolor.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\colorfullogo.svg" alt="Stack logo" />
-                    <p>Id mollis consectetur congue egestas egestas suspendisse blandit justo.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\envelope.svg" alt="Gmail logo" />
-                    <p>Rutrum interdum tortor, sed at nulla. A cursus bibendum elit purus cras praesent.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\tabletlogo.svg" alt="Trello logo" />
-                    <p>Congue pellentesque amet, viverra curabitur quam diam scelerisque fermentum urna.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\monkeylogo.svg" alt="Mailchimp logo" />
-                    <p>A elementum, imperdiet enim, pretium etiam facilisi in aenean quam mauris.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\boxlogo.svg" alt="Dropbox logo" />
-                    <p>Ut in turpis consequat odio diam lectus elementum. Est faucibus blandit platea.</p>
-                </div>
-            </a>
-            <a href="#">
-                <div class="card">
-                    <img src="images\elephantlogo.svg" alt="Evernote logo" />
-                    <p>
-                        Faucibus cursus maecenas lorem cursus nibh. Sociis sit risus id. Sit facilisis dolor
-                        arcu.
-                    </p>
-                </div>
-            </a>
+            @foreach(var card in Model.AppBoxModels)
+            {
+                <a href="#">
+                    <div class="card">
+                        <img src="@card.ImageModel.Src" alt="@card.ImageModel.AltText" />
+                        <p>@card.Text</p>
+                    </div>
+                </a>
+            }
         </div>
-
-
     </div>
 </div>

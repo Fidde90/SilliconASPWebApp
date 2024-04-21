@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models.Forms;
+using Infrastructure.Models.Sections.HomeSections;
 using SilliconASPWebApp.Models.Components;
 using SilliconASPWebApp.Models.Sections;
 using SilliconASPWebApp.Models.Sections.HomeSections;
@@ -25,7 +26,7 @@ namespace SilliconASPWebApp.ViewModels.Views
             ShowcaseImage = new ImageModel() { Src = "/images/showcaseImage.svg", AltText = "Task master image" }
         };
 
-        public FeaturesModel Features = new() 
+        public FeaturesModel Features = new()
         {
             Title = "What Do You Get with Our Tool?",
             Text = "Make sure all your tasks are organized so you can set the priorities and focus on important.",
@@ -40,7 +41,23 @@ namespace SilliconASPWebApp.ViewModels.Views
                ]
         };
 
-        public SubscribeFormModel SubscribeModel = new();
+        public WorkToolsModel Tools = new()
+        {
+            Title = "Integrate top work tools",
+            Paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin volutpat mollis egestas. Nam luctus facilisis ultrices. Pellentesque volutpat ligula est. Mattis fermentum, at nec lacus.",
+            AppBoxModels =
+                  [
+                    new(){ ImageModel={Src="\\images\\googlelogo.svg", AltText="google logo" }, Text="Lorem magnis pretium sed curabitur nunc facilisi nunc cursus sagittis." },
+                    new(){ ImageModel={Src="\\images\\kameralogo.svg", AltText = "Zoom logo"}, Text="In eget a mauris quis. Tortor dui tempus quis integer est sit natoque placerat dolor." },
+                    new(){ ImageModel={Src="\\images\\colorfullogo.svg", AltText="Stack logo" }, Text="Id mollis consectetur congue egestas egestas suspendisse blandit justo." },
+                    new(){ ImageModel={Src="\\images\\envelope.svg", AltText="Gmail logo" }, Text="Rutrum interdum tortor, sed at nulla. A cursus bibendum elit purus cras praesent." },
+                    new(){ ImageModel={Src="\\images\\tabletlogo.svg", AltText="Trello logo" }, Text="Congue pellentesque amet, viverra curabitur quam diam scelerisque fermentum urna." },
+                    new(){ ImageModel={Src="\\images\\monkeylogo.svg", AltText="Mailchimp logo" }, Text="A elementum, imperdiet enim, pretium etiam facilisi in aenean quam mauris." },
+                    new(){ ImageModel={Src="\\images\\boxlogo.svg", AltText="Dropbox logo" }, Text="Ut in turpis consequat odio diam lectus elementum. Est faucibus blandit platea." },
+                    new(){ ImageModel={Src="\\images\\elephantlogo.svg", AltText= "Evernote logo" }, Text="Faucibus cursus maecenas lorem cursus nibh. Sociis sit risus id. Sit facilisis dolor arcu" }
+                 ]
+        };
 
+        public SubscribeFormModel SubscribeModel = new();
     }
 }

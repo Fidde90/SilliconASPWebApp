@@ -21,9 +21,10 @@
 </section>
 
 <section id="top-work-tools">
-    @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_TopWorkToolsPartial.cshtml")
+    @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_TopWorkToolsPartial.cshtml", Model.Tools)
 </section>
 
 <section id="subscribe">
     @await Html.PartialAsync("~/Views/Shared/Partials/HomePartials/_SubscribePartail.cshtml", Model.SubscribeModel)
 </section>
+ 

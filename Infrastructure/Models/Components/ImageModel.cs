@@ -2,7 +2,7 @@
 {
     public class ImageModel
     {
-        public string? Src { get; set; } = null!;
+        public string Src { get; set; } = null!;
 
         public string? AltText { get; set; }
     }

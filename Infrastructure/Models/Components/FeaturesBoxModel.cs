@@ -1,6 +1,6 @@
 ﻿namespace SilliconASPWebApp.Models.Components
 {
-    public class FeaturesBox
+    public class FeaturesBoxModel
     {
         public string BoxClass { get; set; } = null!;
         public ImageModel Image { get; set; } = null!;
