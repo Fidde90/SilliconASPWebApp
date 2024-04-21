@@ -47,13 +47,13 @@ namespace SilliconASPWebApp.Controllers
 
                     if (result == true)
                     {
-                        TempData["Message"] = "deleted";
+                        TempData["Category-Message"] = "Deleted";
                         return RedirectToAction("Index", "Categories");
                     }
                 }
                 catch (Exception e) { Debug.WriteLine($"Error: {e}"); }
             }
-            TempData["Message"] = "error";
+            TempData["Category-Message"] = "error";
             return RedirectToAction("Index", "Categories");
         }
     }

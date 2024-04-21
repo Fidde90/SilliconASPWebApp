@@ -11,10 +11,14 @@
     <button type="button" class="btn-mobile"><i class="fa-solid fa-bars-staggered"></i></button>
     <div id="menu">
         <nav>
-            <a class="menu-link" asp-page="@(isRoot ? "/#showcase" : "/index")">Overview</a>
-            <a class="menu-link" href="#features">Features</a>
+            <a class="menu-link" asp-action="Index" asp-controller="Home">Home</a>
             <a class="menu-link" asp-action="Index" asp-controller="Contact">Contact</a>
-            <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+
+            @if (active)
+            {
+                <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+            }
+
 
             @if (active && User.IsInRole("Admin"))
             {
@@ -52,17 +56,20 @@
 <div id="mobile-menu" class="invisible">
     @if (active)
     {
-        <a class="menu-link" asp-page="@(isRoot ? "/#Features" : "/index")">Overview</a>
-        <a class="menu-link" href="#features">Features</a>
-        <a class="menu-link" href="#contact.html">Contact</a>
+        <a class="menu-link" asp-page="@(isRoot ? "/#Features" : "")">Overview</a>
+        <a class="menu-link" asp-action="Index" asp-controller="Contact">Contact</a>
+        <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+        @if (active && User.IsInRole("Admin"))
+        {
+            <a class="menu-link" asp-action="Index" asp-controller="Admin">The Admin Dimension</a>
+        }
         <a class="btn-theme" asp-controller="Auth" asp-action="SignOut"><i class="fa-regular fa-right-to-bracket"></i><span>Sign Out</span></a>
         <a asp-controller="Account" asp-action="Details"><Img class="profile-pic" src="~/uploads/@user?.ProfilePicUrl" /></a>
     }
     else
     {
-        <a class="menu-link" asp-page="@(isRoot ? "/#Features" : "/index")">Overview</a>
-        <a class="menu-link" href="#features">Features</a>
-        <a class="menu-link" href="#contact.html">Contact</a>
+        <a class="menu-link" asp-page="@(isRoot ? "/#Features" : "")">Overview</a>
+        <a class="menu-link" asp-action="Index" asp-controller="Contact">Contact</a>
         <a class="btn-theme" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
         <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
     }

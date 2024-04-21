@@ -9,10 +9,10 @@ else
     <section class="hero-section" style="background-image:url(/images/@Model.PictureUrl)">
         <div class="container">
             <div class="path">
-                <p><i class="fa-regular fa-house"></i> <a href="index.html"> <span>Home</span></a></p>
-                <p><i class="fa-solid fa-angles-right"></i> <a href="courses.html"><span>Courses</span></a></p>
+                <p><i class="fa-regular fa-house"></i><a asp-action="Index" asp-controller="Home"><span>Home</span></a></p>
+                <p><i class="fa-solid fa-angles-right"></i><a asp-action="Index" asp-controller="Courses"><span>Courses</span></a></p>
                 <p>
-                    <i class="fa-solid fa-angles-right"></i> <span>Fullstack Web Developer Course from Scratch</span>
+                    <i class="fa-solid fa-angles-right"></i> <span>@Model.Title</span>
                 </p>
             </div>
 

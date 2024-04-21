@@ -12,7 +12,7 @@
 
         public string? Hours { get; set; }
 
-        public string? PictureUrl { get; set; }
+        public string? PictureUrl { get; set; } = "sodom.jpg";
 
         public bool IsBestSeller { get; set; } = false;
 

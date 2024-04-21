@@ -53,7 +53,7 @@ namespace SilliconASPWebApp.Controllers
                     return View(nameof(Details), viewModel);
 
                 var user = await _userManager.GetUserAsync(User);
-                var loggedInUser = MappingFactory.MapNewUserValues(user!, model);
+                var loggedInUser = UserMapper.MapNewUserValues(user!, model);
 
                 if (loggedInUser != null)
                 {
@@ -86,7 +86,7 @@ namespace SilliconASPWebApp.Controllers
                 }
 
                 var loggedInUser = await _userManager.GetUserAsync(User);
-                var newAddress = MappingFactory.NewAddressMapping(model);
+                var newAddress = UserMapper.NewAddressMapping(model);
                 var updatedAddress = await _addressService.UpdateAddress(newAddress);
 
                 if (updatedAddress != null)
@@ -172,13 +172,16 @@ namespace SilliconASPWebApp.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> SaveCourse(int id)
+        public async Task<IActionResult> SaveCourse(int id, string returnUrl)
         {
             try
             {
                 var user = await _userManager.GetUserAsync(User);
-                if (user != null)
+                if (user != null)        
+                {
                     await _savedCoursesService.SaveCourseAsync(id, user.Id);
+                    return Redirect("/Courses" + returnUrl);
+                }       
             }
             catch (Exception e) { Debug.WriteLine($"Error: {e.Message}"); }
             return RedirectToAction("Index", "Courses");

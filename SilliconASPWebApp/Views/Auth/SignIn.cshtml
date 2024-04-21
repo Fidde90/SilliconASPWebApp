@@ -10,9 +10,9 @@
             <h1>Welcome back</h1>
             <p>Don't have an account yet? <a asp- asp-controller="Auth" asp-action="SignUp">Sign up here.</a></p>
 
-            @if (!string.IsNullOrEmpty(errorMsg))
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage) || !string.IsNullOrWhiteSpace(Model.ErrorMessage))
             {
-                <div class="error-msg">@errorMsg</div>
+                <div class="error-msg">@Model.ErrorMessage</div>
             }
 
             <form method="post" novalidate asp-controller="Auth" asp-action="SignIn" asp-route-ReturnUrl="@Model.ReturnUrl">

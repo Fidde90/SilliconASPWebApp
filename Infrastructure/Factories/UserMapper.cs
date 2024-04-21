@@ -4,9 +4,9 @@ using SilliconASPWebApp.Models.Sections;
 
 namespace Infrastructure.Factories
 {
-    public class MappingFactory
+    public class UserMapper
     {
-        public static AppUserEntity UserMapper(SignUpFormModel model)
+        public static AppUserEntity ToUser(SignUpFormModel model)
         {
             var newUser = new AppUserEntity
             {

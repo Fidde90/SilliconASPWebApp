@@ -22,7 +22,7 @@
 
         public bool IsDigital { get; set; } = false;
 
-        public string? PictureUrl { get; set; }
+        public string? PictureUrl { get; set; } = "sodom.jpg";
 
         public string Category { get; set; } = null!;
     }

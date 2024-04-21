@@ -10,15 +10,15 @@
 
         @if (TempData["Message"]?.ToString() == "created")
         {
-            <div>Created</div>
+            <div class="alert-success">Created</div>
         }
         else if (TempData["Message"]?.ToString() == "confilct")
         {
-            <div>Category already exists</div>
+            <div class="alert-danger">Category already exists</div>
         }
         else if (TempData["Message"]?.ToString() == "bad data")
         {
-            <div>Enter a valid category</div>
+            <div class="alert-danger">Enter a valid category</div>
         }
 
         <form novalidate method="post" asp-action="CreateCategory" asp-controller="Categories">
@@ -33,6 +33,16 @@
 
         <form novalidate method="post" asp-action="DeleteCategory" asp-controller="Categories">
             <div class="select-container">
+
+                @if (TempData["Category-Message"]?.ToString() == "Deleted")
+                {
+                    <div class="category-alert-success">@TempData["Category-Message"]?.ToString()</div>
+                }
+                else if (TempData["Category-Message"]?.ToString() == "error")
+                {
+                    <div class="category-alert-error">Something went wrong..</div>
+                }
+
                 <label>Category *</label>
                 <select name="categoryId">
                     @if (categories != null)
@@ -49,4 +59,3 @@
         </form>
     </div>
 </section>
-@await Html.PartialAsync("_ValidationScriptPartial")
