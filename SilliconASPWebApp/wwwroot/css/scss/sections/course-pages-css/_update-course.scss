@@ -5,11 +5,17 @@
         overflow: hidden;
         position: relative;
 
+        .updated{
+            padding-top:20px;
+            font-weight:600;
+            color:var(--color-gray-999);
+        }
+
         .susccess-message {
             position: absolute;
             color: white;
             left: 50px;
-            top: 120px;
+            top: 180px;
 
             @include lg {
                 left: 920px;
@@ -56,7 +62,7 @@
         }
 
         .action-buttons {
-
+            margin-top:10rem;
             a {
                 margin-right: 20px;
             }

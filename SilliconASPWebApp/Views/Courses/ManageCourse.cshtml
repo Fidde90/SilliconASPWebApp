@@ -28,6 +28,7 @@
             <div class="alert-danger">Enter valid information</div>
         }
 
+        <div class="updated">Last updated: @Model.LastUpdated.ToString()</div>
 
         <div class="content">
 
@@ -102,9 +103,7 @@
                     <div>No course found</div>
                 }
             </div>
-
-           
-
+         
             <div id="update-form" class="input-group">
                 <form method="post" novalidate asp-controller="Courses" asp-action="UpdateCourse" asp-route-id="@Model!.Id">
                     <label asp-for="Title">Title *</label>

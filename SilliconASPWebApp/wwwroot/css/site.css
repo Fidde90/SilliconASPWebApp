@@ -2623,11 +2623,16 @@ footer .container .display-none {
   overflow: hidden;
   position: relative;
 }
+#manage-course .container .updated {
+  padding-top: 20px;
+  font-weight: 600;
+  color: var(--color-gray-999);
+}
 #manage-course .container .susccess-message {
   position: absolute;
   color: white;
   left: 50px;
-  top: 120px;
+  top: 180px;
 }
 @media (min-width: 992px) {
   #manage-course .container .susccess-message {
@@ -2670,6 +2675,9 @@ footer .container .display-none {
 }
 #manage-course .container #menu-buttons a {
   background-color: #8a5ddb;
+}
+#manage-course .container .action-buttons {
+  margin-top: 10rem;
 }
 #manage-course .container .action-buttons a {
   margin-right: 20px;
